@@ -1,29 +1,25 @@
-import { mode } from '@chakra-ui/theme-tools'
+import { mode } from '@chakra-ui/theme-tools';
 
 const Button = {
   variants: {
-    square: (props) => ({
-      borderRadius: 0,
-      border: '2px solid',
-      borderColor: mode('black', 'gray.300')(props),
-      color: mode('black', 'gray.300')(props),
+    primary: (props) => ({
+      borderRadius: 'sm',
+      bg: 'lightBlue',
+      color: 'text',
       textTransform: 'uppercase',
-      fontSize: 'xs',
+      fontSize: 'base',
       transition: 'all .4s',
-      boxShadow: 'md',
-      px: 6,
+      letterSpacing: 'wide',
+      py: 3,
+      px: 5,
       _hover: {
-        bg: mode('black', 'white')(props),
-        borderColor: mode('black', 'white')(props),
-        color: mode('white', 'black')(props),
-        transform: 'translateY(-4px)',
-        boxShadow: 'lg',
+        bg: 'veryLightBlue',
       },
     }),
   },
   defaultProps: {
-    variant: 'square',
+    variant: 'primary',
   },
-}
+};
 
-export default Button
+export default Button;

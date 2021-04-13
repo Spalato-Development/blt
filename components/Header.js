@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const Header = () => {
+export const Header = ({ title }) => {
   return (
     <div>
-      <h1>Header</h1>
+      <div dangerouslySetInnerHTML={{ __html: title }} />
     </div>
   );
 };

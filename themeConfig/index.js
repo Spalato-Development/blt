@@ -13,6 +13,7 @@ module.exports = {
   },
   borderRadius: {
     ...defaultTheme.borderRadius,
+    sm: rem(3),
   },
 
   borderWidth: {
