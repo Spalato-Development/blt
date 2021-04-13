@@ -1,57 +1,55 @@
-import { mode } from "@chakra-ui/theme-tools"
-
 const p = {
-  fontSize: ["base"],
-  lineHeight: "body",
+  fontSize: ['base'],
+  lineHeight: 'body',
   mb: 5,
-}
+};
 const a = {
-  transition: "all .2s",
-  color: "accent",
-  fontWeight: "bold",
-  textDecoration: "none",
-  "&:hover": {
-    textDecoration: "none",
+  transition: 'all .2s',
+  color: 'accent',
+  fontWeight: 'bold',
+  textDecoration: 'none',
+  '&:hover': {
+    textDecoration: 'none',
   },
-}
+};
 const heading = {
-  fontFamily: "heading",
-  lineHeight: "heading",
-  fontWeight: "heading",
+  fontFamily: 'medium',
+  lineHeight: 'heading',
+  fontWeight: 'heading',
   a: {
-    borderBottom: "none",
+    borderBottom: 'none',
   },
-}
+};
 
 const h1 = {
   ...heading,
   // fontSize: ["3xl", "4xl"],
   // mt: 1,
-}
+};
 const h2 = {
   ...heading,
   // fontSize: ["2xl", "3xl"],
   // mt: 1,
-}
+};
 
 const h3 = {
   ...heading,
-  fontSize: ["xl", "2xl"],
+  fontSize: ['xl', '2xl'],
   // mt: 2,
-}
+};
 const h4 = {
   ...heading,
-  fontSize: ["lg", "xl"],
-}
+  fontSize: ['lg', 'xl'],
+};
 
 const h5 = {
   ...heading,
-  fontSize: "xm",
-}
+  fontSize: 'xm',
+};
 const h6 = {
   ...heading,
-  fontSize: "xs",
-}
+  fontSize: 'xs',
+};
 
 const base = {
   a,
@@ -62,51 +60,51 @@ const base = {
   h4,
   h5,
   h6,
-}
+};
 
 const styles = {
   global: (props) => {
     return {
       body: {
-        fontFamily: "body",
-        color: mode("text", "modes.dark.text")(props),
-        bg: mode("bg", "modes.dark.bg")(props),
-        transition: "all .4s ease-in-out",
-        lineHeight: "body",
+        fontFamily: 'medium',
+        color: 'text',
+        bg: 'grey1',
+        transition: 'all .4s ease-in-out',
+        lineHeight: 'body',
       },
-      "*::placeholder": {
-        color: mode("gray.400", "whiteAlpha.400")(props),
+      '*::placeholder': {
+        color: 'grey1',
       },
-      "*, *::before, &::after": {
-        borderColor: mode("gray.200", "whiteAlpha.300")(props),
-        wordWrap: "break-word",
+      '*, *::before, &::after': {
+        borderColor: 'grey2',
+        wordWrap: 'break-word',
       },
-      "*:focus": {
-        outlineStyle: "dashed",
-        outlineWidth: "0.5px",
+      '*:focus': {
+        outlineStyle: 'dashed',
+        outlineWidth: '0.5px',
       },
 
       blockquote: {
-        fontStyle: "italic",
+        fontStyle: 'italic',
         px: [5, 12],
         py: 8,
-        borderLeft: "5px solid",
-        borderColor: "primary",
-        maxWidth: "800px !important",
-        mx: "auto",
+        borderLeft: '5px solid',
+        borderColor: 'primary',
+        maxWidth: '800px !important',
+        mx: 'auto',
         my: 10,
-        bg: mode("light", "dark")(props),
+        bg: 'grey2',
       },
-      "::-webkit-search-cancel-button": {
-        WebkitAppearance: "none",
+      '::-webkit-search-cancel-button': {
+        WebkitAppearance: 'none',
       },
-      "*:focus:not(:focus-visible), [class]:focus:not(:focus-visible)": {
-        outline: "none",
-        boxShadow: "none",
+      '*:focus:not(:focus-visible), [class]:focus:not(:focus-visible)': {
+        outline: 'none',
+        boxShadow: 'none',
       },
       ...base,
-    }
+    };
   },
-}
+};
 
-export default styles
+export default styles;

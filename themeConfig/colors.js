@@ -6,11 +6,11 @@ const darkBlue = '#26496c',
   lightGold = '#d2be9b',
   veryLightGold = '#f8f3ec',
   black = '#000000',
-  darkGrey = '#494949',
-  grey = '#676767',
-  lightGrey = '#ababab',
-  veryLightGrey = '#e1e1e1',
-  light = '#f8f5f5';
+  grey5 = '#494949',
+  grey4 = '#676767',
+  grey3 = '#ababab',
+  grey2 = '#e1e1e1',
+  grey1 = '#f8f5f5';
 
 module.exports = {
   /* base colors*/
@@ -21,11 +21,12 @@ module.exports = {
   lightGold,
   veryLightGold,
   black,
-  darkGrey,
-  grey,
-  lightGrey,
-  veryLightGrey,
-  light,
+  grey1,
+  grey2,
+  grey3,
+  grey4,
+  grey5,
   primary: darkBlue,
   highlight: gold,
+  text: grey5,
 };
