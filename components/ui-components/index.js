@@ -1,2 +1,2 @@
 export * from './Headings';
-export * from './Accordion';
+export * from './CollapseSection';

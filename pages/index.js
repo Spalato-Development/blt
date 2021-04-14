@@ -16,7 +16,6 @@ import {
   useDisclosure,
   Input,
 } from '@chakra-ui/react';
-import { BltAccordion, Heading1 } from '../components/ui-components';
 
 export default function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -33,10 +32,7 @@ export default function Home() {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-        <BltAccordion title="accordion test">
-          <p>This is an accordion</p>
-        </BltAccordion>
-        <Heading1>Hello</Heading1>
+
         <h1 className="text-f-60">new test</h1>
         <VStack>
           <Button>Button</Button>

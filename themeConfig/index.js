@@ -23,6 +23,7 @@ module.exports = {
   },
   boxShadow: {
     ...defaultTheme.boxShadow,
+    'shadow-section': '0 0 34px 0',
   },
   maxWidth: {
     ...defaultTheme.maxWidth,
