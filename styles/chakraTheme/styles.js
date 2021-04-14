@@ -102,7 +102,7 @@ const styles = {
         outline: 'none',
         boxShadow: 'none',
       },
-      ...base,
+      // ...base,
     };
   },
 };

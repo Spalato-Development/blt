@@ -16,7 +16,7 @@ const {
   lineHeight,
   fontWeight,
   fontFamily,
-  fontSize,
+  // fontSize,
 } = config;
 const fromTailwindToChakra = (fonts) => {
   {
@@ -28,7 +28,7 @@ const fromTailwindToChakra = (fonts) => {
 };
 
 const fontSizes = {
-  ...fromTailwindToChakra(fontSize),
+  // ...fromTailwindToChakra(fontSize),
   'f-12': rem(12),
   'f-16': rem(16),
   'f-18': rem(18),

@@ -12,6 +12,7 @@ const darkBlue = '#26496c',
   grey3 = '#ababab',
   grey2 = '#e1e1e1',
   grey1 = '#f8f5f5';
+white = '#fff';
 
 module.exports = {
   /* base colors*/
@@ -28,6 +29,7 @@ module.exports = {
   grey3,
   grey4,
   grey5,
+  white,
   primary: darkBlue,
   highlight: gold,
   text: grey4,

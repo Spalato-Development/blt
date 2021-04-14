@@ -21,7 +21,7 @@ export const Footer = () => {
   console.log(data, loading, error);
   return (
     <div>
-      <h1 className="font-semibold uppercase text-f-40 text-darkBlue">
+      <h1 className="font-semibold uppercase text-darkBlue">
         FooterData: {facebook}
       </h1>
     </div>
