@@ -16,10 +16,13 @@ const Container = {
     xl: {
       maxW: 'container.xl',
     },
+    xxl: {
+      maxW: '1400px',
+    },
   },
   defaultProps: {
     size: 'xl',
   },
-}
+};
 
-export default Container
+export default Container;

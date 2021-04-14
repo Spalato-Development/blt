@@ -2,6 +2,7 @@
 const darkBlue = '#26496c',
   lightBlue = '#a9e8ff',
   veryLightBlue = '#c0eeff',
+  blue1 = '#eaecf2',
   gold = '#d3b27d',
   lightGold = '#d2be9b',
   veryLightGold = '#f8f3ec',
@@ -17,6 +18,7 @@ module.exports = {
   darkBlue,
   lightBlue,
   veryLightBlue,
+  blue1,
   gold,
   lightGold,
   veryLightGold,
@@ -28,5 +30,5 @@ module.exports = {
   grey5,
   primary: darkBlue,
   highlight: gold,
-  text: grey5,
+  text: grey4,
 };
