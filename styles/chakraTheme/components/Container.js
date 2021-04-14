@@ -1,6 +1,6 @@
 const Container = {
   baseStyle: {
-    px: { base: 5, lg: 0 },
+    px: { base: 5, xl: 0 },
     mx: 'auto',
   },
   sizes: {
@@ -17,7 +17,7 @@ const Container = {
       maxW: 'container.xl',
     },
     xxl: {
-      maxW: '1400px',
+      maxW: '1350px',
     },
   },
   defaultProps: {
