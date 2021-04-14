@@ -1,6 +1,6 @@
 const Container = {
   baseStyle: {
-    px: [5, 5, 6, 10],
+    px: { base: 5, lg: 0 },
     mx: 'auto',
   },
   sizes: {
@@ -21,7 +21,7 @@ const Container = {
     },
   },
   defaultProps: {
-    size: 'xl',
+    size: 'xxl',
   },
 };
 
