@@ -24,6 +24,9 @@ module.exports = {
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     ...defaultTheme,
+    container: {
+      center: true,
+    },
     extend: {
       fontSize: {
         'f-12': rem(12),
