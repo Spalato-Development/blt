@@ -7,7 +7,7 @@ export const Header = () => {
       <div className="container max-w-[1400px] px-5">
         <h1 className="text-white text-[48px] font-pm-light">
           <Link href="/">
-            <a>
+            <a className="font-pm-light">
               bucket list{' '}
               <span className="ml-4 text-gold font-script"> travels</span>
             </a>

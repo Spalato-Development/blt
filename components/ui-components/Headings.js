@@ -3,7 +3,7 @@ const headingDefault = `text-grey5 leading-relaxed`;
 export const H1 = ({ children }, props) => {
   return (
     <h1
-      className={`${headingDefault} text-f-40 sm:text-f-60 font-light`}
+      className={`${headingDefault} text-f-40 sm:text-f-60 font-pm-light`}
       {...props}>
       {children}
     </h1>

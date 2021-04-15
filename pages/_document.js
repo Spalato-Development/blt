@@ -21,7 +21,7 @@ class MyDocument extends Document {
           rel="preload"
           href="/fonts/proxima-nova/proxima-nova-medium.woff"
           as="font"
-          type="font/woff2"
+          type="font/woff"
           crossOrigin="anonymous"
         />
         <link
@@ -35,7 +35,7 @@ class MyDocument extends Document {
           rel="preload"
           href="/fonts/proxima-nova/proxima-nova-light.woff"
           as="font"
-          type="font/woff2"
+          type="font/woff"
           crossOrigin="anonymous"
         />
         <link
@@ -49,12 +49,12 @@ class MyDocument extends Document {
           rel="preload"
           href="/fonts/proxima-nova/proxima-nova-semibold.woff"
           as="font"
-          type="font/woff2"
+          type="font/woff"
           crossOrigin="anonymous"
         />
         <link
           rel="preload"
-          href="/fonts/proxima-nova/adindamelia/adindamelia.woff2"
+          href="/fonts/adindamelia/adindamelia.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
@@ -63,7 +63,7 @@ class MyDocument extends Document {
           rel="preload"
           href="/fonts/adindamelia/adindamelia.woff"
           as="font"
-          type="font/woff2"
+          type="font/woff"
           crossOrigin="anonymous"
         />
         <body>
