@@ -33,9 +33,9 @@ export const H4 = ({ children }, props) => {
   );
 };
 
-export const TraveQuote = ({ children }, props) => {
+export const TravelQuote = ({ children }, props) => {
   return (
-    <h1 className="text-gold font-script text-f-40 sm:text-f-64" {...props}>
+    <h1 className="text-center text-gold font-script text-f-40" {...props}>
       {children}
     </h1>
   );
