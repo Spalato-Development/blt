@@ -7,15 +7,21 @@ import {
   Intro,
   TravelQuote,
   CollapseSection,
-  Container,
 } from '../components/ui-components';
 
 const TestComponents = () => {
   return (
     <div className="container">
       <div>
-        <H1>Hello</H1>
-        <h1 className="text-f-60">new test</h1>
+        <H1>Heading 1</H1>
+        <H2>Heading 2</H2>
+        <H3>Heading 3</H3>
+        <H4>Heading 3</H4>
+        <Intro>Intro Paragraph</Intro>
+        <TravelQuote>
+          “Once the travel bug bites there is no known antidote, and I know that
+          I shall be happily infected until the end of my life” Michael Palin
+        </TravelQuote>
       </div>
       <div>
         <CollapseSection className="mb-10">

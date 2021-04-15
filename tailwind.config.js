@@ -71,10 +71,9 @@ module.exports = {
         'max-w-1400': '1400px',
       },
       fontFamily: {
-        medium: `proxima_novamedium, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
-        'pm-light': `proxima_novalight, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
-        semibold: `proxima_novasemibold, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
-        script: `adinda_meliaregular`,
+        sans: `Proxima Nova, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+
+        script: `Adinda Melia`,
       },
       fontWeight: {
         body: 400,

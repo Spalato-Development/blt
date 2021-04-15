@@ -3,7 +3,7 @@ const headingDefault = `text-grey5 leading-relaxed`;
 export const H1 = ({ children }, props) => {
   return (
     <h1
-      className={`${headingDefault} text-f-40 sm:text-f-60 font-pm-light`}
+      className={`${headingDefault} text-f-40 sm:text-f-60 font-light`}
       {...props}>
       {children}
     </h1>
@@ -16,6 +16,7 @@ export const H2 = ({ children }, props) => {
       {children}
     </h2>
   );
+  x;
 };
 
 export const H3 = ({ children }, props) => {
@@ -33,9 +34,9 @@ export const H4 = ({ children }, props) => {
   );
 };
 
-export const TraveQuote = ({ children }, props) => {
+export const TravelQuote = ({ children }, props) => {
   return (
-    <h1 className="text-gold font-script text-f-40 sm:text-f-64" {...props}>
+    <h1 className="text-gold font-script text-f-40" {...props}>
       {children}
     </h1>
   );

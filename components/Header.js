@@ -5,7 +5,7 @@ export const Header = () => {
   return (
     <header className=" bg-darkBlue">
       <div className="container max-w-[1400px] px-5">
-        <h1 className="text-white text-[48px] font-pm-light">
+        <h1 className="text-white text-[48px] font-light">
           <Link href="/">
             <a className="font-pm-light">
               bucket list{' '}

@@ -5,11 +5,11 @@ import { FaChevronRight } from 'react-icons/fa';
 
 export const CollapseSection = ({ children, className, ...props }) => {
   return (
-    <section
-      className={`px-6 py-5 bg-white border shadow-section border-grey2 transition duration-500  ease-out ${className}`}
-      {...props}>
-      <Disclosure>
-        {({ open }) => (
+    <Disclosure>
+      {({ open }) => (
+        <section
+          className={`px-6 py-5 bg-white border shadow-section border-grey2 transition duration-500  ease-out ${className}`}
+          {...props}>
           <>
             <Disclosure.Button className="flex items-center cursor-pointer focus:outline-none">
               <FaChevronRight
@@ -32,8 +32,8 @@ export const CollapseSection = ({ children, className, ...props }) => {
               <Disclosure.Panel static>{children}</Disclosure.Panel>
             </Transition>
           </>
-        )}
-      </Disclosure>
-    </section>
+        </section>
+      )}
+    </Disclosure>
   );
 };
