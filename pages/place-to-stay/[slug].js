@@ -22,7 +22,7 @@ const PlaceToStay = ({ ptsData = {} }) => {
 
   return (
     <div>
-      <h1 className="uppercase text-xxl text-darkBlue font-script">
+      <h1 className="text-xl uppercase text-darkBlue font-script">
         {pts.title}
       </h1>
     </div>

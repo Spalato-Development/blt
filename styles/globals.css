@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+}
 @font-face {
   font-family: 'proxima_novamedium';
   src: url('/fonts/proxima-nova/proxima-nova-medium.woff2') format('woff2'),

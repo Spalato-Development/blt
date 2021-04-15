@@ -1,13 +1,29 @@
-const config = require('./themeConfig');
+// const config = require('./themeConfig');
 const rem = (px) => px / 16 + 'rem';
+const defaultTheme = require('tailwindcss/defaultTheme');
+
+//palette
+const darkBlue = '#26496c',
+  lightBlue = '#a9e8ff',
+  veryLightBlue = '#c0eeff',
+  blue1 = '#eaecf2',
+  gold = '#d3b27d',
+  lightGold = '#d2be9b',
+  veryLightGold = '#f8f3ec',
+  black = '#000000',
+  grey5 = '#494949',
+  grey4 = '#676767',
+  grey3 = '#ababab',
+  grey2 = '#e1e1e1',
+  grey1 = '#f8f5f5';
+white = '#fff';
 
 module.exports = {
   purge: ['./components/**/*.{js,ts,jsx,tsx}', './pages/**/*.{js,ts,jsx,tsx}'],
   mode: 'jit',
   darkMode: 'class', // or 'media' or 'class'
   theme: {
-    ...config,
-
+    ...defaultTheme,
     extend: {
       fontSize: {
         'f-12': rem(12),
@@ -22,11 +38,45 @@ module.exports = {
         'f-60': rem(60),
         'f-64': rem(64),
       },
+      colors: {
+        darkBlue,
+        lightBlue,
+        veryLightBlue,
+        blue1,
+        gold,
+        lightGold,
+        veryLightGold,
+        black,
+        grey1,
+        grey2,
+        grey3,
+        grey4,
+        grey5,
+        white,
+        primary: darkBlue,
+        highlight: gold,
+        text: grey4,
+      },
+      spacing: {
+        base: rem(15),
+        base2: rem(30),
+      },
       boxShadow: {
         section: '0 0 34px 0 rgba(0, 0, 0, 0.1);',
       },
       maxWidth: {
         'max-w-1400': '1400px',
+      },
+      fontFamily: {
+        medium: `proxima_novamedium, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+        'pm-light': `proxima_novalight, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+        semibold: `proxima_novasemibold, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+        script: `adinda_meliaregular`,
+      },
+      fontWeight: {
+        body: 400,
+        heading: 400,
+        bold: 700,
       },
     },
   },
@@ -35,6 +85,6 @@ module.exports = {
   },
   plugins: [],
   corePlugins: {
-    preflight: false,
+    preflight: true,
   },
 };

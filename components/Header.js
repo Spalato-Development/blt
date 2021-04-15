@@ -5,8 +5,8 @@ import Link from 'next/link';
 export const Header = () => {
   return (
     <header className=" bg-darkBlue">
-      <Container>
-        <h1 className="text-white text-[48px] font-light">
+      <div>
+        <h1 className="text-white text-[48px] font-pm-light">
           <Link href="/">
             <a>
               bucket list{' '}
@@ -14,7 +14,7 @@ export const Header = () => {
             </a>
           </Link>
         </h1>
-      </Container>
+      </div>
     </header>
   );
 };
