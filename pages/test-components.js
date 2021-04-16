@@ -1,4 +1,6 @@
 import React from 'react';
+import tw, { styled } from 'twin.macro';
+
 import {
   H1,
   H2,
@@ -7,8 +9,10 @@ import {
   Intro,
   TravelQuote,
   CollapseSection,
+  // Button,
 } from '../components/ui-components';
 import { getStaticProps } from '../lib/appGetStaticProps';
+// const Button = tw`px-4 py-3 uppercase rounded-sm bg-lightBlue`;
 
 const TestComponents = () => {
   return (
@@ -19,6 +23,9 @@ const TestComponents = () => {
         <H3>Heading 3</H3>
         <H4>Heading 3</H4>
         <Intro>Intro Paragraph</Intro>
+        <div className="flex justify-between items-cener">
+          {/* <Button>primary Button</Button> */}
+        </div>
         <TravelQuote>
           “Once the travel bug bites there is no known antidote, and I know that
           I shall be happily infected until the end of my life” Michael Palin
