@@ -1,11 +1,11 @@
 import React from 'react';
 import { Header, Footer } from './index';
 
-export const Layout = ({ children, globalData = {} }) => {
-  const { title } = globalData;
+export const Layout = ({ children }) => {
   return (
     <>
-      <Header title={title} />
+      <Header />
+
       {children}
       <Footer />
     </>
