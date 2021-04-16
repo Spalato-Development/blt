@@ -2,16 +2,16 @@ import { getApolloClient } from '@wpengine/headless';
 import { GET_PTS } from 'lib/queries';
 import { appGetStaticProps } from 'lib/appGetStaticProps';
 import { getNextStaticPaths } from '@wpengine/headless/next';
+import { Title } from 'components/ui-components';
 
 const PlaceToStay = ({ ptsData = {} }) => {
   const { placeToStay: pts } = ptsData.data;
+  const { title } = pts;
 
   return (
-    <div>
-      <h1 className="text-xl uppercase text-darkBlue font-script">
-        {pts.title}
-      </h1>
-    </div>
+    <>
+      <Title title={title} intro="Recommended place to stay:" />
+    </>
   );
 };
 

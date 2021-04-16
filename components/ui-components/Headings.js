@@ -1,50 +1,56 @@
-const headingDefault = `text-grey5 leading-relaxed`;
+const headingDefault = `text-grey5`;
 
-export const H1 = ({ children }, props) => {
+export const H1 = ({ children, className }, props) => {
   return (
     <h1
-      className={`${headingDefault} text-f-40 sm:text-f-60 font-light`}
+      className={`${headingDefault} ${className} text-f-40 sm:text-f-60 font-light`}
       {...props}>
       {children}
     </h1>
   );
 };
 
-export const H2 = ({ children }, props) => {
+export const H2 = ({ children, className }, props) => {
   return (
-    <h2 className={`${headingDefault}text-f-26 sm:text-f-36`} {...props}>
+    <h2
+      className={`${headingDefault} ${className} text-f-26 sm:text-f-36`}
+      {...props}>
       {children}
     </h2>
   );
   x;
 };
 
-export const H3 = ({ children }, props) => {
+export const H3 = ({ children, className }, props) => {
   return (
-    <h3 className={`${headingDefault}text-f-24 sm:text-f-26`} {...props}>
+    <h3
+      className={`${headingDefault} ${className}text-f-24 sm:text-f-26`}
+      {...props}>
       {children}
     </h3>
   );
 };
-export const H4 = ({ children }, props) => {
+export const H4 = ({ children, className }, props) => {
   return (
-    <h4 className={`${headingDefault} text-f-22`} {...props}>
+    <h4 className={`${headingDefault} ${className} text-f-22`} {...props}>
       {children}
     </h4>
   );
 };
 
-export const TravelQuote = ({ children }, props) => {
+export const TravelQuote = ({ children, className }, props) => {
   return (
-    <h1 className="text-center text-gold font-script text-f-40" {...props}>
+    <h1
+      className={`text-center text-gold font-script text-f-40 ${className}`}
+      {...props}>
       {children}
     </h1>
   );
 };
 
-export const Intro = ({ children }, props) => {
+export const Intro = ({ children, className }, props) => {
   return (
-    <p className="text-f-24" {...props}>
+    <p className={`text-f-24 ${className}`} {...props}>
       {children}
     </p>
   );
