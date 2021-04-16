@@ -19,7 +19,8 @@ export const CollapseSection = ({ children, className, ...props }) => {
             <Disclosure.Button className="flex items-center cursor-pointer focus:outline-none">
               <FaChevronRight
                 className={clsx(
-                  'transition duration-500 mr-5',
+                  'transition duration-500',
+                  'mr-5',
                   'text-lightBlue text-[49px]',
                   { 'transform rotate-90': open },
                 )}
