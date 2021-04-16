@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import { useGlobalData } from '../lib/context/globalDataContext';
+import { useGlobalData } from 'lib/context/globalDataContext';
+import { Menu } from './Menu';
 
 export const Header = () => {
   const globalData = useGlobalData();
@@ -16,6 +17,7 @@ export const Header = () => {
             </a>
           </Link>
         </h1>
+        <Menu />
       </div>
     </header>
   );

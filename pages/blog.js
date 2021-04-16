@@ -2,7 +2,7 @@ import { getApolloClient, getPosts } from '@wpengine/headless';
 import { usePosts } from '@wpengine/headless/react';
 import { gql } from '@apollo/client';
 import { getNextStaticProps } from '@wpengine/headless/next';
-import { appGetStaticProps } from '../lib/appGetStaticProps';
+import { appGetStaticProps } from 'lib/appGetStaticProps';
 
 const Blog = ({ postsData = {} }) => {
   //   console.log('postsData', props);
