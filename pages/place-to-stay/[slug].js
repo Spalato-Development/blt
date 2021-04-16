@@ -1,6 +1,7 @@
 import { getApolloClient } from '@wpengine/headless';
 import { GET_PTS } from 'lib/queries';
 import { appGetStaticProps } from 'lib/appGetStaticProps';
+import { getNextStaticPaths } from '@wpengine/headless/next';
 
 const PlaceToStay = ({ ptsData = {} }) => {
   const { placeToStay: pts } = ptsData.data;

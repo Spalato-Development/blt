@@ -8,7 +8,7 @@ export const Header = () => {
   console.log('globaldata', globalData);
   return (
     <header className=" bg-darkBlue">
-      <div className="container">
+      <div className="container flex items-center justify-between">
         <h1 className="text-white text-[48px] font-light">
           <Link href="/">
             <a>
