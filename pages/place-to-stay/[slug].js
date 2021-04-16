@@ -1,16 +1,7 @@
 import { getApolloClient } from '@wpengine/headless';
-import { placeToStayFragment } from '../../lib/fragments';
+import { GET_PTS } from 'lib/queries';
 import { getNextStaticPaths } from '@wpengine/headless/next';
-import { appGetStaticProps } from '../../lib/appGetStaticProps';
-
-const GET_PTS = gql`
-  query($id: ID!) {
-    placeToStay(id: $id, idType: SLUG) {
-      ...placeToStayFragment
-    }
-  }
-  ${placeToStayFragment}
-`;
+import { appGetStaticProps } from 'lib/appGetStaticProps';
 
 const PlaceToStay = ({ ptsData = {} }) => {
   const { placeToStay: pts } = ptsData.data;
