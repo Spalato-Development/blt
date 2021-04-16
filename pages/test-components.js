@@ -8,6 +8,7 @@ import {
   TravelQuote,
   CollapseSection,
 } from '../components/ui-components';
+import { getStaticProps } from '../lib/appGetStaticProps';
 
 const TestComponents = () => {
   return (
@@ -40,5 +41,7 @@ const TestComponents = () => {
     </div>
   );
 };
+
+export { getStaticProps };
 
 export default TestComponents;

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Disclosure, Transition } from '@headlessui/react';
-
 import { FaChevronRight } from 'react-icons/fa';
 
 export const CollapseSection = ({ children, className, ...props }) => {
@@ -8,17 +7,16 @@ export const CollapseSection = ({ children, className, ...props }) => {
     <Disclosure>
       {({ open }) => (
         <section
-          className={`px-6 py-5 bg-white border shadow-section border-grey2 transition duration-500  ease-out ${className}`}
+          className={`px-6 py-5 bg-white border shadow-section border-grey2 transition duration-500  ease-out  ${className}`}
           {...props}>
           <>
             <Disclosure.Button className="flex items-center cursor-pointer focus:outline-none">
               <FaChevronRight
-                color="lightBlue"
-                size="49px"
                 className={`${
                   open ? 'transform rotate-90' : ''
-                } transition duration-500 mr-5`}
+                } transition duration-500 mr-5 text-lightBlue text-[49px]`}
               />
+
               <h3 className="text-grey5 text-f-36">Title</h3>
             </Disclosure.Button>
             <Transition

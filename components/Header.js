@@ -1,7 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
+import { useGlobalData } from '../lib/context/globalDataContext';
 
 export const Header = () => {
+  const globalData = useGlobalData();
+  console.log('globaldata', globalData);
   return (
     <header className=" bg-darkBlue">
       <div className="container max-w-[1400px] px-5">
