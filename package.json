@@ -21,6 +21,7 @@
     "react-headroom": "^3.1.1",
     "react-icons": "^4.2.0",
     "remove-trailing-slash": "^0.1.1",
+    "styled-components": "^5.2.3",
     "twin.macro": "^2.3.3"
   },
   "devDependencies": {
