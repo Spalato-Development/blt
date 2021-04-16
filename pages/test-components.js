@@ -25,7 +25,7 @@ const TestComponents = () => {
         </TravelQuote>
       </div>
       <div>
-        <CollapseSection className="mb-10">
+        <CollapseSection className="my-10">
           <p>
             Temporibus eum assumenda voluptas quia molestias ullam sed
             necessitatibus et ut aut qui aliquam. Provident id consequatur

@@ -1,20 +1,28 @@
 import React from 'react';
 import { Disclosure, Transition } from '@headlessui/react';
 import { FaChevronRight } from 'react-icons/fa';
+import clsx from 'clsx';
 
 export const CollapseSection = ({ children, className, ...props }) => {
   return (
     <Disclosure>
       {({ open }) => (
         <section
-          className={`px-6 py-5 bg-white border shadow-section border-grey2 transition duration-500  ease-out  ${className}`}
+          className={clsx(
+            'px-6 py-5',
+            'bg-white border shadow-section border-grey2',
+            'transition duration-500  ease-out',
+            className,
+          )}
           {...props}>
           <>
             <Disclosure.Button className="flex items-center cursor-pointer focus:outline-none">
               <FaChevronRight
-                className={`${
-                  open ? 'transform rotate-90' : ''
-                } transition duration-500 mr-5 text-lightBlue text-[49px]`}
+                className={clsx(
+                  'transition duration-500 mr-5',
+                  'text-lightBlue text-[49px]',
+                  { 'transform rotate-90': open },
+                )}
               />
 
               <h3 className="text-grey5 text-f-36">Title</h3>
