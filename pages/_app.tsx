@@ -13,7 +13,7 @@ export default function App({
 }: AppContext & AppInitialProps) {
   return (
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    <GlobalDataProvider globalData={pageProps}>
+    <GlobalDataProvider globalData={pageProps.globalData}>
       <HeadlessProvider pageProps={pageProps}>
         <Layout>
           <Component {...pageProps} />

@@ -1,6 +1,4 @@
-import { GetStaticPropsContext } from 'next';
 import { getApolloClient } from '@wpengine/headless';
-import { useQuery, gql } from '@apollo/client';
 import { placeToStayFragment } from '../../lib/fragments';
 import { getNextStaticPaths } from '@wpengine/headless/next';
 import { appGetStaticProps } from '../../lib/appGetStaticProps';
@@ -15,7 +13,6 @@ const GET_PTS = gql`
 `;
 
 const PlaceToStay = ({ ptsData = {} }) => {
-  // const { data } = useQuery(GET_PTS);
   const { placeToStay: pts } = ptsData.data;
 
   return (
@@ -39,18 +36,12 @@ export const getStaticProps = async (context) => {
     },
   });
 
-  console.log('context', context, 'ptsData', ptsData);
-
   return {
     props: {
       ptsData,
       globalData,
     },
   };
-  //TODO: why it doesn't work this way on singles ?
-  // const props = await getNextStaticProps(context);
-  // props.revalidate = 1;
-  // return props;
 };
 
 export function getStaticPaths() {
