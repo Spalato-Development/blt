@@ -75,8 +75,7 @@ module.exports = {
         'max-w-1400': '1400px',
       },
       fontFamily: {
-        sans: `Proxima Nova, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
-
+        sans: `"Proxima Nova", "Trebuchet MS", sans-serif`,
         script: `Adinda Melia`,
       },
       fontWeight: {

@@ -1,9 +1,14 @@
 import React from 'react';
 import clsx from 'clsx';
 
-export const Tabs = ({ tabs = [] }) => {
+export const Tabs = ({ tabs = [], className, ...props }) => {
   return (
-    <div className="flex flex-wrap justify-start sm:justify-center sm:flex-nowrap">
+    <div
+      className={clsx(
+        'flex flex-wrap justify-start -mx-1 sm:justify-between sm:flex-nowrap',
+        className,
+      )}
+      {...props}>
       {tabs?.map((tab) => (
         <a
           className={clsx(

@@ -1,6 +1,7 @@
 const withWPEHeadless = require('@wpengine/headless/nextConfig');
 const slashes = require('remove-trailing-slash');
-const imgHost = slashes(process.env.WP_URL).split('/')[2];
+const imgHost = slashes(process.env.NEXT_PUBLIC_WORDPRESS_URL).split('/')[2];
+// console.log('imgHost');
 
 module.exports = withWPEHeadless({
   // future: {
