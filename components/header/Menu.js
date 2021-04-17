@@ -14,7 +14,7 @@ export const Menu = () => {
             <a
               className={clsx(
                 'menuItem',
-                'text-white font-light text-f-14 uppercase tracking-[1px] hover:text-gold',
+                'text-white text-f-14 uppercase tracking-[1px] hover:text-gold',
                 'px-5',
               )}>
               {label}

@@ -23,19 +23,16 @@ const TestComponents = () => {
         <H3>Heading 3</H3>
         <H4>Heading 3</H4>
         <Intro>Intro Paragraph</Intro>
-        <div className="my-5">
+        <div className="flex my-5">
           <Button className="mr-3">primary Button</Button>
-          <Button isNarrow className="mr-3">
+          <Button narrow className="mr-3">
             primary narrow Button
           </Button>
-          <Button isGhost className="mr-3">
-            ghost Button
+          <Button secondary className="mr-3">
+            secondary Button
           </Button>
-          <Button isGhost isSmall className="mr-3">
+          <Button secondary small className="mr-3">
             ghost Button small
-          </Button>
-          <Button isTab className="mr-3">
-            tab
           </Button>
         </div>
         <TravelQuote>

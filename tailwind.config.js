@@ -64,6 +64,7 @@ module.exports = {
       spacing: {
         base: rem(15),
         base2: rem(30),
+        '50px': '50px',
       },
       borderRadius: {
         sm: '3px',
@@ -77,6 +78,9 @@ module.exports = {
       fontFamily: {
         sans: `"Proxima Nova", "Trebuchet MS", sans-serif`,
         script: `Adinda Melia`,
+      },
+      borderWidth: {
+        3: '3px',
       },
       fontWeight: {
         body: 400,
