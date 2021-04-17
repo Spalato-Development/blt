@@ -2,20 +2,28 @@ import { getApolloClient } from '@wpengine/headless';
 import { GET_PTS } from 'lib/queries';
 import { appGetStaticProps } from 'lib/appGetStaticProps';
 import { getNextStaticPaths } from '@wpengine/headless/next';
-import { Title } from 'components/ui-components';
+import { Title, Tabs } from 'components/ui-components';
 
 const PlaceToStay = ({ ptsData = {} }) => {
   const { placeToStay: pts } = ptsData.data;
   const { title } = pts;
 
+  const tabs = [
+    { name: 'our review' },
+    { name: 'price' },
+    { name: 'key amenities' },
+    { name: 'experiences nearby' },
+    { name: 'map' },
+  ];
+
   return (
     <>
       <Title title={title} intro="Recommended place to stay:" />
-      <div className="container justify-center block px-5 md:px-0 lg:flex">
-        <div className="w-full mr-16 bg-darkBlue lg:w-3/4 mb-7 lg:mb-0 h-[800px]">
-          main
+      <div className="container justify-center block px-5 md:px-0 xl:flex">
+        <div className="w-full mr-16 lg:w-3/4 mb-7 xl:mb-0 max-w-[940px] ">
+          <Tabs tabs={tabs} />
         </div>
-        <div className="w-full bg-darkBlue lg:w-1/3 h-[800px] lg:-mt-32">
+        <div className="w-full bg-darkBlue xl:w-1/3 h-[800px] xl:-mt-32 xl:max-w-[316px]">
           sidebar
         </div>
       </div>
