@@ -36,7 +36,9 @@ export const CollapseSection = ({ children, className, ...props }) => {
               leave="transition duration-200 ease-out"
               leaveFrom="opacity-100 transform translate-y-0"
               leaveTo="transform opacity-0 -translate-y-4">
-              <Disclosure.Panel static>{children}</Disclosure.Panel>
+              <Disclosure.Panel className={clsx('pt-5')} static>
+                {children}
+              </Disclosure.Panel>
             </Transition>
           </>
         </section>

@@ -9,10 +9,10 @@ import {
   Intro,
   TravelQuote,
   CollapseSection,
-  // Button,
+  Button,
 } from '../components/ui-components';
 import { getStaticProps } from '../lib/appGetStaticProps';
-// const Button = tw`px-4 py-3 uppercase rounded-sm bg-lightBlue`;
+// const Test = tw`px-4 py-3 uppercase rounded-sm bg-lightBlue`;
 
 const TestComponents = () => {
   return (
@@ -23,8 +23,20 @@ const TestComponents = () => {
         <H3>Heading 3</H3>
         <H4>Heading 3</H4>
         <Intro>Intro Paragraph</Intro>
-        <div className="flex justify-between items-cener">
-          {/* <Button>primary Button</Button> */}
+        <div className="my-5">
+          <Button className="mr-3">primary Button</Button>
+          <Button isNarrow className="mr-3">
+            primary narrow Button
+          </Button>
+          <Button isGhost className="mr-3">
+            ghost Button
+          </Button>
+          <Button isGhost isSmall className="mr-3">
+            ghost Button small
+          </Button>
+          <Button isTab className="mr-3">
+            tab
+          </Button>
         </div>
         <TravelQuote>
           “Once the travel bug bites there is no known antidote, and I know that

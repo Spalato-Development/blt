@@ -65,6 +65,9 @@ module.exports = {
         base: rem(15),
         base2: rem(30),
       },
+      borderRadius: {
+        sm: '3px',
+      },
       boxShadow: {
         section: '0 0 34px 0 rgba(0, 0, 0, 0.1);',
       },
@@ -79,6 +82,7 @@ module.exports = {
       fontWeight: {
         body: 400,
         heading: 400,
+        semiBold: 600,
         bold: 700,
       },
     },
