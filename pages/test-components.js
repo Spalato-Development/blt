@@ -1,44 +1,31 @@
 import React from 'react';
-import tw, { styled } from 'twin.macro';
+import tw, { styled, css } from 'twin.macro';
 
-import {
-  H1,
-  H2,
-  H3,
-  H4,
-  Intro,
-  TravelQuote,
-  CollapseSection,
-  Button,
-} from '../components/ui-components';
+import { CollapseSection, Button, Typo } from '../components/ui-components';
 import { getStaticProps } from '../lib/appGetStaticProps';
-// const Test = tw`px-4 py-3 uppercase rounded-sm bg-lightBlue`;
 
 const TestComponents = () => {
   return (
     <div className="container">
+      <div className="my-5">
+        <Typo as="h1" travelQuote>
+          “The world is a book, and those who do not travel read only a page”
+        </Typo>
+      </div>
+
       <div>
-        <H1>Heading 1</H1>
-        <H2>Heading 2</H2>
-        <H3>Heading 3</H3>
-        <H4>Heading 3</H4>
-        <Intro>Intro Paragraph</Intro>
-        <div className="flex my-5">
-          <Button className="mr-3">primary Button</Button>
-          <Button narrow className="mr-3">
+        <div className="flex flex-wrap my-5">
+          <Button className="m-3">primary Button</Button>
+          <Button narrow className="m-3">
             primary narrow Button
           </Button>
-          <Button secondary className="mr-3">
+          <Button secondary className="m-3">
             secondary Button
           </Button>
-          <Button secondary small className="mr-3">
+          <Button secondary small className="m-3">
             ghost Button small
           </Button>
         </div>
-        <TravelQuote>
-          “Once the travel bug bites there is no known antidote, and I know that
-          I shall be happily infected until the end of my life” Michael Palin
-        </TravelQuote>
       </div>
       <div>
         <CollapseSection className="my-10">

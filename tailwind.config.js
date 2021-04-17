@@ -36,6 +36,7 @@ module.exports = {
         'f-22': rem(22),
         'f-24': rem(24),
         'f-26': rem(26),
+        'f-28': rem(28),
         'f-30': rem(30),
         'f-36': rem(36),
         'f-40': rem(40),
@@ -65,6 +66,9 @@ module.exports = {
         base: rem(15),
         base2: rem(30),
         '50px': '50px',
+      },
+      transitionProperty: {
+        height: 'height',
       },
       borderRadius: {
         sm: '3px',

@@ -11,7 +11,7 @@ const Button = styled.button(({ secondary, narrow, small }) => [
   secondary &&
     tw`h-10 text-sm bg-white border-2 border-lightBlue hover:bg-lightBlue`,
 
-  small && tw`px-2 text-sm h-7`,
+  small && tw`px-2 py-3 text-sm h-7 `,
 ]);
 
 export { Button };
