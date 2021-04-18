@@ -17,6 +17,7 @@ export const Gallery = ({ images = [], ...props }) => {
           alt={bigImage?.altText}
           width="938px"
           height="529px"
+          priority={true}
         />
       </div>
       <div className={clsx('flex flex-wrap -mx-1')}>
@@ -33,6 +34,7 @@ export const Gallery = ({ images = [], ...props }) => {
                 alt={altText}
                 width="110px"
                 height="61px"
+                priority={true}
               />
             </div>
           );
