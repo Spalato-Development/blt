@@ -23,10 +23,16 @@ const PlaceToStay = ({ ptsData = {} }) => {
       airportTransfers,
       beach,
       roomFeatures,
+      fdFeatures,
       otherHotelFacilities,
+      pool,
+      parking,
+      wifi,
     },
   } = pts;
-  console.log('price', priceCheckingLinks);
+  const hf = otherHotelFacilities?.map((item) => item.toLowerCase());
+  const poolFeatures = pool?.map((item) => item.toLowerCase());
+  const fd = fdFeatures?.map((item) => item.toLowerCase());
 
   const tabs = [
     { name: 'our review' },
@@ -61,20 +67,64 @@ const PlaceToStay = ({ ptsData = {} }) => {
 
           {/* General Amenities */}
           <CollapseSection title="General amenities" id="key-amenities">
+            {/* Key facilities */}
             <HotelFeatures title="Key facilities">
               <FeatureRow>
                 <Feature>Airport transfers: {airportTransfers} </Feature>
                 <Feature>Beach: {airportTransfers} </Feature>
-                <Feature
-                  disabled={
-                    !otherHotelFacilities.includes('creche'.toLowerCase())
-                  }>
-                  creche
-                </Feature>
-                <Feature
-                  disabled={!otherHotelFacilities.includes('Fitness center')}>
+                <Feature disabled={!hf.includes('creche')}>creche</Feature>
+                <Feature disabled={!hf.includes('itness center')}>
                   Fitness centre
                 </Feature>
+              </FeatureRow>
+
+              <FeatureRow>
+                <Feature disabled={!hf.includes('fitness classes')}>
+                  Fitness classes
+                </Feature>
+                <Feature disabled={!hf.includes('golf course')}>
+                  Golf course
+                </Feature>
+                <Feature disabled={!hf.includes('hot tub')}>Hot tub</Feature>
+                <Feature>Parking: {parking[0]}</Feature>
+              </FeatureRow>
+
+              <FeatureRow>
+                <Feature disabled={!poolFeatures.includes('adults only')}>
+                  Pool (adults only)
+                </Feature>
+                <Feature disabled={!poolFeatures.includes('indoor')}>
+                  Pool (indoor)
+                </Feature>
+                <Feature disabled={!poolFeatures.includes('outdoor')}>
+                  Pool (outdoor)
+                </Feature>
+                <Feature disabled={!poolFeatures.includes('kids')}>
+                  Pool (kids)
+                </Feature>
+              </FeatureRow>
+
+              <FeatureRow>
+                <Feature disabled={!hf.includes('spa')}>Spa</Feature>
+                <Feature disabled={!hf.includes('tennis courts')}>
+                  Tennis courts
+                </Feature>
+                <Feature>WiFi: {wifi}</Feature>
+                <Feature disabled={!hf.includes('yoga')}>Yoga</Feature>
+              </FeatureRow>
+            </HotelFeatures>
+
+            {/* Food and drinks */}
+            <HotelFeatures title="Food & drink">
+              <FeatureRow>
+                <Feature>All inclusive</Feature>
+                <Feature disabled={!fd.includes('kids menu')}>
+                  Kids menu
+                </Feature>
+                <Feature disabled={!fd.includes('restaurant on-site')}>
+                  Restaurant on-site
+                </Feature>
+                <Feature>Self catering</Feature>
               </FeatureRow>
             </HotelFeatures>
           </CollapseSection>

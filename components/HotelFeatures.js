@@ -33,11 +33,11 @@ export const FeatureRow = ({ className, ...props }) => {
 
 export const HotelFeatures = ({ title, children, ...props }) => {
   return (
-    <Fragment {...props}>
+    <div className="mb-12" {...props}>
       <Typo as="h3" h3 className="pb-3 mb-3 border-b md:mb-0 border-grey3">
         {title}
       </Typo>
       {children}
-    </Fragment>
+    </div>
   );
 };

@@ -10,7 +10,7 @@ export const CollapseSection = ({ children, className, title, ...props }) => {
       {({ open }) => (
         <section
           className={clsx(
-            'px-6 py-8 my-base2',
+            'px-9 py-8 my-base2',
             'bg-white border shadow-section border-grey2',
             'transition-max-h duration-500   ease-out',
             className,
