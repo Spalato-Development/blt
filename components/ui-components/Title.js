@@ -14,17 +14,15 @@ const Title = ({ title, stars, intro, className, ...props }) => {
         className,
       )}
       {...props}>
-      <div className="container">
-        {intro && <div className={clsx('text-gold text-f-24')}>{intro}</div>}
-        <Typo as="h1" h1>
-          {title}
-        </Typo>
-        {stars && (
-          <div className="flex">
-            <StarIcons stars={stars} />
-          </div>
-        )}
-      </div>
+      {intro && <div className={clsx('text-gold text-f-24')}>{intro}</div>}
+      <Typo as="h1" h1>
+        {title}
+      </Typo>
+      {stars && (
+        <div className="flex">
+          <StarIcons stars={stars} />
+        </div>
+      )}
     </div>
   );
 };
