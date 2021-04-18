@@ -28,6 +28,7 @@ const PlaceToStay = ({ ptsData = {} }) => {
       pool,
       parking,
       wifi,
+      starRating,
     },
   } = pts;
   const hf = otherHotelFacilities?.map((item) => item.toLowerCase());
@@ -44,7 +45,11 @@ const PlaceToStay = ({ ptsData = {} }) => {
 
   return (
     <>
-      <Title title={title} intro="Recommended place to stay:" />
+      <Title
+        title={title}
+        stars={parseInt(starRating)}
+        intro="Recommended place to stay:"
+      />
       <div className="container justify-center block px-5 md:px-0 xl:flex">
         <div className="w-full mr-16 xl:w-3/4 mb-7 xl:mb-0 max-w-[940px] ">
           <Tabs tabs={tabs} className="mb-4" />
