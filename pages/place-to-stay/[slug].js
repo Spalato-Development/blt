@@ -7,6 +7,7 @@ import {
   Tabs,
   Gallery,
   CollapseSection,
+  TravelQuote,
 } from 'components/ui-components';
 import { About, Price } from 'components';
 
@@ -35,6 +36,8 @@ const PlaceToStay = ({ ptsData = {} }) => {
         <div className="w-full mr-16 lg:w-3/4 mb-7 xl:mb-0 max-w-[940px] ">
           <Tabs tabs={tabs} className="mb-4" />
           <Gallery images={imageGallery} />
+
+          {/* Review */}
           <CollapseSection title="Our review">
             <About
               writer={writer[0]}
@@ -43,6 +46,8 @@ const PlaceToStay = ({ ptsData = {} }) => {
               <div dangerouslySetInnerHTML={{ __html: about }} />
             </About>
           </CollapseSection>
+
+          {/* Price */}
           <CollapseSection title="Price">
             <Price priceCheckingLinks={priceCheckingLinks} />
           </CollapseSection>
@@ -51,6 +56,12 @@ const PlaceToStay = ({ ptsData = {} }) => {
           sidebar
         </div>
       </div>
+
+      {/* Quote */}
+      <TravelQuote author="Michael Palin">
+        “Once the travel bug bites there is no known antidote, and I know that I
+        shall be happily infected until the end of my life”
+      </TravelQuote>
     </>
   );
 };
