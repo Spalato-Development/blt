@@ -1,11 +1,14 @@
 import React from 'react';
-import { Container } from '../components/ui-components';
 import Link from 'next/link';
+import { useGlobalData } from 'lib/context/globalDataContext';
+import { Menu } from './Menu';
 
 export const Header = () => {
+  const globalData = useGlobalData();
+  console.log('globaldata', globalData);
   return (
     <header className=" bg-darkBlue">
-      <Container>
+      <div className="container flex items-center justify-between">
         <h1 className="text-white text-[48px] font-light">
           <Link href="/">
             <a>
@@ -14,7 +17,8 @@ export const Header = () => {
             </a>
           </Link>
         </h1>
-      </Container>
+        <Menu />
+      </div>
     </header>
   );
 };

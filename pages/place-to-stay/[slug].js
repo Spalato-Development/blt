@@ -1,31 +1,95 @@
-import { GetStaticPropsContext } from 'next';
 import { getApolloClient } from '@wpengine/headless';
-import { useQuery, gql } from '@apollo/client';
-import { placeToStayFragment } from '../../lib/fragments';
+import { GET_PTS } from 'lib/queries';
+import { appGetStaticProps } from 'lib/appGetStaticProps';
+import { getNextStaticPaths } from '@wpengine/headless/next';
 import {
-  getNextStaticPaths,
-  getNextStaticProps,
-} from '@wpengine/headless/next';
-
-const GET_PTS = gql`
-  query($id: ID!) {
-    placeToStay(id: $id, idType: SLUG) {
-      ...placeToStayFragment
-    }
-  }
-  ${placeToStayFragment}
-`;
+  Title,
+  Tabs,
+  Gallery,
+  CollapseSection,
+  TravelQuote,
+} from 'components/ui-components';
+import { About, Price, HotelFeatures, Feature, FeatureRow } from 'components';
 
 const PlaceToStay = ({ ptsData = {} }) => {
-  // const { data } = useQuery(GET_PTS);
   const { placeToStay: pts } = ptsData.data;
+  const {
+    title,
+    date,
+    commonDataAttributes: { imageGallery, about, standfirst },
+    ptsDataAttr: {
+      writer,
+      priceCheckingLinks,
+      airportTransfers,
+      beach,
+      roomFeatures,
+      otherHotelFacilities,
+    },
+  } = pts;
+  console.log('price', priceCheckingLinks);
+
+  const tabs = [
+    { name: 'our review' },
+    { name: 'price' },
+    { name: 'key amenities' },
+    { name: 'experiences nearby' },
+    { name: 'map' },
+  ];
 
   return (
-    <div>
-      <h1 className="uppercase text-xxl text-darkBlue font-script">
-        {pts.title}
-      </h1>
-    </div>
+    <>
+      <Title title={title} intro="Recommended place to stay:" />
+      <div className="container justify-center block px-5 md:px-0 xl:flex">
+        <div className="w-full mr-16 xl:w-3/4 mb-7 xl:mb-0 max-w-[940px] ">
+          <Tabs tabs={tabs} className="mb-4" />
+          <Gallery images={imageGallery} />
+
+          {/* Review */}
+          <CollapseSection title="Our review" id="our-review">
+            <About
+              writer={writer[0]}
+              date={date}
+              text="Know someone who would like this place to stay? Why not let them know…">
+              <div dangerouslySetInnerHTML={{ __html: about }} />
+            </About>
+          </CollapseSection>
+
+          {/* Price */}
+          <CollapseSection title="Price" id="price">
+            <Price priceCheckingLinks={priceCheckingLinks} />
+          </CollapseSection>
+
+          {/* General Amenities */}
+          <CollapseSection title="General amenities" id="key-amenities">
+            <HotelFeatures title="Key facilities">
+              <FeatureRow>
+                <Feature>Airport transfers: {airportTransfers} </Feature>
+                <Feature>Beach: {airportTransfers} </Feature>
+                <Feature
+                  disabled={
+                    !otherHotelFacilities.includes('creche'.toLowerCase())
+                  }>
+                  creche
+                </Feature>
+                <Feature
+                  disabled={!otherHotelFacilities.includes('Fitness center')}>
+                  Fitness centre
+                </Feature>
+              </FeatureRow>
+            </HotelFeatures>
+          </CollapseSection>
+        </div>
+        <div className="w-full bg-darkBlue xl:w-1/3 h-[800px] xl:-mt-32 xl:max-w-[316px]">
+          sidebar
+        </div>
+      </div>
+
+      {/* Quote */}
+      <TravelQuote author="Michael Palin">
+        “Once the travel bug bites there is no known antidote, and I know that I
+        shall be happily infected until the end of my life”
+      </TravelQuote>
+    </>
   );
 };
 
@@ -33,6 +97,7 @@ export default PlaceToStay;
 
 export const getStaticProps = async (context) => {
   const client = getApolloClient(context);
+  const globalData = await appGetStaticProps(context);
   const ptsData = await client.query({
     query: GET_PTS,
     variables: {
@@ -40,17 +105,12 @@ export const getStaticProps = async (context) => {
     },
   });
 
-  console.log('context', context, 'ptsData', ptsData);
-
   return {
     props: {
       ptsData,
+      globalData,
     },
   };
-  //TODO: why it doesn't work this way on singles ?
-  // const props = await getNextStaticProps(context);
-  // props.revalidate = 1;
-  // return props;
 };
 
 export function getStaticPaths() {
