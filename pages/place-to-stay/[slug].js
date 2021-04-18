@@ -8,6 +8,7 @@ import {
   Gallery,
   CollapseSection,
   TravelQuote,
+  ContentLayout,
 } from 'components/ui-components';
 import { About, Price, HotelFeatures, Feature, FeatureRow } from 'components';
 
@@ -50,94 +51,87 @@ const PlaceToStay = ({ ptsData = {} }) => {
         stars={parseInt(starRating)}
         intro="Recommended place to stay:"
       />
-      <div className="container justify-center block px-5 md:px-0 xl:flex">
-        <div className="w-full mr-16 xl:w-3/4 mb-7 xl:mb-0 max-w-[940px] ">
-          <Tabs tabs={tabs} className="mb-4" />
-          <Gallery images={imageGallery} />
+      <ContentLayout sidebar="sidebar">
+        <Tabs tabs={tabs} className="mb-4" />
+        <Gallery images={imageGallery} />
 
-          {/* Review */}
-          <CollapseSection title="Our review" id="our-review">
-            <About
-              writer={writer[0]}
-              date={date}
-              text="Know someone who would like this place to stay? Why not let them know…">
-              <div dangerouslySetInnerHTML={{ __html: about }} />
-            </About>
-          </CollapseSection>
+        {/* Review */}
+        <CollapseSection title="Our review" id="our-review">
+          <About
+            writer={writer[0]}
+            date={date}
+            text="Know someone who would like this place to stay? Why not let them know…">
+            <div dangerouslySetInnerHTML={{ __html: about }} />
+          </About>
+        </CollapseSection>
 
-          {/* Price */}
-          <CollapseSection title="Price" id="price">
-            <Price priceCheckingLinks={priceCheckingLinks} />
-          </CollapseSection>
+        {/* Price */}
+        <CollapseSection title="Price" id="price">
+          <Price priceCheckingLinks={priceCheckingLinks} />
+        </CollapseSection>
 
-          {/* General Amenities */}
-          <CollapseSection title="General amenities" id="key-amenities">
-            {/* Key facilities */}
-            <HotelFeatures title="Key facilities">
-              <FeatureRow>
-                <Feature>Airport transfers: {airportTransfers} </Feature>
-                <Feature>Beach: {airportTransfers} </Feature>
-                <Feature disabled={!hf.includes('creche')}>creche</Feature>
-                <Feature disabled={!hf.includes('itness center')}>
-                  Fitness centre
-                </Feature>
-              </FeatureRow>
+        {/* General Amenities */}
+        <CollapseSection title="General amenities" id="key-amenities">
+          {/* Key facilities */}
+          <HotelFeatures title="Key facilities">
+            <FeatureRow>
+              <Feature>Airport transfers: {airportTransfers} </Feature>
+              <Feature>Beach: {airportTransfers} </Feature>
+              <Feature disabled={!hf.includes('creche')}>creche</Feature>
+              <Feature disabled={!hf.includes('itness center')}>
+                Fitness centre
+              </Feature>
+            </FeatureRow>
 
-              <FeatureRow>
-                <Feature disabled={!hf.includes('fitness classes')}>
-                  Fitness classes
-                </Feature>
-                <Feature disabled={!hf.includes('golf course')}>
-                  Golf course
-                </Feature>
-                <Feature disabled={!hf.includes('hot tub')}>Hot tub</Feature>
-                <Feature>Parking: {parking[0]}</Feature>
-              </FeatureRow>
+            <FeatureRow>
+              <Feature disabled={!hf.includes('fitness classes')}>
+                Fitness classes
+              </Feature>
+              <Feature disabled={!hf.includes('golf course')}>
+                Golf course
+              </Feature>
+              <Feature disabled={!hf.includes('hot tub')}>Hot tub</Feature>
+              <Feature>Parking: {parking[0]}</Feature>
+            </FeatureRow>
 
-              <FeatureRow>
-                <Feature disabled={!poolFeatures.includes('adults only')}>
-                  Pool (adults only)
-                </Feature>
-                <Feature disabled={!poolFeatures.includes('indoor')}>
-                  Pool (indoor)
-                </Feature>
-                <Feature disabled={!poolFeatures.includes('outdoor')}>
-                  Pool (outdoor)
-                </Feature>
-                <Feature disabled={!poolFeatures.includes('kids')}>
-                  Pool (kids)
-                </Feature>
-              </FeatureRow>
+            <FeatureRow>
+              <Feature disabled={!poolFeatures.includes('adults only')}>
+                Pool (adults only)
+              </Feature>
+              <Feature disabled={!poolFeatures.includes('indoor')}>
+                Pool (indoor)
+              </Feature>
+              <Feature disabled={!poolFeatures.includes('outdoor')}>
+                Pool (outdoor)
+              </Feature>
+              <Feature disabled={!poolFeatures.includes('kids')}>
+                Pool (kids)
+              </Feature>
+            </FeatureRow>
 
-              <FeatureRow>
-                <Feature disabled={!hf.includes('spa')}>Spa</Feature>
-                <Feature disabled={!hf.includes('tennis courts')}>
-                  Tennis courts
-                </Feature>
-                <Feature>WiFi: {wifi}</Feature>
-                <Feature disabled={!hf.includes('yoga')}>Yoga</Feature>
-              </FeatureRow>
-            </HotelFeatures>
+            <FeatureRow>
+              <Feature disabled={!hf.includes('spa')}>Spa</Feature>
+              <Feature disabled={!hf.includes('tennis courts')}>
+                Tennis courts
+              </Feature>
+              <Feature>WiFi: {wifi}</Feature>
+              <Feature disabled={!hf.includes('yoga')}>Yoga</Feature>
+            </FeatureRow>
+          </HotelFeatures>
 
-            {/* Food and drinks */}
-            <HotelFeatures title="Food & drink">
-              <FeatureRow>
-                <Feature>All inclusive</Feature>
-                <Feature disabled={!fd.includes('kids menu')}>
-                  Kids menu
-                </Feature>
-                <Feature disabled={!fd.includes('restaurant on-site')}>
-                  Restaurant on-site
-                </Feature>
-                <Feature>Self catering</Feature>
-              </FeatureRow>
-            </HotelFeatures>
-          </CollapseSection>
-        </div>
-        <div className="w-full bg-darkBlue xl:w-1/3 h-[800px] xl:-mt-32 xl:max-w-[316px]">
-          sidebar
-        </div>
-      </div>
+          {/* Food and drinks */}
+          <HotelFeatures title="Food & drink">
+            <FeatureRow>
+              <Feature>All inclusive</Feature>
+              <Feature disabled={!fd.includes('kids menu')}>Kids menu</Feature>
+              <Feature disabled={!fd.includes('restaurant on-site')}>
+                Restaurant on-site
+              </Feature>
+              <Feature>Self catering</Feature>
+            </FeatureRow>
+          </HotelFeatures>
+        </CollapseSection>
+      </ContentLayout>
 
       {/* Quote */}
       <TravelQuote author="Michael Palin">

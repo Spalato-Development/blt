@@ -7,9 +7,9 @@ export const Feature = ({ children, disabled }) => {
   return (
     <div className={clsx('flex', 'py-3 md:py-0', { 'text-grey3': disabled })}>
       {disabled ? (
-        <FaTimes className="text-grey3 text-f-24 w-[20px] mr-3" />
+        <FaTimes className="text-grey3 text-f-24 min-w-[20px] mr-3" />
       ) : (
-        <FaCheck className="mr-3 text-gold text-f-22" />
+        <FaCheck className="min-w-[20px] mr-3 text-gold text-f-22 " />
       )}
 
       <div>{children}</div>

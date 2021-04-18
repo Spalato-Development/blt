@@ -34,7 +34,7 @@ export const CollapseSection = ({ children, className, title, ...props }) => {
               enter="transition duration-700 ease-out"
               enterFrom="opacity-0  transform -translate-y-4"
               enterTo="opacity-100 transform translate-y-0"
-              leave="transition duration-200 ease-out"
+              leave="transition duration-300 ease-out"
               leaveFrom="opacity-100 transform translate-y-0"
               leaveTo="transform opacity-0 -translate-y-4">
               <Disclosure.Panel className={clsx('pt-5')} static>
