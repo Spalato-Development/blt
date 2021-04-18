@@ -9,7 +9,7 @@ import {
   CollapseSection,
   TravelQuote,
 } from 'components/ui-components';
-import { About, Price } from 'components';
+import { About, Price, HotelFeatures, Feature, FeatureRow } from 'components';
 
 const PlaceToStay = ({ ptsData = {} }) => {
   const { placeToStay: pts } = ptsData.data;
@@ -17,7 +17,14 @@ const PlaceToStay = ({ ptsData = {} }) => {
     title,
     date,
     commonDataAttributes: { imageGallery, about, standfirst },
-    ptsDataAttr: { writer, priceCheckingLinks },
+    ptsDataAttr: {
+      writer,
+      priceCheckingLinks,
+      airportTransfers,
+      beach,
+      roomFeatures,
+      otherHotelFacilities,
+    },
   } = pts;
   console.log('price', priceCheckingLinks);
 
@@ -33,12 +40,12 @@ const PlaceToStay = ({ ptsData = {} }) => {
     <>
       <Title title={title} intro="Recommended place to stay:" />
       <div className="container justify-center block px-5 md:px-0 xl:flex">
-        <div className="w-full mr-16 lg:w-3/4 mb-7 xl:mb-0 max-w-[940px] ">
+        <div className="w-full mr-16 xl:w-3/4 mb-7 xl:mb-0 max-w-[940px] ">
           <Tabs tabs={tabs} className="mb-4" />
           <Gallery images={imageGallery} />
 
           {/* Review */}
-          <CollapseSection title="Our review">
+          <CollapseSection title="Our review" id="our-review">
             <About
               writer={writer[0]}
               date={date}
@@ -48,8 +55,28 @@ const PlaceToStay = ({ ptsData = {} }) => {
           </CollapseSection>
 
           {/* Price */}
-          <CollapseSection title="Price">
+          <CollapseSection title="Price" id="price">
             <Price priceCheckingLinks={priceCheckingLinks} />
+          </CollapseSection>
+
+          {/* General Amenities */}
+          <CollapseSection title="General amenities" id="key-amenities">
+            <HotelFeatures title="Key facilities">
+              <FeatureRow>
+                <Feature>Airport transfers: {airportTransfers} </Feature>
+                <Feature>Beach: {airportTransfers} </Feature>
+                <Feature
+                  disabled={
+                    !otherHotelFacilities.includes('creche'.toLowerCase())
+                  }>
+                  creche
+                </Feature>
+                <Feature
+                  disabled={!otherHotelFacilities.includes('Fitness center')}>
+                  Fitness centre
+                </Feature>
+              </FeatureRow>
+            </HotelFeatures>
           </CollapseSection>
         </div>
         <div className="w-full bg-darkBlue xl:w-1/3 h-[800px] xl:-mt-32 xl:max-w-[316px]">
