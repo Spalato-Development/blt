@@ -2,15 +2,23 @@ import { getApolloClient } from '@wpengine/headless';
 import { GET_PTS } from 'lib/queries';
 import { appGetStaticProps } from 'lib/appGetStaticProps';
 import { getNextStaticPaths } from '@wpengine/headless/next';
-import { Title, Tabs, Gallery } from 'components/ui-components';
+import {
+  Title,
+  Tabs,
+  Gallery,
+  CollapseSection,
+} from 'components/ui-components';
+import { About, Price } from 'components';
 
 const PlaceToStay = ({ ptsData = {} }) => {
   const { placeToStay: pts } = ptsData.data;
   const {
     title,
-    commonDataAttributes: { imageGallery },
+    date,
+    commonDataAttributes: { imageGallery, about, standfirst },
+    ptsDataAttr: { writer, priceCheckingLinks },
   } = pts;
-  console.log('imageGallery', imageGallery, pts);
+  console.log('price', priceCheckingLinks);
 
   const tabs = [
     { name: 'our review' },
@@ -27,6 +35,17 @@ const PlaceToStay = ({ ptsData = {} }) => {
         <div className="w-full mr-16 lg:w-3/4 mb-7 xl:mb-0 max-w-[940px] ">
           <Tabs tabs={tabs} className="mb-4" />
           <Gallery images={imageGallery} />
+          <CollapseSection title="Our review">
+            <About
+              writer={writer[0]}
+              date={date}
+              text="Know someone who would like this place to stay? Why not let them know…">
+              <div dangerouslySetInnerHTML={{ __html: about }} />
+            </About>
+          </CollapseSection>
+          <CollapseSection title="Price">
+            <Price priceCheckingLinks={priceCheckingLinks} />
+          </CollapseSection>
         </div>
         <div className="w-full bg-darkBlue xl:w-1/3 h-[800px] xl:-mt-32 xl:max-w-[316px]">
           sidebar

@@ -1,4 +1,4 @@
-import { Type } from './Typo.js';
+import { Typo } from './Typo.js';
 import clsx from 'clsx';
 const Title = ({ title, stars, intro, className, ...props }) => (
   <div

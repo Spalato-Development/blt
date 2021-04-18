@@ -1,15 +1,16 @@
 import React from 'react';
 import { Disclosure, Transition } from '@headlessui/react';
 import { FaChevronRight } from 'react-icons/fa';
+import { AnimatePresence, motion } from 'framer-motion';
 import clsx from 'clsx';
 
-export const CollapseSection = ({ children, className, ...props }) => {
+export const CollapseSection = ({ children, className, title, ...props }) => {
   return (
     <Disclosure>
       {({ open }) => (
         <section
           className={clsx(
-            'px-6 py-5',
+            'px-6 py-8 my-base2',
             'bg-white border shadow-section border-grey2',
             'transition-max-h duration-500   ease-out',
             className,
@@ -26,7 +27,7 @@ export const CollapseSection = ({ children, className, ...props }) => {
                 )}
               />
 
-              <h3 className="text-grey5 text-f-36">Title</h3>
+              <h3 className="text-grey5 text-f-36">{title}</h3>
             </Disclosure.Button>
             <Transition
               show={open}
