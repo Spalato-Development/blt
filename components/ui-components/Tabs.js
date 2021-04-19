@@ -11,7 +11,7 @@ export const Tabs = ({ tabs = [], className, ...props }) => {
       )}
       {...props}>
       {tabs?.map((tab) => (
-        <a
+        <AnchorLink
           className={clsx(
             'uppercase text-grey5 font-semibold p-2 text-center leading-tight text-[15px]',
             'hover:bg-gold focus:bg-gold hover:no-underline',
@@ -22,7 +22,7 @@ export const Tabs = ({ tabs = [], className, ...props }) => {
           key={tab.name}
           href={`#${tab.name.toLowerCase().replace(' ', '-')}`}>
           {tab.name}
-        </a>
+        </AnchorLink>
       ))}
     </div>
   );
