@@ -3,13 +3,21 @@ import { Typo } from 'components/ui-components';
 import { FaCheck, FaTimes } from 'react-icons/fa';
 import clsx from 'clsx';
 
-export const Feature = ({ children, disabled }) => {
+export const Feature = ({ children, disabled, optional }) => {
   return (
-    <div className={clsx('flex', 'py-3 md:py-0', { 'text-grey3': disabled })}>
+    <div
+      className={clsx('flex', 'py-3 md:py-0', {
+        'text-grey3': disabled || optional,
+      })}>
       {disabled ? (
         <FaTimes className="text-grey3 text-f-24 min-w-[20px] mr-3" />
       ) : (
-        <FaCheck className="min-w-[20px] mr-3 text-gold text-f-22 " />
+        <FaCheck
+          className="min-w-[20px] mr-3 text-gold text-f-22 "
+          className={clsx('min-w-[20px] mr-3 text-gold text-f-22', {
+            'text-grey3': optional,
+          })}
+        />
       )}
 
       <div>{children}</div>

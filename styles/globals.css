@@ -48,6 +48,6 @@
     font-display: swap;
   }
   a {
-    @apply transition duration-300 ease-in-out;
+    @apply transition duration-300 ease-in-out text-blueLink hover:underline;
   }
 }

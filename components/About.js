@@ -10,9 +10,7 @@ export const About = ({ writer, date, text, children, ...props }) => {
         <div>
           Expert travel writer:{' '}
           <Link href={writer?.uri}>
-            <a className="underline text-blueLink hover:text-darkBlue">
-              {writer?.title}
-            </a>
+            <a>{writer?.title}</a>
           </Link>
         </div>
         <div>{/* Last updated: <Date date={date} /> */}</div>
