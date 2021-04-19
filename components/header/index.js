@@ -11,7 +11,7 @@ export const Header = () => {
       <div className="container flex items-center justify-between">
         <h1 className="text-white text-[48px] font-light">
           <Link href="/">
-            <a>
+            <a className="text-white hover:text-white hover:no-underline">
               bucket list{' '}
               <span className="ml-4 text-gold font-script"> travels</span>
             </a>

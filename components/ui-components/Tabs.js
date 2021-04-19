@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 export const Tabs = ({ tabs = [], className, ...props }) => {
   return (
@@ -13,7 +14,7 @@ export const Tabs = ({ tabs = [], className, ...props }) => {
         <a
           className={clsx(
             'uppercase text-grey5 font-semibold p-2 text-center leading-tight text-[15px]',
-            'hover:bg-gold focus:bg-gold',
+            'hover:bg-gold focus:bg-gold hover:no-underline',
             'h-[54px] w-[176px]',
             'border border-grey2',
             'flex justify-center items-center mx-1 mb-2',
