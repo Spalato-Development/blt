@@ -8,7 +8,8 @@ module.exports = withWPEHeadless({
   //   webpack5: true,
   // },
   images: {
-    domains: [`${imgHost}`],
+    // domains: [`${imgHost}`, `localhost`],
+    domains: [`${imgHost}`, 'localhost'],
   },
   webpack: (config, { isServer }) => {
     if (!isServer) {
