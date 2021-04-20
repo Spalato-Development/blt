@@ -8,7 +8,7 @@ export const Header = () => {
   console.log('globaldata', globalData);
   return (
     <header className=" bg-darkBlue">
-      <div className="container flex items-center justify-between">
+      <div className="container flex items-center justify-between max-w-big">
         <h1 className="text-white text-[48px] font-light">
           <Link href="/">
             <a className="text-white hover:text-white hover:no-underline">

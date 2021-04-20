@@ -10,7 +10,7 @@ const Title = ({ title, stars, intro, className, ...props }) => {
   return (
     <div
       className={clsx(
-        'bg-veryLightGold py-4 pl-12 pr-5 my-4 container',
+        'bg-veryLightGold py-4 pl-12 pr-5 my-4 container max-w-big',
         className,
       )}
       {...props}>

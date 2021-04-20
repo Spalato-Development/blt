@@ -79,7 +79,7 @@ module.exports = {
         section: '0 0 34px 0 rgba(0, 0, 0, 0.1);',
       },
       maxWidth: {
-        'max-w-1400': '1400px',
+        big: '1400px',
       },
       fontFamily: {
         sans: `"Proxima Nova", "Trebuchet MS", sans-serif`,
@@ -99,7 +99,7 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],
   corePlugins: {
     preflight: true,
   },
