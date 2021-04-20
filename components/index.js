@@ -5,3 +5,4 @@ export * from './Date';
 export * from './About';
 export * from './Price';
 export * from './HotelFeatures';
+export * from './Newsletter';

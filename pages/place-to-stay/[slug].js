@@ -10,7 +10,14 @@ import {
   TravelQuote,
   ContentLayout,
 } from 'components/ui-components';
-import { About, Price, HotelFeatures, Feature, FeatureRow } from 'components';
+import {
+  About,
+  Price,
+  HotelFeatures,
+  Feature,
+  FeatureRow,
+  Newsletter,
+} from 'components';
 
 const PlaceToStay = ({ ptsData = {} }) => {
   const { placeToStay: pts } = ptsData.data;
@@ -55,7 +62,12 @@ const PlaceToStay = ({ ptsData = {} }) => {
         stars={parseInt(starRating)}
         intro="Recommended place to stay:"
       />
-      <ContentLayout sidebar="sidebar">
+      <ContentLayout
+        sidebar={
+          <>
+            <Newsletter />
+          </>
+        }>
         <Tabs tabs={tabs} className="mb-4" />
         <Gallery images={imageGallery} />
 
@@ -82,7 +94,7 @@ const PlaceToStay = ({ ptsData = {} }) => {
               <Feature>Airport transfers: {airportTransfers} </Feature>
               <Feature>Beach: {airportTransfers} </Feature>
               <Feature disabled={!hf.includes('creche')}>creche</Feature>
-              <Feature disabled={!hf.includes('itness center')}>
+              <Feature disabled={!hf.includes('fitness center')}>
                 Fitness centre
               </Feature>
             </FeatureRow>
