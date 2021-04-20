@@ -2,7 +2,7 @@ import React from 'react';
 import { FooterColumn } from './FooterColumn.js';
 import { useGlobalData } from 'lib/context/globalDataContext';
 import Link from 'next/link';
-import Image from 'next/image';
+
 import { FaFacebookSquare as Fb, FaInstagram as Insta } from 'react-icons/fa';
 
 const FooterItem = ({ children }) => {
@@ -11,9 +11,9 @@ const FooterItem = ({ children }) => {
 
 export const Footer = () => {
   const { footerData } = useGlobalData();
-  const { footerData: footer } = footerData.data.options;
-  const { vatNumber, companyNumber, facebook, instagram } = footer;
-  const { menuItems } = footerData.data.menu;
+  const { footerData: footer } = footerData?.data?.options || {};
+  const { vatNumber, companyNumber, facebook, instagram } = footer || {};
+  const { menuItems } = footerData?.data?.menu || {};
   return (
     <footer className="pb-10 bg-darkBlue pt-14">
       <div className="container grid grid-cols-1 gap-8 px-5 md:px-0 sm:grid-cols-2 lg:grid-cols-4">
