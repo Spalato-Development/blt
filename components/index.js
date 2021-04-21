@@ -6,3 +6,4 @@ export * from './About';
 export * from './Price';
 export * from './HotelFeatures';
 export * from './Newsletter';
+export * from './search';
