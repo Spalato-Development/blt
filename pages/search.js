@@ -1,13 +1,49 @@
 import React from 'react';
 import { appGetStaticProps } from 'lib/appGetStaticProps';
-import { SearchHead } from 'components';
+import { SearchHead, SearchTabs, Filters } from 'components';
+import { Typo, Button } from 'components/ui-components';
+import clsx from 'clsx';
 import { ContentLayout } from 'components/ui-components';
 
 const Search = () => {
   return (
     <>
       <SearchHead />
-      <ContentLayout></ContentLayout>
+      <div
+        className={clsx(
+          'container max-w-big',
+          'flex flex-col lg:flex-row ',
+          'px-5 md:px-0',
+        )}>
+        <div
+          className={clsx(
+            'w-full lg:w-2/3 xl:w-[940px]',
+            'order-2 xl:order-1',
+            'mr-0 lg:mr-14',
+          )}>
+          results
+        </div>
+        <div
+          className={clsx(
+            'w-full lg:w-1/3 xl:w-[300px]',
+            'order-1 xl:order-2',
+          )}>
+          <div className="px-5 pt-3 pb-10 mb-10 border border-grey2">
+            <Typo
+              as="h3"
+              h3
+              className="p-2 mb-2 text-center border-b border-grey2">
+              Filter your results
+            </Typo>
+            <div className="flex justify-center mb-3">
+              <Button secondary small>
+                Reset all
+              </Button>
+            </div>
+            <Filters />
+          </div>
+        </div>
+      </div>
     </>
   );
 };

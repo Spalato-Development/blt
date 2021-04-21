@@ -26,22 +26,25 @@ export const Newsletter = () => {
             priority={true}
           />
         </div>
-        <form action="">
+        <form>
           <Checkbox
             id="ebook"
             label="Our e-book of the top 200 must-do travel experiences"
             className="mb-8"
+            large
           />
           <Checkbox
             id="round-up"
             label="A monthly round up of exclusive offers, ideas & inspiration
             "
             className="mb-8"
+            large
           />
           <Checkbox
             id="reminder"
             label="A reminder every 6 months that we're here"
             className="mb-8"
+            large
           />
 
           <div className="relative">
@@ -57,7 +60,7 @@ export const Newsletter = () => {
             as="input"
             type="submit"
             value="submit"
-            className="w-full my-5"
+            className="w-full my-5 h-50px"
           />
         </form>
         <div className="text-sm text-center text-grey3">
