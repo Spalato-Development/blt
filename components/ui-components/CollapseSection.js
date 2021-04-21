@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-// import { Transition } from '@headlessui/react';
+import { Transition } from '@headlessui/react';
 import { FaChevronRight } from 'react-icons/fa';
 import clsx from 'clsx';
-import { Collapsible } from 'grommet';
+import { Collapse, useMediaQuery } from '@chakra-ui/react';
 
 export const CollapseSection = ({ children, className, title, ...props }) => {
-  const [open, setOpen] = useState(false);
+  const [isDefaultOpen] = useMediaQuery('(min-width: 768px)');
+  const [open, setOpen] = useState(isDefaultOpen);
   return (
     <section
       className={clsx(
@@ -32,20 +33,20 @@ export const CollapseSection = ({ children, className, title, ...props }) => {
           <h3 className="text-grey5 text-f-36">{title}</h3>
         </div>
 
-        {/* <Transition
+        <Transition
           show={open}
           enter="transition duration-700 ease-out"
           enterFrom="opacity-0  transform -translate-y-4"
           enterTo="opacity-100 transform translate-y-0"
           leave="transition duration-300 ease-out"
           leaveFrom="opacity-100 transform translate-y-0"
-          leaveTo="transform opacity-0 -translate-y-4"> */}
-        <Collapsible open={open}>
-          <div className={clsx('pt-5')} static>
-            <div className={clsx('pt-5 overflow-hidden')}>{children}</div>
-          </div>
-        </Collapsible>
-        {/* </Transition> */}
+          leaveTo="transform opacity-0 -translate-y-4">
+          <Collapse in={open}>
+            <div className={clsx('pt-5')} static>
+              <div className={clsx('pt-5 overflow-hidden')}>{children}</div>
+            </div>
+          </Collapse>
+        </Transition>
       </>
     </section>
   );
