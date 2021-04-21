@@ -5,7 +5,7 @@ const Checkbox = ({ id, label, className, ...props }) => (
         type="checkbox"
         id={id}
         name={id}
-        className="rounded-none w-7 h-7 text-gold form-checkbox"
+        className="border-2 rounded-none w-7 h-7 text-gold form-checkbox border-grey2"
       />
     </div>
 
