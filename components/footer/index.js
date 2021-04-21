@@ -10,7 +10,7 @@ const FooterItem = ({ children }) => {
 };
 
 export const Footer = () => {
-  const { footerData } = useGlobalData();
+  const { footerData } = useGlobalData() || {};
   const { footerData: footer } = footerData?.data?.options || {};
   const { vatNumber, companyNumber, facebook, instagram } = footer || {};
   const { menuItems } = footerData?.data?.menu || {};
@@ -50,7 +50,7 @@ export const Footer = () => {
         </FooterColumn>
         <FooterColumn title="Helpfull links">
           <ul>
-            {menuItems.nodes?.map((item) => {
+            {menuItems?.nodes?.map((item) => {
               const { id, label, path } = item;
               return (
                 <FooterItem key={id}>
