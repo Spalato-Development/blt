@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Transition } from '@headlessui/react';
 import { FaChevronRight } from 'react-icons/fa';
+import { Typo } from 'components/ui-components';
 import clsx from 'clsx';
 import { Collapse, useMediaQuery } from '@chakra-ui/react';
 
@@ -30,7 +31,7 @@ export const CollapseSection = ({ children, className, title, ...props }) => {
             )}
           />
 
-          <h3 className="text-grey5 text-f-36">{title}</h3>
+          <Typo>{title}</Typo>
         </div>
 
         <Transition
