@@ -15,8 +15,8 @@ export const Gallery = ({ images = [], ...props }) => {
         <Image
           src={bigImage?.sourceUrl}
           alt={bigImage?.altText}
-          width="938px"
-          height="529px"
+          width="940px"
+          height="530px"
           priority={true}
         />
       </div>
