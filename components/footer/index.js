@@ -2,6 +2,7 @@ import React from 'react';
 import { FooterColumn } from './FooterColumn.js';
 import { useGlobalData } from 'lib/context/globalDataContext';
 import Link from 'next/link';
+import { NewsletterSmall } from 'components';
 
 import { FaFacebookSquare as Fb, FaInstagram as Insta } from 'react-icons/fa';
 
@@ -63,7 +64,7 @@ export const Footer = () => {
           </ul>
         </FooterColumn>
         <FooterColumn title="Newsletter signup">
-          Get a monthly fix of inspiring ideas & exclusive offers:
+          <NewsletterSmall />
         </FooterColumn>
       </div>
       <div className="container px-5 mt-5 text-gold md:px-0">

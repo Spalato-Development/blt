@@ -5,7 +5,20 @@ import { Typo, Checkbox, Button } from 'components/ui-components';
 
 import { FaEnvelope } from 'react-icons/fa';
 
-export const Newsletter = () => {
+const EnvelopeInput = ({ placeholder }) => {
+  return (
+    <div className="relative">
+      <FaEnvelope className="absolute w-4 text-grey3 top-4 left-4" />
+      <input
+        type="email"
+        name="email"
+        placeholder={placeholder}
+        className="w-full h-[45px] border-2 border-grey2 bg-grey1 pl-12"
+      />
+    </div>
+  );
+};
+const Newsletter = () => {
   return (
     <div className={clsx('border border-grey2 shadow-section bg-white p-3')}>
       <Image
@@ -47,15 +60,7 @@ export const Newsletter = () => {
             large
           />
 
-          <div className="relative">
-            <FaEnvelope className="absolute w-4 text-grey3 top-4 left-4" />
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              className="w-full h-[45px] border-2 border-grey2 bg-grey1 pl-12"
-            />
-          </div>
+          <EnvelopeInput grey placeholder="Enter your email" />
           <Button
             as="input"
             type="submit"
@@ -71,3 +76,24 @@ export const Newsletter = () => {
     </div>
   );
 };
+
+const NewsletterSmall = () => {
+  return (
+    <div>
+      Get a monthly fix of inspiring ideas & exclusive offers:
+      <form className="pr-5 mt-5">
+        <EnvelopeInput placeholder="Enter your email here" />
+        <div className="flex justify-end">
+          <Button
+            as="input"
+            type="submit"
+            value="Sign up"
+            className="h-[45px] mt-6"
+          />
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export { Newsletter, NewsletterSmall, EnvelopeInput };
