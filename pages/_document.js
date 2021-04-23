@@ -12,14 +12,14 @@ class MyDocument extends Document {
         <Head />
         <link
           rel="preload"
-          href="/fonts/ProximaNova-Ledium.woff2"
+          href="/fonts/ProximaNova-Medium.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
         />
         <link
           rel="preload"
-          href="/fonts/ProximaNova-Ledium.woff"
+          href="/fonts/ProximaNova-Medium.woff"
           as="font"
           type="font/woff"
           crossOrigin="anonymous"
