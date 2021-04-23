@@ -6,16 +6,17 @@ export const Tabs = ({ tabs = [], className, ...props }) => {
   return (
     <div
       className={clsx(
-        'flex flex-wrap justify-start -mx-1 sm:justify-between sm:flex-nowrap',
+        'flex flex-wrap justify-start -mx-1 md:justify-between sm:flex-nowrap',
         className,
       )}
       {...props}>
       {tabs?.map((tab) => (
         <AnchorLink
           className={clsx(
-            'uppercase text-grey5 font-semibold p-2 text-center leading-tight text-[15px]',
+            'uppercase text-grey5 font-semibold p-2 text-center leading-tight text-[12px] sm:text-[15px]',
             'hover:bg-gold focus:bg-gold hover:no-underline',
-            'h-[54px] w-[176px]',
+            'h:[39px] sm:h-[54px]',
+            'w-[100px] sm:w-[176px]',
             'border border-grey2',
             'flex justify-center items-center mx-1 mb-2',
           )}
