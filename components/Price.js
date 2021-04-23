@@ -11,8 +11,8 @@ export const Price = ({ priceCheckingLinks, ...props }) => {
           return (
             <a href={item.url} key={i} target="_blank">
               <img
-                src={item.logo.sourceUrl}
-                alt={item.logo.altText}
+                src={item?.logo?.sourceUrl}
+                alt={item?.logo?.altText}
                 className="max-w-[124px] mx-2 mb-2"
               />
             </a>

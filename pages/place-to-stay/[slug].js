@@ -242,6 +242,7 @@ export const getStaticProps = async (context) => {
     variables: {
       id: context.params.slug,
     },
+    errorPolicy: 'all',
   });
 
   return {
