@@ -81,7 +81,7 @@ const NewsletterSmall = () => {
   return (
     <div>
       Get a monthly fix of inspiring ideas & exclusive offers:
-      <form className="pr-5 mt-5">
+      <form className="mt-5">
         <EnvelopeInput placeholder="Enter your email here" />
         <div className="flex justify-end">
           <Button

@@ -3,6 +3,7 @@ import { FooterColumn } from './FooterColumn.js';
 import { useGlobalData } from 'lib/context/globalDataContext';
 import Link from 'next/link';
 import { NewsletterSmall } from 'components';
+import clsx from 'clsx';
 
 import { FaFacebookSquare as Fb, FaInstagram as Insta } from 'react-icons/fa';
 
@@ -17,7 +18,12 @@ export const Footer = () => {
   const { menuItems } = footerData?.data?.menu || {};
   return (
     <footer className="pb-10 bg-darkBlue pt-14">
-      <div className="container grid grid-cols-1 gap-8 px-5 md:px-0 sm:grid-cols-2 lg:grid-cols-4">
+      <div
+        className="container grid grid-cols-1 gap-8 px-5 md:px-0 sm:grid-cols-2 lg:grid-cols-4"
+        className={clsx(
+          'container px-5 2xl:px-0',
+          'grid grid-cols-1 gap-8  sm:grid-cols-2 lg:grid-cols-4',
+        )}>
         <FooterColumn title="About">
           <ul>
             <FooterItem>
