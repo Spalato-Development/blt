@@ -10,7 +10,7 @@ const Checkbox = ({
   ...props
 }) => (
   <div className={`flex items-center ${className}`} {...props}>
-    <div className="mr-4 w-7">
+    <div className="w-7">
       <input
         type={radio ? 'radio' : 'checkbox'}
         id={id}
@@ -27,7 +27,7 @@ const Checkbox = ({
       />
     </div>
 
-    <label htmlFor={id} className="leading-tight text-grey4">
+    <label htmlFor={id} className="pl-4 leading-tight text-grey4">
       {label}
     </label>
   </div>
