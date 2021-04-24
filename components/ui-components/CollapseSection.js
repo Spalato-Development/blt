@@ -8,10 +8,9 @@ import Collapse from '@kunukn/react-collapse';
 
 export const CollapseSection = ({ children, className, title, ...props }) => {
   const isDefaultOpen = useMediaQuery('(min-width: 768px)');
-  const [open, setOpen] = useState(isDefaultOpen);
-  console.log('isDefaultOpen', isDefaultOpen, 'open', open);
+  const [open, setOpen] = useState(true);
   useEffect(() => {
-    setOpen(isDefaultOpen);
+    !isDefaultOpen && setOpen(isDefaultOpen);
   }, []);
   return (
     <section
