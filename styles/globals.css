@@ -50,4 +50,7 @@
   a {
     @apply transition duration-300 ease-in-out text-blueLink hover:underline;
   }
+  .collapse-css-transition {
+    @apply duration-300 ease-in-out transition-height;
+  }
 }

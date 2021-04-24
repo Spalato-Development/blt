@@ -20,7 +20,7 @@ import {
 } from 'components';
 
 const PlaceToStay = ({ ptsData = {} }) => {
-  const { placeToStay: pts } = ptsData.data;
+  const { placeToStay: pts } = ptsData.data || {};
   const {
     title,
     date,

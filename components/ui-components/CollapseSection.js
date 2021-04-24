@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Transition } from '@headlessui/react';
 import { FaChevronRight } from 'react-icons/fa';
 import { Typo } from 'components/ui-components';
 import clsx from 'clsx';
-import { Collapse, useMediaQuery } from '@chakra-ui/react';
+import { useMediaQuery } from 'beautiful-react-hooks';
+import Collapse from '@kunukn/react-collapse';
 
 export const CollapseSection = ({ children, className, title, ...props }) => {
-  const [isDefaultOpen] = useMediaQuery('(min-width: 768px)');
+  const isDefaultOpen = useMediaQuery('(min-width: 768px)');
   const [open, setOpen] = useState(isDefaultOpen);
+  console.log('isDefaultOpen', isDefaultOpen, 'open', open);
+  useEffect(() => {
+    setOpen(isDefaultOpen);
+  }, []);
   return (
     <section
       className={clsx(
@@ -34,20 +39,22 @@ export const CollapseSection = ({ children, className, title, ...props }) => {
           <Typo>{title}</Typo>
         </div>
 
-        <Transition
-          show={open}
-          enter="transition duration-700 ease-out"
-          enterFrom="opacity-0  transform -translate-y-4"
-          enterTo="opacity-100 transform translate-y-0"
-          leave="transition duration-300 ease-out"
-          leaveFrom="opacity-100 transform translate-y-0"
-          leaveTo="transform opacity-0 -translate-y-4">
-          <Collapse in={open}>
-            <div className={clsx('pt-5')} static>
-              <div className={clsx('pt-5 overflow-hidden')}>{children}</div>
-            </div>
-          </Collapse>
-        </Transition>
+        <Collapse
+          isOpen={open}
+          className={`duration-500 ease-in-out transition-height`}>
+          <div className={clsx('pt-5')}>
+            {/* <Transition
+              show={open}
+              enter="transition duration-700 ease-out"
+              enterFrom="opacity-0  transform -translate-y-4"
+              enterTo="opacity-100 transform translate-y-0"
+              leave="transition duration-300 ease-out"
+              leaveFrom="opacity-100 transform translate-y-0"
+              leaveTo="transform opacity-0 -translate-y-4"> */}
+            <div className={clsx('pt-5 overflow-hidden')}>{children}</div>
+            {/* </Transition> */}
+          </div>
+        </Collapse>
       </>
     </section>
   );

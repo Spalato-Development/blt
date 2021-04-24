@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { Checkbox, Button } from 'components/ui-components';
-import { Collapse } from '@chakra-ui/react';
 import { FaChevronRight } from 'react-icons/fa';
 import { filtersData } from 'lib/data';
-import { css } from 'twin.macro';
+import Collapse from '@kunukn/react-collapse';
+
 const { continents, setting, months, time } = filtersData;
 
 const FiltersMap = ({ filters, radio }) => {
@@ -38,7 +38,9 @@ const FilterSet = ({ filters = [], title, withInput, radio }) => {
         <FiltersMap filters={firstFilters} radio={radio} />
         {lastFilters.length > 0 && (
           <>
-            <Collapse in={open}>
+            <Collapse
+              isOpen={open}
+              className="duration-500 ease-in-out transition-height">
               <FiltersMap filters={lastFilters} />
             </Collapse>
 
