@@ -26,7 +26,6 @@ export const Gallery = ({ images = [], ...props }) => {
           return (
             <div
               key={id}
-              value={id}
               className="mx-1"
               onClick={(e) => handleClick(e)}>
               <Image

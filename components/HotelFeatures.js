@@ -13,7 +13,6 @@ export const Feature = ({ children, disabled, optional }) => {
         <FaTimes className="text-grey3 text-f-24 min-w-[20px] mr-3" />
       ) : (
         <FaCheck
-          className="min-w-[20px] mr-3 text-gold text-f-22 "
           className={clsx('min-w-[20px] mr-3 text-gold text-f-22', {
             'text-grey3': optional,
           })}

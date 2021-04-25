@@ -13,7 +13,7 @@ export const SearchHead = ({ className, ...props }) => {
           <IoSearch className="absolute text-f-24 text-grey4 top-4 left-7" />
           <input
             type="text"
-            placeHolder="destinations | experiences | places to stay"
+            placeholder="destinations | experiences | places to stay"
             className={clsx(
               'w-full h-[55px]',
               'pl-20',
