@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { getApolloClient } from '@wpengine/headless';
 import { HOME_QUERY } from 'lib/queries';
 
-import { HomeHero, WhatWeOffer } from 'components';
+import { HomeHero, WhatWeOffer, NewsletterHome } from 'components';
 import { appGetStaticProps } from 'lib/appGetStaticProps';
 
 export default function Home({ homeData = {} }) {
@@ -13,6 +13,7 @@ export default function Home({ homeData = {} }) {
     <div>
       <HomeHero homeHero={homeHero} />
       <WhatWeOffer whatWeOffer={whatWeOffer} />
+      <NewsletterHome />
     </div>
   );
 }
