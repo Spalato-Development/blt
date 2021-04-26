@@ -8,3 +8,4 @@ export * from './HotelFeatures';
 export * from './Newsletter';
 export * from './search';
 export * from './HomeHero';
+export * from './WhatWeOffer';
