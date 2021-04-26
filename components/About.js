@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Link from 'next/link';
-import { Date } from 'components';
+import { DateFormatter } from 'components';
 
 export const About = ({ writer = {}, date, text, children, ...props }) => {
   console.log('about writer', writer);
@@ -13,7 +13,7 @@ export const About = ({ writer = {}, date, text, children, ...props }) => {
             <a>{writer?.title}</a>
           </Link>
         </div>
-        <div>{/* Last updated: <Date date={date} /> */}</div>
+        <div>Last updated: <DateFormatter date={date} /> </div>
       </div>
       <div className="mt-5 mb-12 prose-lg">{children}</div>
       <div className="text-center text-gold text-f-24">{text}</div>
