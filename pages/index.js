@@ -11,7 +11,7 @@ export default function Home({ homeData = {} }) {
   const { homeHero, whatWeOffer } = homeData.data.page || {};
   return (
     <div>
-      {/* <HomeHero homeHero={homeHero} /> */}
+      <HomeHero homeHero={homeHero} />
       <WhatWeOffer whatWeOffer={whatWeOffer} />
     </div>
   );

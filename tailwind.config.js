@@ -25,6 +25,13 @@ module.exports = {
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     ...defaultTheme,
+    debugScreens: {
+      position: ['top', 'left'],
+      style: {
+        backgroundColor: 'black',
+        color: '#fff',
+      },
+    },
     container: {
       center: true,
     },
@@ -100,7 +107,11 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/forms'),
+    require('tailwindcss-debug-screens'),
+  ],
   corePlugins: {
     preflight: true,
   },

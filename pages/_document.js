@@ -1,5 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-
+const devMode = process.env.NODE_ENV === 'development';
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
@@ -80,7 +80,7 @@ class MyDocument extends Document {
           type="font/woff"
           crossOrigin="anonymous"
         />
-        <body>
+        <body className={devMode ? 'debug-screens' : ''}>
           <Main />
           <NextScript />
         </body>
