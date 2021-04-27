@@ -4,7 +4,7 @@ import Image from 'next/image';
 import clsx from 'clsx';
 import { FaCheck, FaSearch } from 'react-icons/fa';
 import Link from 'next/link';
-import { useMediaQuery } from 'beautiful-react-hooks';
+import { useMediaQuery } from 'lib/hooks';
 
 const Sentences = ({ topSentences }) => {
   return (

@@ -18,6 +18,7 @@ import {
   FeatureRow,
   Newsletter,
 } from 'components';
+import Slider from 'react-slick';
 
 const PlaceToStay = ({ ptsData = {} }) => {
   const { placeToStay: pts } = ptsData.data || {};

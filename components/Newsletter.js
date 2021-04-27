@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { Typo, Checkbox, Button } from 'components/ui-components';
-import { useMediaQuery } from 'beautiful-react-hooks';
+import { useMediaQuery } from 'lib/hooks';
 
 import { FaEnvelope } from 'react-icons/fa';
 
