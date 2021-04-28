@@ -17,7 +17,7 @@ const Search = ({ filtersData = {} }) => {
     { name: 'round ups', results: 0 },
     { name: 'itineraries', results: 0 },
   ];
-  console.log('selectedFilters', filters);
+  console.log('selectedFilters', filters, 'ptsfilters', placeToStayFilters);
 
   return (
     <>
@@ -55,7 +55,7 @@ const Search = ({ filtersData = {} }) => {
             </div>
 
             {filters === 'places to stay' && (
-              <Filters filterSets={placeToStayFilters?.filterSet} />
+              <Filters filterSets={placeToStayFilters?.ptsFilterSet} />
             )}
 
             {filters === 'all' && (
