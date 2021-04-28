@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { appGetStaticProps } from 'lib/appGetStaticProps';
 import { SearchHead, SearchTabs, Filters } from 'components';
+import { getApolloClient } from '@wpengine/headless';
+import { FILTERS_QUERY } from 'lib/queries';
 import { Typo, Button } from 'components/ui-components';
 import clsx from 'clsx';
-import { ContentLayout } from 'components/ui-components';
 
-const Search = () => {
+const Search = ({ filtersData = {} }) => {
+  const { commonFilters, placeToStayFilters } = filtersData?.data.options;
+  const [filters, setFilters] = useState('all');
+  const searchTabs = [
+    { name: 'all', results: 0 },
+    { name: 'experiences', results: 0 },
+    { name: 'destinations', results: 0 },
+    { name: 'places to stay', results: 0 },
+    { name: 'round ups', results: 0 },
+    { name: 'itineraries', results: 0 },
+  ];
+  console.log('selectedFilters', filters);
+
   return (
     <>
       <SearchHead />
@@ -21,7 +34,7 @@ const Search = () => {
             'order-2 xl:order-1',
             'mr-0 lg:mr-14',
           )}>
-          results
+          <SearchTabs tabs={searchTabs} setFilters={setFilters} />
         </div>
         <div
           className={clsx(
@@ -40,7 +53,16 @@ const Search = () => {
                 Reset all
               </Button>
             </div>
-            <Filters />
+
+            {filters === 'places to stay' && (
+              <Filters filterSets={placeToStayFilters?.filterSet} />
+            )}
+
+            {filters === 'all' && (
+              <Filters filterSets={commonFilters?.filterSet} />
+            )}
+
+            {/* <Filters filterSets={commonFilters?.filterSet} /> */}
           </div>
         </div>
       </div>
@@ -51,10 +73,13 @@ const Search = () => {
 export default Search;
 
 export const getStaticProps = async (context) => {
+  const client = getApolloClient(context);
+  const filtersData = await client.query({ query: FILTERS_QUERY });
   const globalData = await appGetStaticProps(context);
   return {
     props: {
       globalData,
+      filtersData,
     },
   };
 };

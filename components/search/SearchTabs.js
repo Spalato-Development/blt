@@ -1,29 +1,29 @@
 import React from 'react';
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
+import { Button } from 'components/ui-components';
+import clsx from 'clsx';
 
-export const SearchTabs = () => {
+export const SearchTabs = ({ tabs = [], className, setFilters, ...props }) => {
+  const handleClick = (e) => {
+    setFilters(e.target.value);
+  };
   return (
-    <Tabs>
-      <TabList>
-        <Tab>All</Tab>
-        <Tab>Experiences</Tab>
-        <Tab>Destinations</Tab>
-        <Tab>Places to stay</Tab>
-        <Tab>Round ups</Tab>
-        <Tab>Itineraries</Tab>
-      </TabList>
-
-      <TabPanels>
-        <TabPanel>
-          <p>one!</p>
-        </TabPanel>
-        <TabPanel>
-          <p>two!</p>
-        </TabPanel>
-        <TabPanel>
-          <p>three!</p>
-        </TabPanel>
-      </TabPanels>
-    </Tabs>
+    <div
+      className={clsx(
+        'flex flex-wrap justify-start -mx-1 md:justify-between sm:flex-nowrap',
+        className,
+      )}
+      {...props}>
+      {tabs?.map((tab) => (
+        <Button
+          key={tab.name}
+          value={tab.name}
+          className={clsx('h:[39px] sm:h-[54px]', 'w-[100px] sm:w-[149px]')}
+          onClick={(e) => handleClick(e)}
+          tab>
+          {tab.name}
+          <span className="ml-1">[{tab.results}]</span>
+        </Button>
+      ))}
+    </div>
   );
 };

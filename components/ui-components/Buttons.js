@@ -1,6 +1,6 @@
 import tw, { styled } from 'twin.macro';
 
-const Button = styled.button(({ secondary, narrow, small }) => [
+const Button = styled.button(({ secondary, narrow, small, tab }) => [
   tw`flex items-center justify-center px-5 text-center cursor-pointer`,
   tw`leading-tight tracking-wider uppercase font-semiBold text-grey5`,
   tw`transition duration-300`,
@@ -12,6 +12,11 @@ const Button = styled.button(({ secondary, narrow, small }) => [
     tw`h-10 text-sm bg-white border-2 border-lightBlue hover:bg-lightBlue`,
 
   small && tw`px-2 py-3 text-sm h-7 `,
+  tab &&
+    tw`p-2 font-semibold leading-tight text-center uppercase bg-white rounded-none text-grey5 text-f-12 sm:text-f-14`,
+  tw` hover:bg-gold focus:bg-gold hover:no-underline`,
+  tw`border border-grey2`,
+  tw`flex items-center justify-center mx-1 mb-2`,
 ]);
 
 export { Button };

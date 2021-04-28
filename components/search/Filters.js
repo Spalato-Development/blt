@@ -2,15 +2,13 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import { Checkbox, Button } from 'components/ui-components';
 import { FaChevronRight } from 'react-icons/fa';
-import { filtersData } from 'lib/data';
 import Collapse from '@kunukn/react-collapse';
 
-const { continents, setting, months, time } = filtersData;
-
-const FiltersMap = ({ filters, radio }) => {
+const FiltersMap = ({ filters = [], withInput, radio }) => {
+  const filtersItems = filters?.map((filter) => filter.item);
   return (
     <>
-      {filters?.map((filter) => {
+      {filtersItems?.map((filter) => {
         return (
           <Checkbox
             key={filter}
@@ -25,7 +23,7 @@ const FiltersMap = ({ filters, radio }) => {
   );
 };
 
-const FilterSet = ({ filters = [], title, withInput, radio }) => {
+const FilterSet = ({ filters = [], title, radio }) => {
   const [open, setOpen] = useState(false);
   const firstFilters = filters.slice(0, 4);
   const lastFilters = filters.slice(4);
@@ -74,14 +72,19 @@ const FilterSet = ({ filters = [], title, withInput, radio }) => {
   );
 };
 
-export const Filters = () => {
+export const Filters = ({ filterSets = [] }) => {
   return (
     <form>
-      <FilterSet title="Continent" filters={continents} />
-      <FilterSet title="Setting" filters={setting} />
-      <FilterSet title="Travel Month" filters={months} />
-      <FilterSet title="Flight Time" filters={time} radio="flightTime" />
-      <FilterSet title="Jet Lag" filters={time} radio="jetlag" />
+      {filterSets?.map((item) => {
+        return (
+          <FilterSet
+            key={item.title}
+            filters={item.filters}
+            title={item.title}
+            radio={item.radio}
+          />
+        );
+      })}
     </form>
   );
 };
