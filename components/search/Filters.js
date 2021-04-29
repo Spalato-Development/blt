@@ -4,7 +4,7 @@ import { Checkbox, Button } from 'components/ui-components';
 import { FaChevronRight } from 'react-icons/fa';
 import Collapse from '@kunukn/react-collapse';
 
-const FiltersMap = ({ filters = [], withInput, radio }) => {
+const FiltersMap = ({ filters = [], radio }) => {
   const filtersItems = filters?.map((filter) => filter.item);
   return (
     <>
@@ -23,7 +23,7 @@ const FiltersMap = ({ filters = [], withInput, radio }) => {
   );
 };
 
-const FilterSet = ({ filters = [], title, radio }) => {
+const FilterSet = ({ filters = [], title, radio, hasInput }) => {
   const [open, setOpen] = useState(false);
   const firstFilters = filters.slice(0, 4);
   const lastFilters = filters.slice(4);
@@ -33,6 +33,13 @@ const FilterSet = ({ filters = [], title, radio }) => {
         {title}
       </h4>
       <div>
+        {hasInput && (
+          <input
+            type="text"
+            placeholder="Enter departure airport"
+            aria-label="departure airport"
+          />
+        )}
         <FiltersMap filters={firstFilters} radio={radio} />
         {lastFilters.length > 0 && (
           <>

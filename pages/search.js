@@ -3,11 +3,22 @@ import { appGetStaticProps } from 'lib/appGetStaticProps';
 import { SearchHead, SearchTabs, Filters } from 'components';
 import { getApolloClient } from '@wpengine/headless';
 import { FILTERS_QUERY } from 'lib/queries';
+import { useGlobalData } from 'lib/context/globalDataContext';
 import { Typo, Button } from 'components/ui-components';
 import clsx from 'clsx';
+import { useForm } from 'react-hook-form';
+// import country from 'country-list-js';
 
 const Search = ({ filtersData = {} }) => {
-  const { commonFilters, placeToStayFilters } = filtersData?.data.options;
+  const {
+    commonFilters,
+    placeToStayFilters,
+    bottomCommonFilters,
+    destinationsFilters,
+    experiencesFilters,
+    itinerariesFilters,
+    roundupsFilters,
+  } = filtersData?.data.options;
   const [filters, setFilters] = useState('all');
   const searchTabs = [
     { name: 'all', results: 0 },
@@ -17,11 +28,49 @@ const Search = ({ filtersData = {} }) => {
     { name: 'round ups', results: 0 },
     { name: 'itineraries', results: 0 },
   ];
-  console.log('selectedFilters', filters, 'ptsfilters', placeToStayFilters);
+  const globalData = useGlobalData();
+  const {
+    placesToStay,
+    destinations,
+    experiences,
+    roundups,
+    writers,
+  } = globalData.allEntitiesData.data;
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const submitGlobalSearch = (data) => {
+    const searchedPts = placesToStay?.nodes.filter((item) => {
+      const {
+        title,
+        tags,
+        entityCategories: cats,
+        commonDataAttributes: { country },
+      } = item;
+      const lowerData = data?.globalSearch?.toLowerCase();
+      const tagNames = tags?.nodes.map((item) => item.name.toLowerCase());
+      const catNames = cats?.nodes.map((item) => item.name.toLowerCase());
+      // const { continent } = country?.findByName('Spain') || {};
+      return (
+        title.toLowerCase().includes(lowerData) ||
+        tagNames.includes(lowerData) ||
+        catNames.includes(lowerData)
+        // || continent.toLocaleLowerCase().includes(lowerData)
+      );
+    });
+    return searchedPts;
+    reset();
+  };
 
   return (
     <>
-      <SearchHead />
+      <SearchHead handleSubmitGlobalSearch={submitGlobalSearch} />
       <div
         className={clsx(
           'container max-w-big',
@@ -35,6 +84,9 @@ const Search = ({ filtersData = {} }) => {
             'mr-0 lg:mr-14',
           )}>
           <SearchTabs tabs={searchTabs} setFilters={setFilters} />
+          {/* {searchedPts?.nodes?.map((item) => (
+            <h1>{item.title}</h1>
+          ))} */}
         </div>
         <div
           className={clsx(
@@ -55,14 +107,19 @@ const Search = ({ filtersData = {} }) => {
             </div>
 
             {filters === 'places to stay' && (
-              <Filters filterSets={placeToStayFilters?.ptsFilterSet} />
+              <>
+                <Filters filterSets={commonFilters?.filterSet} />
+                <Filters filterSets={placeToStayFilters?.ptsFilterSet} />
+                <Filters filterSets={bottomCommonFilters?.bottomFilterSet} />
+              </>
             )}
 
             {filters === 'all' && (
-              <Filters filterSets={commonFilters?.filterSet} />
+              <>
+                <Filters filterSets={commonFilters?.filterSet} />
+                <Filters filterSets={bottomCommonFilters?.bottomFilterSet} />
+              </>
             )}
-
-            {/* <Filters filterSets={commonFilters?.filterSet} /> */}
           </div>
         </div>
       </div>
