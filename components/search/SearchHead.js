@@ -1,12 +1,14 @@
 import React from 'react';
 import { IoSearch } from 'react-icons/io5';
-import { Button } from 'components/ui-components';
+import { Button, Number } from 'components/ui-components';
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
 
 export const SearchHead = ({
   className,
   handleSubmitGlobalSearch,
+  results,
+  query,
   ...props
 }) => {
   const {
@@ -16,7 +18,6 @@ export const SearchHead = ({
     reset,
     formState: { errors },
   } = useForm();
-  // console.log('watch', watch('globalSearch'));
 
   return (
     <div
@@ -43,6 +44,10 @@ export const SearchHead = ({
             className="absolute h-[47px] right-1 top-1"
           />
         </div>
+        {results > 0 &&
+          `${(<Number number={results} />)}${
+            results === 1 ? 'result' : 'results'
+          }for ${query} `}
       </form>
     </div>
   );

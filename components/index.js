@@ -9,3 +9,4 @@ export * from './Newsletter';
 export * from './search';
 export * from './HomeHero';
 export * from './WhatWeOffer';
+export * from './ui-components';

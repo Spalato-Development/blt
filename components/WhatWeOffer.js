@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import clsx from 'clsx';
+import { Number } from 'components';
 
 export const WhatWeOffer = ({ whatWeOffer }) => {
   const { wwoItems, wwoTextBelow, wwoTitle } = whatWeOffer;
@@ -25,15 +25,7 @@ export const WhatWeOffer = ({ whatWeOffer }) => {
             <div
               key={i}
               className="flex md:flex-col items-center md:max-w-[230px] ">
-              <div
-                className={clsx(
-                  'text-[34px] font-bold',
-                  'w-[50px] min-w-[50px] h-[50px] mb-4 mr-4 md:mr-0',
-                  'flex justify-center items-center',
-                  'border-3 border-gold',
-                )}>
-                {i + 1}
-              </div>
+              <Number number={i + 1} />
               <div className="md:text-[20px] leading-snug md:text-center max-w-[400px]">
                 {item.content}
               </div>

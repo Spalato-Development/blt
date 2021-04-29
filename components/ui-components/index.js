@@ -6,3 +6,4 @@ export * from './Tabs';
 export * from './Gallery';
 export * from './ContentLayout';
 export * from './Forms';
+export * from './Number';

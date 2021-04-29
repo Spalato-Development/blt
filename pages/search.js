@@ -20,6 +20,22 @@ const Search = ({ filtersData = {} }) => {
     roundupsFilters,
   } = filtersData?.data.options;
   const [filters, setFilters] = useState('all');
+  const [results, setResults] = useState({});
+  const [globalSearch, setGlobalSearch] = useState(undefined);
+
+  const objectLength = (obj) => Object.entries(obj || 0).length;
+  const ptsResultsNumber = objectLength(results.placesToStayResults);
+  const destinationsResultsNumber = objectLength(results.destinationsResults);
+  const experiencesResultsNumber = objectLength(results.experiencesResults);
+  const roundupsResultsNumber = objectLength(results.roundupsResults);
+  const itinerariesResultsNumber = objectLength(results.itinerariesResults);
+  const totalResults =
+    ptsResultsNumber +
+    experiencesResultsNumber +
+    roundupsResultsNumber +
+    itinerariesResultsNumber +
+    destinationsResultsNumber;
+
   const searchTabs = [
     { name: 'all', results: 0 },
     { name: 'experiences', results: 0 },
@@ -46,14 +62,15 @@ const Search = ({ filtersData = {} }) => {
   } = useForm();
 
   const submitGlobalSearch = (data) => {
-    const searchedPts = placesToStay?.nodes.filter((item) => {
+    const lowerData = data?.globalSearch?.toLowerCase();
+
+    const placesToStayResults = placesToStay?.nodes.filter((item) => {
       const {
         title,
         tags,
         entityCategories: cats,
         commonDataAttributes: { country },
       } = item;
-      const lowerData = data?.globalSearch?.toLowerCase();
       const tagNames = tags?.nodes.map((item) => item.name.toLowerCase());
       const catNames = cats?.nodes.map((item) => item.name.toLowerCase());
       // const { continent } = country?.findByName('Spain') || {};
@@ -64,13 +81,18 @@ const Search = ({ filtersData = {} }) => {
         // || continent.toLocaleLowerCase().includes(lowerData)
       );
     });
-    return searchedPts;
+    setGlobalSearch(lowerData);
+    setResults({ ...results, placesToStayResults });
     reset();
   };
 
   return (
     <>
-      <SearchHead handleSubmitGlobalSearch={submitGlobalSearch} />
+      <SearchHead
+        handleSubmitGlobalSearch={submitGlobalSearch}
+        results={totalResults}
+        query={globalSearch}
+      />
       <div
         className={clsx(
           'container max-w-big',
@@ -79,19 +101,23 @@ const Search = ({ filtersData = {} }) => {
         )}>
         <div
           className={clsx(
-            'w-full lg:w-2/3 xl:w-[940px]',
-            'order-2 xl:order-1',
+            'w-full lg:w-2/3 lg:w-[940px]',
+            'order-2 lg:order-1',
             'mr-0 lg:mr-14',
           )}>
           <SearchTabs tabs={searchTabs} setFilters={setFilters} />
-          {/* {searchedPts?.nodes?.map((item) => (
-            <h1>{item.title}</h1>
-          ))} */}
+          {results.placesToStayResults?.map((item) => {
+            return (
+              <div key={item.id}>
+                <h2>{item.title}</h2>
+              </div>
+            );
+          })}
         </div>
         <div
           className={clsx(
-            'w-full lg:w-1/3 xl:w-[300px]',
-            'order-1 xl:order-2',
+            'w-full lg:w-1/3 lg:w-[300px]',
+            'order-1 lg:order-2',
           )}>
           <div className="px-5 pt-3 pb-10 mb-10 border border-grey2">
             <Typo
