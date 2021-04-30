@@ -111,7 +111,7 @@ const Search = ({ filtersData = {} }) => {
         )}>
         <div
           className={clsx(
-            'w-full lg:w-2/3 xl:w-[940px]',
+            'w-full lg:w-2/3 xl:w-[960px]',
             'order-2 lg:order-1',
             'mr-0 lg:mr-7 lg:pl-5 px-5 lg:px-0',
           )}>
