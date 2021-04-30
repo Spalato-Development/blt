@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { appGetStaticProps } from 'lib/appGetStaticProps';
-import { SearchHead, SearchTabs, Filters } from 'components';
+import { SearchHead, SearchTabs, Filters, Listing } from 'components';
 import { getApolloClient } from '@wpengine/headless';
 import { FILTERS_QUERY } from 'lib/queries';
 import { useGlobalData } from 'lib/context/globalDataContext';
@@ -108,11 +108,9 @@ const Search = ({ filtersData = {} }) => {
           )}>
           <SearchTabs tabs={searchTabs} setFilters={setFilters} />
           {results.placesToStayResults?.map((item) => {
-            return (
-              <div key={item.id}>
-                <h2>{item.title}</h2>
-              </div>
-            );
+            const { id } = item;
+            console.log('pts', item);
+            return <Listing key={id} item={item} />;
           })}
         </div>
         <div

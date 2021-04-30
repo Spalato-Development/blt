@@ -85,6 +85,7 @@ module.exports = {
       boxShadow: {
         section: '0 0 34px 0 rgba(0, 0, 0, 0.1)',
         input: '0 2px 44px 0 rgba(0, 0, 0, 0.08)',
+        listing: '0 2px 24px 0 rgba(0, 0, 0, 0.08)',
       },
       maxWidth: {
         big: '1400px',
