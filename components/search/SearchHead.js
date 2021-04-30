@@ -4,6 +4,20 @@ import { Button, Number } from 'components/ui-components';
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
 
+const ResultsNumber = ({ query, results }) => {
+  const resultsString = results === 1 ? 'result' : 'results';
+
+  return (
+    <div className="flex items-center mt-5">
+      <Number number={results} />
+      <div className="ml-3 font-bold text-f-26">
+        {' '}
+        {resultsString} found for '{query}'
+      </div>
+    </div>
+  );
+};
+
 export const SearchHead = ({
   className,
   handleSubmitGlobalSearch,
@@ -44,10 +58,7 @@ export const SearchHead = ({
             className="absolute h-[47px] right-1 top-1"
           />
         </div>
-        {results > 0 &&
-          `${(<Number number={results} />)}${
-            results === 1 ? 'result' : 'results'
-          }for ${query} `}
+        <ResultsNumber results={results} query={query} />
       </form>
     </div>
   );

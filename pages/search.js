@@ -19,6 +19,7 @@ const Search = ({ filtersData = {} }) => {
     itinerariesFilters,
     roundupsFilters,
   } = filtersData?.data.options;
+
   const [filters, setFilters] = useState('all');
   const [results, setResults] = useState({});
   const [globalSearch, setGlobalSearch] = useState(undefined);
@@ -37,12 +38,12 @@ const Search = ({ filtersData = {} }) => {
     destinationsResultsNumber;
 
   const searchTabs = [
-    { name: 'all', results: 0 },
-    { name: 'experiences', results: 0 },
-    { name: 'destinations', results: 0 },
-    { name: 'places to stay', results: 0 },
-    { name: 'round ups', results: 0 },
-    { name: 'itineraries', results: 0 },
+    { name: 'all', results: totalResults },
+    { name: 'experiences', results: experiencesResultsNumber },
+    { name: 'destinations', results: destinationsResultsNumber },
+    { name: 'places to stay', results: ptsResultsNumber },
+    { name: 'round ups', results: roundupsResultsNumber },
+    { name: 'itineraries', results: itinerariesResultsNumber },
   ];
   const globalData = useGlobalData();
   const {
@@ -101,9 +102,9 @@ const Search = ({ filtersData = {} }) => {
         )}>
         <div
           className={clsx(
-            'w-full lg:w-2/3 lg:w-[940px]',
+            'w-full lg:w-2/3 xl:w-[940px]',
             'order-2 lg:order-1',
-            'mr-0 lg:mr-14',
+            'mr-0 lg:mr-7 lg:pl-5 px-5 lg:px-0',
           )}>
           <SearchTabs tabs={searchTabs} setFilters={setFilters} />
           {results.placesToStayResults?.map((item) => {

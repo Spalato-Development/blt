@@ -25,7 +25,7 @@ export const WhatWeOffer = ({ whatWeOffer }) => {
             <div
               key={i}
               className="flex md:flex-col items-center md:max-w-[230px] ">
-              <Number number={i + 1} />
+              <Number number={i + 1} classname="mb-4 mr-4 md:mr-0" />
               <div className="md:text-[20px] leading-snug md:text-center max-w-[400px]">
                 {item.content}
               </div>

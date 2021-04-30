@@ -13,7 +13,7 @@ const Button = styled.button(({ secondary, narrow, small, tab }) => [
 
   small && tw`px-2 py-3 text-sm h-7 `,
   tab &&
-    tw`p-2 font-semibold leading-tight text-center uppercase bg-white rounded-none text-grey5 text-f-12 sm:text-f-14`,
+    tw`p-2 font-semibold leading-tight text-center uppercase bg-white rounded-none text-grey5 text-f-12 md:text-f-14`,
   tw` hover:bg-gold focus:bg-gold hover:no-underline`,
   tw`border border-grey2`,
   tw`flex items-center justify-center mx-1 mb-2`,
