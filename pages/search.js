@@ -4,10 +4,10 @@ import { SearchHead, SearchTabs, Filters, Listing } from 'components';
 import { getApolloClient } from '@wpengine/headless';
 import { FILTERS_QUERY } from 'lib/queries';
 import { useGlobalData } from 'lib/context/globalDataContext';
-import { Typo, Button } from 'components/ui-components';
+import { Typo, Button, Select } from 'components';
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
-// import country from 'country-list-js';
+import country from 'country-list-js';
 
 const Search = ({ filtersData = {} }) => {
   const {
@@ -53,6 +53,14 @@ const Search = ({ filtersData = {} }) => {
     roundups,
     writers,
   } = globalData.allEntitiesData.data;
+  const placesToStayContinent = placesToStay?.nodes?.map((item) => {
+    const {
+      commonDataAttributes: { country },
+    } = item;
+    // const continent = country.findByName('Bangladesh');
+    const continent = 'Europe';
+    return { ...item, continent };
+  });
 
   const {
     register,
@@ -86,6 +94,7 @@ const Search = ({ filtersData = {} }) => {
     setResults({ ...results, placesToStayResults });
     reset();
   };
+  console.log('continent', country.findByName('Dubai'));
 
   return (
     <>
@@ -107,9 +116,12 @@ const Search = ({ filtersData = {} }) => {
             'mr-0 lg:mr-7 lg:pl-5 px-5 lg:px-0',
           )}>
           <SearchTabs tabs={searchTabs} setFilters={setFilters} />
+
+          <Select />
+
+          {/* Results */}
           {results.placesToStayResults?.map((item) => {
             const { id } = item;
-            console.log('pts', item);
             return <Listing key={id} item={item} />;
           })}
         </div>

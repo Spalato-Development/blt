@@ -1,6 +1,7 @@
 import React from 'react';
 
 import tw, { styled, css } from 'twin.macro';
+import { Select } from 'components';
 
 import { CollapseSection, Button, Typo } from '../components/ui-components';
 import { getStaticProps } from '../lib/appGetStaticProps';
@@ -29,6 +30,7 @@ const TestComponents = () => {
         </div>
       </div>
       <div>
+        <Select />
         <CollapseSection className="my-10">
           <p>
             Temporibus eum assumenda voluptas quia molestias ullam sed

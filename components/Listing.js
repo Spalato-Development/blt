@@ -33,7 +33,7 @@ export const Listing = ({ item, className, ...props }) => {
       <div className="max-w-[488px]">
         <h2 className="font-bold text-black text-f-24">{title}</h2>
         <h3 className="mb-2 text-f-18 text-grey5">
-          {entityCategories?.nodes[0].name}
+          {entityCategories?.nodes[0]?.name}
         </h3>
         <p>{standfirst}</p>
       </div>
