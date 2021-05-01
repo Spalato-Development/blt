@@ -6,6 +6,7 @@ import Collapse from '@kunukn/react-collapse';
 
 const FiltersMap = ({ filters = [], radio }) => {
   const filtersItems = filters?.map((filter) => filter.item);
+
   return (
     <>
       {filtersItems?.map((filter) => {
@@ -27,6 +28,7 @@ const FilterSet = ({ filters = [], title, radio, hasInput }) => {
   const [open, setOpen] = useState(false);
   const firstFilters = filters.slice(0, 4);
   const lastFilters = filters.slice(4);
+
   return (
     <div className="py-4 border-b border-grey2">
       <h4 className="uppercase text-[15px] tracking-wider text-grey5 mb-2">
@@ -38,6 +40,7 @@ const FilterSet = ({ filters = [], title, radio, hasInput }) => {
             type="text"
             placeholder="Enter departure airport"
             aria-label="departure airport"
+            className="w-full h-8 mt-2 mb-3 border-grey2"
           />
         )}
         <FiltersMap filters={firstFilters} radio={radio} />
@@ -86,9 +89,10 @@ export const Filters = ({ filterSets = [] }) => {
         return (
           <FilterSet
             key={item.title}
+            hasInput={item.hasInput}
             filters={item.filters}
             title={item.title}
-            radio={item.radio}
+            radio={item.radio && item.title}
           />
         );
       })}

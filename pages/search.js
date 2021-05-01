@@ -7,7 +7,6 @@ import { useGlobalData } from 'lib/context/globalDataContext';
 import { Typo, Button, Select } from 'components';
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
-import country from 'country-list-js';
 
 const Search = ({ filtersData = {} }) => {
   const {
@@ -19,6 +18,7 @@ const Search = ({ filtersData = {} }) => {
     itinerariesFilters,
     roundupsFilters,
   } = filtersData?.data.options;
+  console.log('comon filters', commonFilters);
 
   const [filters, setFilters] = useState('all');
   const [results, setResults] = useState({});
@@ -53,14 +53,6 @@ const Search = ({ filtersData = {} }) => {
     roundups,
     writers,
   } = globalData.allEntitiesData.data;
-  const placesToStayContinent = placesToStay?.nodes?.map((item) => {
-    const {
-      commonDataAttributes: { country },
-    } = item;
-    // const continent = country.findByName('Bangladesh');
-    const continent = 'Europe';
-    return { ...item, continent };
-  });
 
   const {
     register,
@@ -74,27 +66,20 @@ const Search = ({ filtersData = {} }) => {
     const lowerData = data?.globalSearch?.toLowerCase();
 
     const placesToStayResults = placesToStay?.nodes.filter((item) => {
-      const {
-        title,
-        tags,
-        entityCategories: cats,
-        commonDataAttributes: { country },
-      } = item;
+      const { title, tags, entityCategories: cats } = item;
       const tagNames = tags?.nodes.map((item) => item.name.toLowerCase());
       const catNames = cats?.nodes.map((item) => item.name.toLowerCase());
-      // const { continent } = country?.findByName('Spain') || {};
+
       return (
         title.toLowerCase().includes(lowerData) ||
         tagNames.includes(lowerData) ||
         catNames.includes(lowerData)
-        // || continent.toLocaleLowerCase().includes(lowerData)
       );
     });
     setGlobalSearch(lowerData);
     setResults({ ...results, placesToStayResults });
     reset();
   };
-  console.log('continent', country.findByName('Dubai'));
 
   return (
     <>

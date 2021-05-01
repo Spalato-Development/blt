@@ -13,7 +13,7 @@ const Checkbox = ({
     <div className="w-7">
       <input
         type={radio ? 'radio' : 'checkbox'}
-        id={id}
+        id={id + label}
         name={radio ? radio : id}
         className={
           radio
