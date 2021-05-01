@@ -8,23 +8,28 @@ import { Typo, Button, Select } from 'components';
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
 
-const Search = ({ filtersData = {} }) => {
-  const {
-    commonFilters,
-    placeToStayFilters,
-    bottomCommonFilters,
-    destinationsFilters,
-    experiencesFilters,
-    itinerariesFilters,
-    roundupsFilters,
-  } = filtersData?.data.options;
-  console.log('comon filters', commonFilters);
+const Search = ({ filtersData = {}, filtersForUI }) => {
+  // const {
+  //   commonFilters,
+  //   placeToStayFilters,
+  //   bottomCommonFilters,
+  //   destinationsFilters,
+  //   experiencesFilters,
+  //   itinerariesFilters,
+  //   roundupsFilters,
+  // } = filtersData?.data.options;
 
+  // sidebar filters
+  const [allFilters, setAllFilters] = useState(filtersForUI)
+  // tab filters
   const [filters, setFilters] = useState('all');
-  const [results, setResults] = useState({});
+  // search 
   const [globalSearch, setGlobalSearch] = useState(undefined);
+  // results to be displayed
+  const [results, setResults] = useState({});
 
   const objectLength = (obj) => Object.entries(obj || 0).length;
+
   const ptsResultsNumber = objectLength(results.placesToStayResults);
   const destinationsResultsNumber = objectLength(results.destinationsResults);
   const experiencesResultsNumber = objectLength(results.experiencesResults);
@@ -62,24 +67,66 @@ const Search = ({ filtersData = {} }) => {
     formState: { errors },
   } = useForm();
 
-  const submitGlobalSearch = (data) => {
-    const lowerData = data?.globalSearch?.toLowerCase();
+  const submitGlobalSearch = (searchData) => {
+    setGlobalSearch(searchData?.globalSearch?.toLowerCase())
+    doSearch(searchData?.globalSearch?.toLowerCase())
+  };
 
-    const placesToStayResults = placesToStay?.nodes.filter((item) => {
+  const searchPlacesToStay = (searchQuery) => {
+
+    return placesToStay?.nodes.filter((item) => {
       const { title, tags, entityCategories: cats } = item;
       const tagNames = tags?.nodes.map((item) => item.name.toLowerCase());
       const catNames = cats?.nodes.map((item) => item.name.toLowerCase());
 
       return (
-        title.toLowerCase().includes(lowerData) ||
-        tagNames.includes(lowerData) ||
-        catNames.includes(lowerData)
+        title.toLowerCase().includes(searchQuery) ||
+        tagNames.includes(searchQuery) ||
+        catNames.includes(searchQuery)
       );
     });
-    setGlobalSearch(lowerData);
-    setResults({ ...results, placesToStayResults });
-    reset();
-  };
+  }
+
+  const doSearch = (searchQuery) => {
+    searchQuery = searchQuery || globalSearch
+    let placesToStayResults = searchPlacesToStay(searchQuery);
+
+
+    // Testing with the "continent" filters
+
+
+    const continents = []
+    const settings = []
+
+    allFilters.commonFilters.map(item => {
+      if (item.title.toLowerCase() === "continent") {
+        item.filters.map(filter => {
+          if (filter.isSelected) {
+            continents.push(filter.option)
+          }
+        })
+      }
+      else if (item.title.toLowerCase() === "setting") {
+        item.filters.map(filter => {
+          if (filter.isSelected) {
+            settings.push(filter.option)
+          }
+        })
+      }
+    })
+
+    if (continents && continents.length) {
+      placesToStayResults = placesToStayResults.filter(place => {
+        return continents.includes(place.commonDataAttributes.continent)
+      })
+    }
+    if (settings && settings.length) {
+      placesToStayResults = placesToStayResults.filter(place => {
+        return place.customDataAttributes.setting.some(element => settings.includes(element))
+      })
+    }
+    setResults({ placesToStayResults });
+  }
 
   return (
     <>
@@ -128,18 +175,38 @@ const Search = ({ filtersData = {} }) => {
               </Button>
             </div>
 
-            {filters === 'places to stay' && (
+            {/* {filters === 'places to stay' && (
               <>
                 <Filters filterSets={commonFilters?.filterSet} />
                 <Filters filterSets={placeToStayFilters?.ptsFilterSet} />
                 <Filters filterSets={bottomCommonFilters?.bottomFilterSet} />
               </>
-            )}
+            )} */}
 
             {filters === 'all' && (
               <>
-                <Filters filterSets={commonFilters?.filterSet} />
-                <Filters filterSets={bottomCommonFilters?.bottomFilterSet} />
+                {/* <Filters filterSets={commonFilters?.filterSet} /> */}
+                <Filters
+                  filterSets={allFilters.commonFilters}
+                  onSearch={
+                    (data) => {
+                      const _commonFilters = allFilters.commonFilters.map(item => {
+                        if (item.title === data.title) {
+                          const optionToUpdate = item.filters.find(filter => filter.option === data.option);
+                          optionToUpdate.isSelected = !optionToUpdate.isSelected
+                        }
+                        return item;
+                      })
+                      setAllFilters({
+                        ...allFilters,
+                        ["commonFilters"]: _commonFilters
+                      })
+                      doSearch()
+
+                    }
+                  }
+                />
+                {/* <Filters filterSets={bottomCommonFilters?.bottomFilterSet} /> */}
               </>
             )}
           </div>
@@ -151,14 +218,71 @@ const Search = ({ filtersData = {} }) => {
 
 export default Search;
 
+// const transformFiltersForUI = (graphqlFilters) => {
+//   // console.log("* graphqlFilters: ", Object.entries(graphqlFilters))
+//   return Object.entries(graphqlFilters).reduce((acc, [key, entry]) => {
+
+//     if (entry.filterSet) {
+//       // console.log("-> key: ", key, " ->entry: ", entry)
+//       // console.log("--> entry.filterSet: ", entry.filterSet)
+//       entry.filterSet.map(_filter => {
+//         // console.log("_filter: ", _filter)
+//         acc.push({
+//   title: _filter.title,
+//   options: _filter.filters.map(option => {
+//     return {
+//       option: option,
+//       isSelected: false,
+//       isDisabled: false,
+//     }
+//   }),
+//   forType: key.replace("Filters", ""),
+//   radio: _filter.radio,          
+// })
+//       })
+//     }
+//     return acc;
+//   }, [])
+// }
+
+const transformFiltersForUI = (graphqlFilters) => {
+  return Object.entries(graphqlFilters).reduce((acc, [key, entry]) => {
+
+    if (entry.filterSet) {
+      acc[key] = [];
+      entry.filterSet.map(_filter => {
+        acc[key].push({
+          title: _filter.title,
+          filters: _filter.filters.map(option => {
+            return {
+              option: option.item,
+              isSelected: false,
+              isDisabled: false,
+            }
+          }),
+          forType: key.replace("Filters", ""),
+          radio: _filter.radio,
+        })
+
+      })
+
+    }
+    return acc;
+  }, {})
+}
+
+
 export const getStaticProps = async (context) => {
   const client = getApolloClient(context);
   const filtersData = await client.query({ query: FILTERS_QUERY });
+  const filtersForUI = transformFiltersForUI(filtersData.data.options)
   const globalData = await appGetStaticProps(context);
   return {
     props: {
       globalData,
       filtersData,
+      filtersForUI
     },
   };
 };
+

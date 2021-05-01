@@ -4,19 +4,26 @@ import { Checkbox, Button } from 'components/ui-components';
 import { FaChevronRight } from 'react-icons/fa';
 import Collapse from '@kunukn/react-collapse';
 
-const FiltersMap = ({ filters = [], radio }) => {
-  const filtersItems = filters?.map((filter) => filter.item);
-
+const FiltersMap = ({ filters = [], radio, onSearch, title }) => {
   return (
     <>
-      {filtersItems?.map((filter) => {
+      {filters?.map((filter) => {
         return (
           <Checkbox
-            key={filter}
-            id={filter}
-            label={filter}
+            key={filter.option}
+            id={filter.option}
+            label={filter.option}
             className="mb-1"
             radio={radio}
+            onChange={
+              (a) => {
+                onSearch({
+                  title: title,
+                  option: filter.option,
+                  value: a.target.value
+                })
+              }
+            }
           />
         );
       })}
@@ -24,7 +31,7 @@ const FiltersMap = ({ filters = [], radio }) => {
   );
 };
 
-const FilterSet = ({ filters = [], title, radio, hasInput }) => {
+const FilterSet = ({ filters = [], title, radio, hasInput, onSearch }) => {
   const [open, setOpen] = useState(false);
   const firstFilters = filters.slice(0, 4);
   const lastFilters = filters.slice(4);
@@ -43,7 +50,7 @@ const FilterSet = ({ filters = [], title, radio, hasInput }) => {
             className="w-full h-8 mt-2 mb-3 border-grey2"
           />
         )}
-        <FiltersMap filters={firstFilters} radio={radio} />
+        <FiltersMap filters={firstFilters} radio={radio} onSearch={onSearch} title={title} />
         {lastFilters.length > 0 && (
           <>
             <Collapse
@@ -82,17 +89,40 @@ const FilterSet = ({ filters = [], title, radio, hasInput }) => {
   );
 };
 
-export const Filters = ({ filterSets = [] }) => {
+/*
+{
+  filters:  [
+    {item: ...}
+  ],
+  radio: ...
+  title ...
+} 
+*/
+
+/* 
+array con 
+{
+  title
+  options: {
+    option, isDisabled, isSelected
+  }
+  forType
+  radio
+}
+
+*/
+export const Filters = ({ filterSets = [], onSearch }) => {
   return (
     <form>
-      {filterSets?.map((item) => {
+      {filterSets?.map((filterSet) => {
         return (
           <FilterSet
-            key={item.title}
-            hasInput={item.hasInput}
-            filters={item.filters}
-            title={item.title}
-            radio={item.radio && item.title}
+            onSearch={onSearch}
+            key={filterSet.title}
+            hasInput={filterSet.hasInput}
+            filters={filterSet.filters}
+            title={filterSet.title}
+            radio={filterSet.radio && filterSet.title}
           />
         );
       })}

@@ -13,7 +13,7 @@ export const Listing = ({ item = {}, className, ...props }) => {
     commonDataAttributes: { standfirst },
   } = item;
 
-  const { starRating } = item.ptsDataAttr || {};
+  const { starRating } = item.customDataAttributes || {};
 
   const img = featuredImage ? (
     <Link href={`${uri}`}>
