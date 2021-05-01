@@ -28,6 +28,7 @@ const Search = ({ filtersData = {}, filtersForUI }) => {
   // results to be displayed
   const [results, setResults] = useState({});
 
+  console.log("allFilters: ", allFilters)
   const objectLength = (obj) => Object.entries(obj || 0).length;
 
   const ptsResultsNumber = objectLength(results.placesToStayResults);
@@ -74,6 +75,8 @@ const Search = ({ filtersData = {}, filtersForUI }) => {
 
   const searchPlacesToStay = (searchQuery) => {
 
+    if (!searchQuery) return placesToStay?.nodes
+
     return placesToStay?.nodes.filter((item) => {
       const { title, tags, entityCategories: cats } = item;
       const tagNames = tags?.nodes.map((item) => item.name.toLowerCase());
@@ -91,9 +94,7 @@ const Search = ({ filtersData = {}, filtersForUI }) => {
     searchQuery = searchQuery || globalSearch
     let placesToStayResults = searchPlacesToStay(searchQuery);
 
-
     // Testing with the "continent" filters
-
 
     const continents = []
     const settings = []
@@ -254,10 +255,12 @@ const transformFiltersForUI = (graphqlFilters) => {
         acc[key].push({
           title: _filter.title,
           filters: _filter.filters.map(option => {
+
             return {
               option: option.item,
               isSelected: false,
-              isDisabled: false,
+              // isDisabled: false,
+              isDisabled: option.item === "Countryside" ? true : false,
             }
           }),
           forType: key.replace("Filters", ""),

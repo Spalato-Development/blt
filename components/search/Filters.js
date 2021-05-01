@@ -13,6 +13,7 @@ const FiltersMap = ({ filters = [], radio, onSearch, title }) => {
             key={filter.option}
             id={filter.option}
             label={filter.option}
+            disabled={filter.isDisabled}
             className="mb-1"
             radio={radio}
             onChange={
