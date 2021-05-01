@@ -7,3 +7,4 @@ export * from './Gallery';
 export * from './ContentLayout';
 export * from './Forms';
 export * from './Number';
+export * from './StarIcons';

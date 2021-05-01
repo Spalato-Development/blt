@@ -2,9 +2,9 @@ import React from 'react';
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from 'components';
+import { Button, StarIcons } from 'components';
 
-export const Listing = ({ item, className, ...props }) => {
+export const Listing = ({ item = {}, className, ...props }) => {
   const {
     title,
     featuredImage,
@@ -12,6 +12,8 @@ export const Listing = ({ item, className, ...props }) => {
     entityCategories,
     commonDataAttributes: { standfirst },
   } = item;
+
+  const { starRating } = item.ptsDataAttr || {};
 
   const img = featuredImage ? (
     <Link href={`${uri}`}>
@@ -34,16 +36,21 @@ export const Listing = ({ item, className, ...props }) => {
       className={clsx('shadow-listing', 'p-2 pr-3 mb-5', 'flex', className)}
       {...props}>
       {img}
-      <div className="max-w-[470px]">
-        <Link href={`${uri}`}>
-          <a className="hover:no-underline ">
-            <h2 className="font-bold text-black text-f-24">{title}</h2>{' '}
-          </a>
-        </Link>
-        <h3 className="mb-2 text-f-18 text-grey5">
-          {entityCategories?.nodes[0]?.name}
-        </h3>
-        <p>{standfirst}</p>
+      <div className="max-w-[470px] flex flex-col justify-between">
+        <div>
+          <Link href={`${uri}`}>
+            <a className="hover:no-underline ">
+              <h2 className="font-bold text-black text-f-24">{title}</h2>{' '}
+            </a>
+          </Link>
+          <h3 className="mb-2 text-f-18 text-grey5">
+            {entityCategories?.nodes[0]?.name}
+          </h3>
+          <p>{standfirst}</p>
+        </div>
+        <div>
+          {starRating && <StarIcons stars={parseInt(starRating)} small />}
+        </div>
       </div>
       <div className="">
         <Link href={uri}>
