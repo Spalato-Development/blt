@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
+import Slider from 'react-slick';
 
 export const Gallery = ({ images = [], ...props }) => {
-  const [bigImage, setBigImage] = useState(images[0]);
-  function handleClick(e) {
-    // setBigImage(images.find((image) => image.id === id));
-    console.log('target', e);
-  }
-
   return (
     <>
       <div {...props}>
         <Image
-          src={bigImage?.sourceUrl}
-          alt={bigImage?.altText}
+          src={images[0]?.sourceUrl}
+          alt={images[0]?.altText}
           width="940px"
           height="530px"
           priority={true}
@@ -24,15 +19,12 @@ export const Gallery = ({ images = [], ...props }) => {
         {images?.map((image) => {
           const { id, sourceUrl, altText } = image;
           return (
-            <div
-              key={id}
-              className="mx-1"
-              onClick={(e) => handleClick(e)}>
+            <div key={id} className="mx-1">
               <Image
                 src={sourceUrl}
                 alt={altText}
-                width="110px"
-                height="61px"
+                width="122px"
+                height="69px"
                 priority={true}
               />
             </div>
