@@ -2,23 +2,28 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
 import Slider from 'react-slick';
-// import 'styles/slick/slick.scss';
-// import 'slick-carousel/slick/slick-theme.css';
+import { useMediaQuery } from 'lib/hooks';
 
 export const Gallery = ({ images = [], ...props }) => {
+  const isLarge = useMediaQuery('(min-width:800px)');
   const settings = {
     customPaging: function (i) {
       const img = images[i];
+
       return (
-        <a className="flex mx-1 mb-2 cursor-pointer">
-          <Image
-            src={img.sourceUrl}
-            alt={img.altText}
-            width="122px"
-            height="69px"
-            priority={true}
-          />
-        </a>
+        <>
+          {isLarge && (
+            <a className="flex mx-1 mb-2 cursor-pointer">
+              <Image
+                src={img.sourceUrl}
+                alt={img.altText}
+                width="122px"
+                height="69px"
+                priority={true}
+              />
+            </a>
+          )}
+        </>
       );
     },
     dots: true,
@@ -64,12 +69,16 @@ const styles = {
     fontSize: 0,
   },
   '.slick-prev:before, .slick-next:before': {
+    display: 'block',
     content: "''",
 
     width: 26,
     height: 43,
     position: `absolute`,
     top: 0,
+    // '@media only and (min-width: 800px)': {
+    //   display: 'block',
+    // },
   },
   '.slick-prev': {
     '&:before': {
