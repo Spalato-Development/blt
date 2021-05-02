@@ -1,6 +1,5 @@
 import React from 'react';
 import { FaStar } from 'react-icons/fa';
-import clsx from 'clsx';
 
 export const StarIcons = ({ stars, small }) => {
   return (

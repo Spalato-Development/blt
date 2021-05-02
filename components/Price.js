@@ -1,9 +1,15 @@
 import React from 'react';
+import { Button } from 'components';
+import clsx from 'clsx';
 
-export const Price = ({ priceCheckingLinks, ...props }) => {
+export const Price = ({ priceCheckingLinks, website, className, ...props }) => {
   return (
     <div
-      className="justify-between block xl:flex text-f-22 text-grey5"
+      className={clsx(
+        'justify-between block xl:flex',
+        'text-f-22 text-grey5',
+        className,
+      )}
       {...props}>
       <div>Check pricing & availability on:</div>
       <div className="flex flex-wrap mt-4 xl:mt-0">
@@ -18,6 +24,11 @@ export const Price = ({ priceCheckingLinks, ...props }) => {
             </a>
           );
         })}
+        {website && (
+          <Button secondary as="a" href={website} target="_blank">
+            Hotel Website
+          </Button>
+        )}
       </div>
     </div>
   );
