@@ -6,24 +6,20 @@ import { useMediaQuery } from 'lib/hooks';
 
 export const Gallery = ({ images = [], ...props }) => {
   const isLarge = useMediaQuery('(min-width:800px)');
-  const settings = {
+  const desktopSettings = {
     customPaging: function (i) {
       const img = images[i];
 
       return (
-        <>
-          {isLarge && (
-            <a className="flex mx-1 mb-2 cursor-pointer">
-              <Image
-                src={img.sourceUrl}
-                alt={img.altText}
-                width="122px"
-                height="69px"
-                priority={true}
-              />
-            </a>
-          )}
-        </>
+        <a className="flex mx-1 mb-2 cursor-pointer">
+          <Image
+            src={img.sourceUrl}
+            alt={img.altText}
+            width="122px"
+            height="69px"
+            priority={true}
+          />
+        </a>
       );
     },
     dots: true,
@@ -34,6 +30,14 @@ export const Gallery = ({ images = [], ...props }) => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+  const mobileSettings = {
+    infinite: true,
+    fade: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+  const settings = isLarge ? desktopSettings : mobileSettings;
   return (
     <Slider {...settings} {...props} css={{ ...styles }}>
       {images?.map((image) => {
@@ -65,7 +69,12 @@ const styles = {
   '.slick-prev, .slick-next': {
     position: 'absolute',
     display: 'block',
-    top: '230px',
+    top: '40%',
+
+    '@media only screen and (min-width: 800px)': {
+      top: 230,
+    },
+
     fontSize: 0,
   },
   '.slick-prev:before, .slick-next:before': {
