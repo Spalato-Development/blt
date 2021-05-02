@@ -5,6 +5,8 @@ import { Layout } from 'components';
 import { GlobalDataProvider } from 'lib/context/globalDataContext';
 import 'styles/wp-styles/styles.css';
 import 'styles/globals.css';
+import 'styles/slick/slick.scss';
+// import 'styles/slick/slick-theme.scss';
 
 /* eslint-disable react/jsx-props-no-spreading */
 export default function App({

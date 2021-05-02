@@ -1,7 +1,7 @@
 const withWPEHeadless = require('@wpengine/headless/nextConfig');
 const slashes = require('remove-trailing-slash');
 const imgHost = slashes(process.env.NEXT_PUBLIC_WORDPRESS_URL).split('/')[2];
-// console.log('imgHost');
+const path = require('path');
 
 module.exports = withWPEHeadless({
   // future: {
@@ -11,6 +11,10 @@ module.exports = withWPEHeadless({
     // domains: [`${imgHost}`, `localhost`],
     domains: [`${imgHost}`, 'localhost'],
   },
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
+  },
+
   webpack: (config, { isServer }) => {
     if (!isServer) {
       // Unset client-side javascript that only works server-side
