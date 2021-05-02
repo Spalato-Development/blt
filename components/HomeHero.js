@@ -9,7 +9,9 @@ import { useMediaQuery } from 'lib/hooks';
 const Sentences = ({ topSentences }) => {
   return (
     <>
-      <p className="text-gold font-bold text-[20px] sm:text-f-22  mb-4 sm:mb-0">
+      <p
+        className="text-gold font-bold text-[20px] sm:text-f-22  mb-4 sm:mb-0 "
+        css={{ textShadow: '1px 2px 3px #000' }}>
         For those who want to:
       </p>
       {topSentences?.map((item, i) => (
@@ -45,10 +47,11 @@ export const HomeHero = ({ homeHero }) => {
             objectPosition="center"
           />
         </div>
+        <div className="absolute top-0 left-0 z-10 w-full h-full bg-darkBlue mix-blend-soft-light"></div>
 
         <div
           className={clsx(
-            'absolute top-0 left-0 z-10 w-full h-full',
+            'absolute top-0 left-0 z-20 w-full h-full',
             'px-4 pt-5 pb-5 sm:pb-12',
             'flex flex-col justify-end sm:justify-between',
           )}>
@@ -72,7 +75,7 @@ export const HomeHero = ({ homeHero }) => {
                   }
                   className={clsx(
                     'bg-white border-none shadow-input pl-6',
-                    ' text-sm sm:text-f-18 md:text-f-26 placeholder-grey3 font-bold',
+                    ' text-sm sm:text-f-18 lg:text-f-26 placeholder-grey3 font-bold',
                     'w-full h-10 sm:h-20',
                   )}
                 />
@@ -81,12 +84,15 @@ export const HomeHero = ({ homeHero }) => {
                     'w-10 h-10 sm:h-[65px] sm:w-[135px]',
                     'absolute right-0 top-0 sm:right-2 sm:top-2',
                     'flex items-center justify-center',
-                  )}>
+                  )}
+                  css={{ padding: 0 }}>
                   <FaSearch className="text-grey4 text-f-18 sm:text-[38px]" />
                 </Button>
               </form>
               <Link href="/seacrh">
-                <a className="text-base font-normal tracking-wider underline uppercase text-lightBlue sm:text-f-24">
+                <a
+                  className="text-base font-normal tracking-wider underline uppercase text-lightBlue sm:text-f-24 text-shadow-sm"
+                  css={{ textShadow: '1px 2px 4px #000' }}>
                   {isSmall
                     ? 'Browse all recommendatons'
                     : 'BROWSE ALL OF OUR RECOMMENDATIONS'}

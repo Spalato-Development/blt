@@ -115,6 +115,7 @@ const NewsletterHome = () => {
       {isLarge ? (
         <div
           className={clsx(
+            'container max-w-big',
             'border border-grey2 shadow-section bg-white',
             'px-16 py-12 mt-7 mb-10',
             'lg:flex',

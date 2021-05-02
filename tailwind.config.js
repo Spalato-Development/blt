@@ -112,6 +112,7 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
     require('tailwindcss-debug-screens'),
+    require('tailwindcss-textshadow'),
   ],
   corePlugins: {
     preflight: true,

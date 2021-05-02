@@ -85,9 +85,6 @@ const styles = {
     height: 43,
     position: `absolute`,
     top: 0,
-    // '@media only and (min-width: 800px)': {
-    //   display: 'block',
-    // },
   },
   '.slick-prev': {
     '&:before': {
