@@ -54,7 +54,10 @@ export const Listing = ({ item = {}, className, ...props }) => {
             {starRating && <StarIcons stars={parseInt(starRating)} small />}
           </div>
         </div>
-        <div className="">
+        <div className="flex flex-col items-end justify-between">
+          <Button secondary className="w-10 h-10" css={{ padding: 0 }}>
+            <img src="/images/cross.svg" alt="add to bucket list" />
+          </Button>
           <Link href={uri}>
             <Button as="a" className="hover:no-underline" secondary>
               Read our review
