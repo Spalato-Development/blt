@@ -5,7 +5,7 @@ export const Awards = ({ awards }) => {
     <div className="pt-4 pb-8 border bg-[#eaecf2] border-grey-2">
       <h3 className="text-center uppercase text-grey5 font-bold tracking-[3px]">
         As recommended by
-        <div className="flex justify-between container max-w-[1100px]  mt-5 ">
+        <div className="flex justify-between flex-wrap container max-w-[1100px]  mt-5 ">
           {awards?.map((item, i) => {
             const { logo, url } = item;
             return (
@@ -13,7 +13,7 @@ export const Awards = ({ awards }) => {
                 <img
                   src={logo.sourceUrl}
                   alt={logo.altText}
-                  className="w-auto h-12 mx-4"
+                  className="w-auto h-12 mx-4 mt-4"
                 />
               </div>
             );
