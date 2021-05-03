@@ -8,19 +8,9 @@ import { Typo, Button, Select } from 'components';
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
 
-const Search = ({ filtersData = {}, filtersForUI }) => {
-  // const {
-  //   commonFilters,
-  //   placeToStayFilters,
-  //   bottomCommonFilters,
-  //   destinationsFilters,
-  //   experiencesFilters,
-  //   itinerariesFilters,
-  //   roundupsFilters,
-  // } = filtersData?.data.options;
-
+const Search = ({ allSidebarFilters = {} }) => {
   // sidebar filters
-  const [sidebarFilters, setSidebarFilters] = useState(filtersForUI);
+  const [sidebarFilters, setSidebarFilters] = useState(allSidebarFilters);
   // tab filters
   const [tabFilters, setTabFilters] = useState('all');
   // search
@@ -220,33 +210,6 @@ const Search = ({ filtersData = {}, filtersForUI }) => {
 
 export default Search;
 
-// const transformFiltersForUI = (graphqlFilters) => {
-//   // console.log("* graphqlFilters: ", Object.entries(graphqlFilters))
-//   return Object.entries(graphqlFilters).reduce((acc, [key, entry]) => {
-
-//     if (entry.filterSet) {
-//       // console.log("-> key: ", key, " ->entry: ", entry)
-//       // console.log("--> entry.filterSet: ", entry.filterSet)
-//       entry.filterSet.map(_filter => {
-//         // console.log("_filter: ", _filter)
-//         acc.push({
-//   title: _filter.title,
-//   options: _filter.filters.map(option => {
-//     return {
-//       option: option,
-//       isSelected: false,
-//       isDisabled: false,
-//     }
-//   }),
-//   forType: key.replace("Filters", ""),
-//   radio: _filter.radio,
-// })
-//       })
-//     }
-//     return acc;
-//   }, [])
-// }
-
 const transformFilters = (graphqlFilters) => {
   return Object.entries(graphqlFilters).reduce((acc, [key, entry]) => {
     if (entry.filterSet) {
@@ -274,13 +237,13 @@ const transformFilters = (graphqlFilters) => {
 export const getStaticProps = async (context) => {
   const client = getApolloClient(context);
   const filtersData = await client.query({ query: FILTERS_QUERY });
-  const filtersForUI = transformFilters(filtersData.data.options);
+  const allSidebarFilters = transformFilters(filtersData.data.options);
   const globalData = await appGetStaticProps(context);
   return {
     props: {
       globalData,
       // filtersData,
-      filtersForUI,
+      allSidebarFilters,
     },
   };
 };
