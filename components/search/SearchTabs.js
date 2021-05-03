@@ -2,9 +2,14 @@ import React from 'react';
 import { Button } from 'components/ui-components';
 import clsx from 'clsx';
 
-export const SearchTabs = ({ tabs = [], className, setFilters, ...props }) => {
+export const SearchTabs = ({
+  tabs = [],
+  className,
+  setTabFilters,
+  ...props
+}) => {
   const handleClick = (e) => {
-    setFilters(e.target.value);
+    setTabFilters(e.target.value);
   };
   return (
     <div

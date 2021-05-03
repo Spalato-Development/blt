@@ -26,7 +26,7 @@ const PlaceToStay = ({ ptsData = {} }) => {
     title,
     date,
     commonDataAttributes: { imageGallery, about, standfirst },
-    ptsDataAttr: {
+    customDataAttributes: {
       writer,
       priceCheckingLinks,
       airportTransfers,

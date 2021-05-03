@@ -20,15 +20,15 @@ const Search = ({ filtersData = {}, filtersForUI }) => {
   // } = filtersData?.data.options;
 
   // sidebar filters
-  const [allFilters, setAllFilters] = useState(filtersForUI)
+  const [sidebarFilters, setSidebarFilters] = useState(filtersForUI);
   // tab filters
-  const [filters, setFilters] = useState('all');
-  // search 
+  const [tabFilters, setTabFilters] = useState('all');
+  // search
   const [globalSearch, setGlobalSearch] = useState(undefined);
   // results to be displayed
   const [results, setResults] = useState({});
 
-  console.log("allFilters: ", allFilters)
+  console.log('sidebarFilters: ', sidebarFilters);
   const objectLength = (obj) => Object.entries(obj || 0).length;
 
   const ptsResultsNumber = objectLength(results.placesToStayResults);
@@ -69,13 +69,12 @@ const Search = ({ filtersData = {}, filtersForUI }) => {
   } = useForm();
 
   const submitGlobalSearch = (searchData) => {
-    setGlobalSearch(searchData?.globalSearch?.toLowerCase())
-    doSearch(searchData?.globalSearch?.toLowerCase())
+    setGlobalSearch(searchData?.globalSearch?.toLowerCase());
+    doSearch(searchData?.globalSearch?.toLowerCase());
   };
 
   const searchPlacesToStay = (searchQuery) => {
-
-    if (!searchQuery) return placesToStay?.nodes
+    if (!searchQuery) return placesToStay?.nodes;
 
     return placesToStay?.nodes.filter((item) => {
       const { title, tags, entityCategories: cats } = item;
@@ -88,46 +87,47 @@ const Search = ({ filtersData = {}, filtersForUI }) => {
         catNames.includes(searchQuery)
       );
     });
-  }
+  };
 
   const doSearch = (searchQuery) => {
-    searchQuery = searchQuery || globalSearch
+    searchQuery = searchQuery || globalSearch;
     let placesToStayResults = searchPlacesToStay(searchQuery);
 
     // Testing with the "continent" filters
 
-    const continents = []
-    const settings = []
+    const continents = [];
+    const settings = [];
 
-    allFilters.commonFilters.map(item => {
-      if (item.title.toLowerCase() === "continent") {
-        item.filters.map(filter => {
+    sidebarFilters.commonFilters.map((item) => {
+      if (item.title.toLowerCase() === 'continent') {
+        item.filters.map((filter) => {
           if (filter.isSelected) {
-            continents.push(filter.option)
+            continents.push(filter.option);
           }
-        })
-      }
-      else if (item.title.toLowerCase() === "setting") {
-        item.filters.map(filter => {
+        });
+      } else if (item.title.toLowerCase() === 'setting') {
+        item.filters.map((filter) => {
           if (filter.isSelected) {
-            settings.push(filter.option)
+            settings.push(filter.option);
           }
-        })
+        });
       }
-    })
+    });
 
     if (continents && continents.length) {
-      placesToStayResults = placesToStayResults.filter(place => {
-        return continents.includes(place.commonDataAttributes.continent)
-      })
+      placesToStayResults = placesToStayResults.filter((place) => {
+        return continents.includes(place.commonDataAttributes.continent);
+      });
     }
     if (settings && settings.length) {
-      placesToStayResults = placesToStayResults.filter(place => {
-        return place.customDataAttributes.setting.some(element => settings.includes(element))
-      })
+      placesToStayResults = placesToStayResults.filter((place) => {
+        return place.customDataAttributes.setting.some((element) =>
+          settings.includes(element),
+        );
+      });
     }
     setResults({ placesToStayResults });
-  }
+  };
 
   return (
     <>
@@ -148,7 +148,7 @@ const Search = ({ filtersData = {}, filtersForUI }) => {
             'order-2 lg:order-1',
             'mr-0 lg:mr-7 lg:pl-5 px-5 lg:px-0',
           )}>
-          <SearchTabs tabs={searchTabs} setFilters={setFilters} />
+          <SearchTabs tabs={searchTabs} setTabFilters={setTabFilters} />
 
           <Select />
 
@@ -184,28 +184,29 @@ const Search = ({ filtersData = {}, filtersForUI }) => {
               </>
             )} */}
 
-            {filters === 'all' && (
+            {tabFilters === 'all' && (
               <>
                 {/* <Filters filterSets={commonFilters?.filterSet} /> */}
                 <Filters
-                  filterSets={allFilters.commonFilters}
-                  onSearch={
-                    (data) => {
-                      const _commonFilters = allFilters.commonFilters.map(item => {
+                  filterSets={sidebarFilters.commonFilters}
+                  onSearch={(data) => {
+                    const _commonFilters = sidebarFilters.commonFilters.map(
+                      (item) => {
                         if (item.title === data.title) {
-                          const optionToUpdate = item.filters.find(filter => filter.option === data.option);
-                          optionToUpdate.isSelected = !optionToUpdate.isSelected
+                          const optionToUpdate = item.filters.find(
+                            (filter) => filter.option === data.option,
+                          );
+                          optionToUpdate.isSelected = !optionToUpdate.isSelected;
                         }
                         return item;
-                      })
-                      setAllFilters({
-                        ...allFilters,
-                        ["commonFilters"]: _commonFilters
-                      })
-                      doSearch()
-
-                    }
-                  }
+                      },
+                    );
+                    setSidebarFilters({
+                      ...sidebarFilters,
+                      ['commonFilters']: _commonFilters,
+                    });
+                    doSearch();
+                  }}
                 />
                 {/* <Filters filterSets={bottomCommonFilters?.bottomFilterSet} /> */}
               </>
@@ -238,7 +239,7 @@ export default Search;
 //     }
 //   }),
 //   forType: key.replace("Filters", ""),
-//   radio: _filter.radio,          
+//   radio: _filter.radio,
 // })
 //       })
 //     }
@@ -246,46 +247,40 @@ export default Search;
 //   }, [])
 // }
 
-const transformFiltersForUI = (graphqlFilters) => {
+const transformFilters = (graphqlFilters) => {
   return Object.entries(graphqlFilters).reduce((acc, [key, entry]) => {
-
     if (entry.filterSet) {
       acc[key] = [];
-      entry.filterSet.map(_filter => {
+      entry.filterSet.map((_filter) => {
         acc[key].push({
           title: _filter.title,
-          filters: _filter.filters.map(option => {
-
+          filters: _filter.filters.map((option) => {
             return {
               option: option.item,
               isSelected: false,
               // isDisabled: false,
-              isDisabled: option.item === "Countryside" ? true : false,
-            }
+              isDisabled: option.item === 'Countryside' ? true : false,
+            };
           }),
-          forType: key.replace("Filters", ""),
+          forType: key.replace('Filters', ''),
           radio: _filter.radio,
-        })
-
-      })
-
+        });
+      });
     }
     return acc;
-  }, {})
-}
-
+  }, {});
+};
 
 export const getStaticProps = async (context) => {
   const client = getApolloClient(context);
   const filtersData = await client.query({ query: FILTERS_QUERY });
-  const filtersForUI = transformFiltersForUI(filtersData.data.options)
+  const filtersForUI = transformFilters(filtersData.data.options);
   const globalData = await appGetStaticProps(context);
   return {
     props: {
       globalData,
-      filtersData,
-      filtersForUI
+      // filtersData,
+      filtersForUI,
     },
   };
 };
-
