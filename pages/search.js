@@ -14,7 +14,7 @@ const Search = ({ allSidebarFilters = {} }) => {
   // tab filters
   const [tabFilters, setTabFilters] = useState('all');
   // search
-  const [globalSearch, setGlobalSearch] = useState(undefined);
+  const [globalSearchQuery, setGlobalSearchQuery] = useState(undefined);
   // results to be displayed
   const [results, setResults] = useState({});
 
@@ -59,12 +59,13 @@ const Search = ({ allSidebarFilters = {} }) => {
   } = useForm();
 
   const submitGlobalSearch = (searchData) => {
-    setGlobalSearch(searchData?.globalSearch?.toLowerCase());
+    console.log('searchData', searchData);
+    setGlobalSearchQuery(searchData?.globalSearch?.toLowerCase());
     doSearch(searchData?.globalSearch?.toLowerCase());
   };
 
   const searchPlacesToStay = (searchQuery) => {
-    if (!searchQuery) return placesToStay?.nodes;
+    if (!searchQuery) return null;
 
     return placesToStay?.nodes.filter((item) => {
       const { title, tags, entityCategories: cats } = item;
@@ -80,7 +81,8 @@ const Search = ({ allSidebarFilters = {} }) => {
   };
 
   const doSearch = (searchQuery) => {
-    searchQuery = searchQuery || globalSearch;
+    //If no filter from the sidebar are applied, the query is the one from the globalSearch
+    searchQuery = searchQuery || globalSearchQuery;
     let placesToStayResults = searchPlacesToStay(searchQuery);
 
     // Testing with the "continent" filters
@@ -124,7 +126,7 @@ const Search = ({ allSidebarFilters = {} }) => {
       <SearchHead
         handleSubmitGlobalSearch={submitGlobalSearch}
         results={totalResults}
-        query={globalSearch}
+        query={globalSearchQuery}
       />
       <div
         className={clsx(
