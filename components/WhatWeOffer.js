@@ -5,7 +5,7 @@ import { Number } from 'components';
 export const WhatWeOffer = ({ whatWeOffer }) => {
   const { wwoItems, wwoTextBelow, wwoTitle } = whatWeOffer;
   return (
-    <div className="container px-5 py-6 md:pt-4 md:pb-10 max-w-big">
+    <div className="container px-5 py-6 bg-white md:pt-4 md:pb-10 max-w-big">
       {/* Title */}
       <div className="flex flex-col items-center mb-8">
         <h2 className="text-center text-f-40 md:text-[48px] text-grey5 font-light">

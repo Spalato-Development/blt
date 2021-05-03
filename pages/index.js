@@ -3,16 +3,17 @@ import Head from 'next/head';
 import { getApolloClient } from '@wpengine/headless';
 import { HOME_QUERY } from 'lib/queries';
 
-import { HomeHero, WhatWeOffer, NewsletterHome } from 'components';
+import { HomeHero, WhatWeOffer, NewsletterHome, Awards } from 'components';
 import { appGetStaticProps } from 'lib/appGetStaticProps';
 
 export default function Home({ homeData = {} }) {
   console.log('homeData', homeData);
-  const { homeHero, whatWeOffer } = homeData.data.page || {};
+  const { homeHero, whatWeOffer, awards } = homeData.data.page || {};
   return (
     <div>
       <HomeHero homeHero={homeHero} />
       <WhatWeOffer whatWeOffer={whatWeOffer} />
+      <Awards awards={awards.items} />
       <NewsletterHome />
     </div>
   );

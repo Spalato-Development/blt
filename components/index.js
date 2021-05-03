@@ -12,3 +12,4 @@ export * from './WhatWeOffer';
 export * from './ui-components';
 export * from './Listing';
 export * from './Select';
+export * from './Awards';
