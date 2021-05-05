@@ -81,8 +81,16 @@ const Search = ({ allSidebarFilters = {} }) => {
     });
   };
 
+  /**
+   * Manages the automatic search on sidebar filters (continent, settings ...)
+   * @param {object} data - The data on the filter to be parser
+   * @param {string} data.title - The title of the filter
+   * @param {string} data.option - The option value of the filter
+   * @param {bool} data.value - If the option is "selected" or not
+   * @param {string} filtersCategory - The time of filter, it can be:
+   *  - commonFilters, bottomFilters ...
+   */
   const handleFilterSearch = (data, filtersCategory) => {
-    console.log('data', data);
     //the data is {title, option, value} that are the args in the Checkbox from the filter file
     const _Filters = sidebarFilters[filtersCategory].map((item) => {
       if (item.title === data.title) {
@@ -201,29 +209,27 @@ const Search = ({ allSidebarFilters = {} }) => {
                 {/* <Filters filterSets={commonFilters?.filterSet} /> */}
                 <Filters
                   filterSets={sidebarFilters.commonFilters}
-                  onSearch={(data) => {
-                    console.log('data', data);
-                    //the data is {title, option, value} that are the args in the Checkbox from the filter file
-                    const _commonFilters = sidebarFilters.commonFilters.map(
-                      (item) => {
-                        if (item.title === data.title) {
-                          const optionToUpdate = item.filters.find(
-                            (filter) => filter.option === data.option,
-                          );
-                          optionToUpdate.isSelected = !optionToUpdate.isSelected;
-                        }
-                        return item;
-                      },
-                    );
-                    setSidebarFilters({
-                      ...sidebarFilters,
-                      ['commonFilters']: _commonFilters,
-                    });
-                    doSearch();
-                  }}
-                  // onSearch={(data, commonFilters) =>
-                  //   handleFilterSearch(data, commonFilters)
-                  // }
+                  // onSearch={(data) => {
+                  //   console.log('data', data);
+                  //   //the data is {title, option, value} that are the args in the Checkbox from the filter file
+                  //   const _commonFilters = sidebarFilters.commonFilters.map(
+                  //     (item) => {
+                  //       if (item.title === data.title) {
+                  //         const optionToUpdate = item.filters.find(
+                  //           (filter) => filter.option === data.option,
+                  //         );
+                  //         optionToUpdate.isSelected = !optionToUpdate.isSelected;
+                  //       }
+                  //       return item;
+                  //     },
+                  //   );
+                  //   setSidebarFilters({
+                  //     ...sidebarFilters,
+                  //     ['commonFilters']: _commonFilters,
+                  //   });
+                  //   doSearch();
+                  // }}
+                  onSearch={(data) => handleFilterSearch(data, "commonFilters")}
                 />
                 {/* <Filters filterSets={bottomCommonFilters?.bottomFilterSet} /> */}
               </>
