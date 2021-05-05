@@ -8,23 +8,22 @@ const FiltersMap = ({ filters = [], radio, onSearch, title }) => {
   return (
     <>
       {filters?.map((filter) => {
+        const { option, isDisabled } = filter || {};
         return (
           <Checkbox
-            key={filter.option}
-            id={filter.option}
-            label={filter.option}
-            disabled={filter.isDisabled}
+            key={option}
+            id={option}
+            label={option}
+            disabled={isDisabled}
             className="mb-1"
             radio={radio}
-            onChange={
-              (a) => {
-                onSearch({
-                  title: title,
-                  option: filter.option,
-                  value: a.target.value
-                })
-              }
-            }
+            onChange={(e) => {
+              onSearch({
+                title,
+                option: filter.option,
+                value: e.target.value,
+              });
+            }}
           />
         );
       })}
@@ -51,7 +50,12 @@ const FilterSet = ({ filters = [], title, radio, hasInput, onSearch }) => {
             className="w-full h-8 mt-2 mb-3 border-grey2"
           />
         )}
-        <FiltersMap filters={firstFilters} radio={radio} onSearch={onSearch} title={title} />
+        <FiltersMap
+          filters={firstFilters}
+          radio={radio}
+          onSearch={onSearch}
+          title={title}
+        />
         {lastFilters.length > 0 && (
           <>
             <Collapse
@@ -97,11 +101,11 @@ const FilterSet = ({ filters = [], title, radio, hasInput, onSearch }) => {
   ],
   radio: ...
   title ...
-} 
+}
 */
 
-/* 
-array con 
+/*
+array con
 {
   title
   options: {
@@ -116,14 +120,15 @@ export const Filters = ({ filterSets = [], onSearch }) => {
   return (
     <form>
       {filterSets?.map((filterSet) => {
+        const { title, hasInput, filters, radio } = filterSet || {};
         return (
           <FilterSet
             onSearch={onSearch}
-            key={filterSet.title}
-            hasInput={filterSet.hasInput}
-            filters={filterSet.filters}
-            title={filterSet.title}
-            radio={filterSet.radio && filterSet.title}
+            key={title}
+            hasInput={hasInput}
+            filters={filters}
+            title={title}
+            radio={radio && title}
           />
         );
       })}

@@ -61,6 +61,7 @@ const Search = ({ allSidebarFilters = {} }) => {
   const submitGlobalSearch = (searchData) => {
     console.log('searchData', searchData);
     setGlobalSearchQuery(searchData?.globalSearch?.toLowerCase());
+
     doSearch(searchData?.globalSearch?.toLowerCase());
   };
 
@@ -78,6 +79,25 @@ const Search = ({ allSidebarFilters = {} }) => {
         catNames.includes(searchQuery)
       );
     });
+  };
+
+  const handleFilterSearch = (data, filtersCategory) => {
+    console.log('data', data);
+    //the data is {title, option, value} that are the args in the Checkbox from the filter file
+    const _Filters = sidebarFilters[filtersCategory].map((item) => {
+      if (item.title === data.title) {
+        const optionToUpdate = item.filters.find(
+          (filter) => filter.option === data.option,
+        );
+        optionToUpdate.isSelected = !optionToUpdate.isSelected;
+      }
+      return item;
+    });
+    setSidebarFilters({
+      ...sidebarFilters,
+      [`${filtersCategory}`]: _Filters,
+    });
+    doSearch();
   };
 
   const doSearch = (searchQuery) => {
@@ -107,18 +127,18 @@ const Search = ({ allSidebarFilters = {} }) => {
     });
 
     if (continents && continents.length) {
-      placesToStayResults = placesToStayResults.filter((place) => {
+      placesToStayResults = placesToStayResults?.filter((place) => {
         return continents.includes(place.commonDataAttributes.continent);
       });
     }
     if (settings && settings.length) {
-      placesToStayResults = placesToStayResults.filter((place) => {
+      placesToStayResults = placesToStayResults?.filter((place) => {
         return place.customDataAttributes.setting.some((element) =>
           settings.includes(element),
         );
       });
     }
-    setResults({ placesToStayResults });
+    setResults({ ...results, placesToStayResults });
   };
 
   return (
@@ -182,6 +202,8 @@ const Search = ({ allSidebarFilters = {} }) => {
                 <Filters
                   filterSets={sidebarFilters.commonFilters}
                   onSearch={(data) => {
+                    console.log('data', data);
+                    //the data is {title, option, value} that are the args in the Checkbox from the filter file
                     const _commonFilters = sidebarFilters.commonFilters.map(
                       (item) => {
                         if (item.title === data.title) {
@@ -199,6 +221,9 @@ const Search = ({ allSidebarFilters = {} }) => {
                     });
                     doSearch();
                   }}
+                  // onSearch={(data, commonFilters) =>
+                  //   handleFilterSearch(data, commonFilters)
+                  // }
                 />
                 {/* <Filters filterSets={bottomCommonFilters?.bottomFilterSet} /> */}
               </>
