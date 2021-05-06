@@ -9,7 +9,7 @@ const Button = styled.button(({ secondary, narrow, small, tab }) => [
   narrow && tw`h-10`,
 
   secondary &&
-    tw`h-10 text-sm bg-white border-2 border-lightBlue hover:bg-lightBlue`,
+    tw`h-10 leading-none bg-white border-2 xl:text-f-14 text-f-12 border-lightBlue hover:bg-lightBlue`,
 
   small && tw`px-2 py-3 text-sm h-7 `,
   tab &&

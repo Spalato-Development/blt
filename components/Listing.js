@@ -67,6 +67,7 @@ export const Listing = ({ item = {}, className, ...props }) => {
           {priceCheckingLinks && (
             <Button
               secondary
+              className="leading-none"
               onClick={(e) => {
                 e.preventDefault();
                 setOpen(!open);
