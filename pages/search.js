@@ -162,6 +162,13 @@ const Search = ({ allSidebarFilters = {} }) => {
     />
   );
 
+  const placesToStayResultsListings = results.placesToStayResults?.map(
+    (item) => {
+      const { id } = item;
+      return <Listing key={id} item={item} />;
+    },
+  );
+
   return (
     <>
       <SearchHead
@@ -186,11 +193,12 @@ const Search = ({ allSidebarFilters = {} }) => {
           <Select />
 
           {/* Results */}
-          {results.placesToStayResults?.map((item) => {
-            const { id } = item;
-            return <Listing key={id} item={item} />;
-          })}
+          {tabFilters === 'places to stay' && placesToStayResultsListings}
+          {tabFilters === 'all' && placesToStayResultsListings}
         </div>
+
+        {/* Sidebar filters */}
+
         <div
           className={clsx(
             'w-full lg:w-1/3 lg:w-[300px]',
