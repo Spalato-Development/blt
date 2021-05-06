@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { appGetStaticProps } from 'lib/appGetStaticProps';
-import { SearchHead, SearchTabs, Filters, Listing } from 'components';
+import {
+  SearchHead,
+  SearchTabs,
+  Filters,
+  Listing,
+  NoResults,
+} from 'components';
 import { getApolloClient } from '@wpengine/headless';
 import { FILTERS_QUERY } from 'lib/queries';
 import { useGlobalData } from 'lib/context/globalDataContext';
@@ -231,6 +237,9 @@ const Search = ({ allSidebarFilters = {} }) => {
           <Select />
 
           {/* Results */}
+          {globalSearchQuery && totalResults === 0 && (
+            <NoResults className="mt-10" />
+          )}
           {tabFilters === 'places to stay' && placesToStayResultsListings}
           {tabFilters === 'all' && placesToStayResultsListings}
         </div>
