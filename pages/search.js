@@ -17,6 +17,7 @@ const Search = ({ allSidebarFilters = {} }) => {
   const [globalSearchQuery, setGlobalSearchQuery] = useState(undefined);
   // results to be displayed
   const [results, setResults] = useState({});
+  console.log('sidebarFilters', sidebarFilters);
 
   const objectLength = (obj) => Object.entries(obj || 0).length;
 
@@ -91,7 +92,7 @@ const Search = ({ allSidebarFilters = {} }) => {
    */
   const handleFilterSearch = (data, filtersCategory) => {
     //the data is {title, option, value} that are the args in the Checkbox from the filter file
-    const _Filters = sidebarFilters[filtersCategory].map((item) => {
+    const _Filters = sidebarFilters[filtersCategory]?.map((item) => {
       if (item.title === data.title) {
         const optionToUpdate = item.filters.find(
           (filter) => filter.option === data.option,
@@ -112,12 +113,15 @@ const Search = ({ allSidebarFilters = {} }) => {
     searchQuery = searchQuery || globalSearchQuery;
     let placesToStayResults = searchPlacesToStay(searchQuery);
 
-    // Testing with the "continent" filters
-
+    //common filters
     const continents = [];
     const settings = [];
+    // pts filters
+    const standards = [];
+    const roomTypes = [];
+    const brands = [];
 
-    sidebarFilters.commonFilters.map((item) => {
+    sidebarFilters.commonFilters?.map((item) => {
       if (item.title.toLowerCase() === 'continent') {
         item.filters.map((filter) => {
           if (filter.isSelected) {
@@ -133,6 +137,23 @@ const Search = ({ allSidebarFilters = {} }) => {
       }
     });
 
+    sidebarFilters.placeToStayFilters?.map((item) => {
+      const { title, filters } = item;
+      if (title.toLowerCase() === 'standard') {
+        filters?.map(
+          (filter) => filter.isSelected && standards.push(filter.option),
+        );
+      } else if (title.toLowerCase() === 'room type') {
+        filters?.map(
+          (filter) => filter.isSelected && roomTypes.push(filter.option),
+        );
+      } else if (title.toLowerCase() === 'brand') {
+        filters?.map(
+          (filter) => filter.isSelected && brands.push(filter.option),
+        );
+      }
+    });
+
     if (continents && continents.length) {
       placesToStayResults = placesToStayResults?.filter((place) => {
         return continents.includes(place.commonDataAttributes.continent);
@@ -143,6 +164,23 @@ const Search = ({ allSidebarFilters = {} }) => {
         return place.customDataAttributes.setting.some((element) =>
           settings.includes(element),
         );
+      });
+    }
+    if (standards?.length) {
+      placesToStayResults = placesToStayResults?.filter((place) => {
+        return standards.includes(place.customDataAttributes.standard);
+      });
+    }
+    if (roomTypes?.length) {
+      placesToStayResults = placesToStayResults?.filter((place) => {
+        return place.customDataAttributes.roomType.some((element) =>
+          roomTypes.includes(element),
+        );
+      });
+    }
+    if (brands?.length) {
+      placesToStayResults = placesToStayResults?.filter((place) => {
+        return brands.includes(place.customDataAttributes.brand);
       });
     }
     setResults({ ...results, placesToStayResults });
@@ -223,7 +261,7 @@ const Search = ({ allSidebarFilters = {} }) => {
                 <Filters
                   filterSets={sidebarFilters.placeToStayFilters}
                   onSearch={(data) =>
-                    handleFilterSearch(data, 'paceToStayFilters')
+                    handleFilterSearch(data, 'placeToStayFilters')
                   }
                 />
 
