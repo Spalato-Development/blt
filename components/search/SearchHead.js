@@ -23,6 +23,7 @@ export const SearchHead = ({
   handleSubmitGlobalSearch,
   results,
   query,
+
   ...props
 }) => {
   const {
@@ -58,7 +59,7 @@ export const SearchHead = ({
             className="absolute h-[47px] right-1 top-1"
           />
         </div>
-        <ResultsNumber results={results} query={query} />
+        {query && <ResultsNumber results={results} query={query} />}
       </form>
     </div>
   );
