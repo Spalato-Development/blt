@@ -18,7 +18,6 @@ const Search = ({ allSidebarFilters = {} }) => {
   // results to be displayed
   const [results, setResults] = useState({});
 
-  console.log('sidebarFilters: ', sidebarFilters);
   const objectLength = (obj) => Object.entries(obj || 0).length;
 
   const ptsResultsNumber = objectLength(results.placesToStayResults);
@@ -87,7 +86,7 @@ const Search = ({ allSidebarFilters = {} }) => {
    * @param {string} data.title - The title of the filter
    * @param {string} data.option - The option value of the filter
    * @param {bool} data.value - If the option is "selected" or not
-   * @param {string} filtersCategory - The time of filter, it can be:
+   * @param {string} filtersCategory - The type of filter, it can be:
    *  - commonFilters, bottomFilters ...
    */
   const handleFilterSearch = (data, filtersCategory) => {
@@ -149,6 +148,20 @@ const Search = ({ allSidebarFilters = {} }) => {
     setResults({ ...results, placesToStayResults });
   };
 
+  const commonFilters = (
+    <Filters
+      filterSets={sidebarFilters.commonFilters}
+      onSearch={(data) => handleFilterSearch(data, 'commonFilters')}
+    />
+  );
+
+  const bottomCommonFilters = (
+    <Filters
+      filterSets={sidebarFilters.bottomCommonFilters}
+      onSearch={(data) => handleFilterSearch(data, 'bottomCommonFilters')}
+    />
+  );
+
   return (
     <>
       <SearchHead
@@ -196,42 +209,24 @@ const Search = ({ allSidebarFilters = {} }) => {
               </Button>
             </div>
 
-            {/* {filters === 'places to stay' && (
+            {tabFilters === 'places to stay' && (
               <>
-                <Filters filterSets={commonFilters?.filterSet} />
-                <Filters filterSets={placeToStayFilters?.ptsFilterSet} />
-                <Filters filterSets={bottomCommonFilters?.bottomFilterSet} />
+                {commonFilters}
+                <Filters
+                  filterSets={sidebarFilters.placeToStayFilters}
+                  onSearch={(data) =>
+                    handleFilterSearch(data, 'paceToStayFilters')
+                  }
+                />
+
+                {bottomCommonFilters}
               </>
-            )} */}
+            )}
 
             {tabFilters === 'all' && (
               <>
-                {/* <Filters filterSets={commonFilters?.filterSet} /> */}
-                <Filters
-                  filterSets={sidebarFilters.commonFilters}
-                  // onSearch={(data) => {
-                  //   console.log('data', data);
-                  //   //the data is {title, option, value} that are the args in the Checkbox from the filter file
-                  //   const _commonFilters = sidebarFilters.commonFilters.map(
-                  //     (item) => {
-                  //       if (item.title === data.title) {
-                  //         const optionToUpdate = item.filters.find(
-                  //           (filter) => filter.option === data.option,
-                  //         );
-                  //         optionToUpdate.isSelected = !optionToUpdate.isSelected;
-                  //       }
-                  //       return item;
-                  //     },
-                  //   );
-                  //   setSidebarFilters({
-                  //     ...sidebarFilters,
-                  //     ['commonFilters']: _commonFilters,
-                  //   });
-                  //   doSearch();
-                  // }}
-                  onSearch={(data) => handleFilterSearch(data, "commonFilters")}
-                />
-                {/* <Filters filterSets={bottomCommonFilters?.bottomFilterSet} /> */}
+                {commonFilters}
+                {bottomCommonFilters}
               </>
             )}
           </div>
