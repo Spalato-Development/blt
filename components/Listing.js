@@ -16,7 +16,8 @@ export const Listing = ({ item = {}, className, ...props }) => {
     commonDataAttributes: { standfirst },
   } = item;
 
-  const { starRating, priceCheckingLinks, website } = item.ptsDataAttr || {};
+  const { starRating, priceCheckingLinks, website } =
+    item.customDataAttributes || {};
 
   const img = featuredImage ? (
     <Link href={`${uri}`}>
