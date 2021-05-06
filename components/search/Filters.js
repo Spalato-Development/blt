@@ -61,7 +61,10 @@ const FilterSet = ({ filters = [], title, radio, hasInput, onSearch }) => {
             <Collapse
               isOpen={open}
               className="duration-500 ease-in-out transition-height">
-              <FiltersMap filters={lastFilters} />
+              <FiltersMap
+                filters={lastFilters}
+                onSearch={onSearch}
+              />
             </Collapse>
 
             <Button
