@@ -23,7 +23,7 @@ const PlaceToStay = ({ ptsData = {} }) => {
   const { placeToStay: pts } = ptsData.data || {};
   const {
     title,
-    date,
+    modified,
     commonDataAttributes: { imageGallery, about, standfirst },
     customDataAttributes: {
       writer,
@@ -75,7 +75,7 @@ const PlaceToStay = ({ ptsData = {} }) => {
         <CollapseSection title="Our review" id="our-review">
           <About
             writer={writer[0]}
-            date={date}
+            date={modified}
             text="Know someone who would like this place to stay? Why not let them know…">
             <div dangerouslySetInnerHTML={{ __html: about }} />
           </About>

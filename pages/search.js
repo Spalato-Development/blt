@@ -17,7 +17,7 @@ const Search = ({ allSidebarFilters = {} }) => {
   const [globalSearchQuery, setGlobalSearchQuery] = useState(undefined);
   // results to be displayed
   const [results, setResults] = useState({});
-  console.log('sidebarFilters', sidebarFilters);
+  console.log('sidebarFilters', sidebarFilters, 'results', results);
 
   const objectLength = (obj) => Object.entries(obj || 0).length;
 
