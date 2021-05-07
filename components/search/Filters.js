@@ -99,28 +99,6 @@ const FilterSet = ({ filters = [], title, radio, hasInput, onSearch }) => {
   );
 };
 
-/*
-{
-  filters:  [
-    {item: ...}
-  ],
-  radio: ...
-  title ...
-}
-*/
-
-/*
-array con
-{
-  title
-  options: {
-    option, isDisabled, isSelected
-  }
-  forType
-  radio
-}
-
-*/
 export const Filters = ({ filterSets = [], onSearch }) => {
   return (
     <form>
