@@ -21,16 +21,21 @@ const Checkbox = ({
           radio
             ? 'text-gold'
             : clsx(
-              'border-2 rounded-none text-gold form-checkbox border-grey2',
-              { 'w-5 h-5': !large },
-              { 'w-7 h-7': large },
-            )
+                'border-2 rounded-none text-gold form-checkbox border-grey2',
+                { 'border-grey1': disabled },
+                { 'w-5 h-5': !large },
+                { 'w-7 h-7': large },
+              )
         }
         {...props}
       />
     </div>
 
-    <label htmlFor={id} className="pl-4 leading-tight text-grey4">
+    <label
+      htmlFor={id}
+      className={`pl-4 leading-tight ${
+        disabled ? 'text-grey2' : 'text-grey4'
+      }`}>
       {label}
     </label>
   </div>
