@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { appGetStaticProps } from 'lib/appGetStaticProps';
 import {
   SearchHead,
@@ -24,6 +24,23 @@ const Search = ({ allSidebarFilters = {} }) => {
   // results to be displayed
   const [results, setResults] = useState({});
   console.log('sidebarFilters', sidebarFilters, 'results', results);
+  const continentsResults = results?.placesToStayResults?.map((item) => {
+    return item.commonDataAttributes.continent.toLowerCase();
+  });
+
+  useEffect(() => {
+    sidebarFilters?.commonFilters?.map((item) => {
+      if (item.title.toLowerCase() === 'continent') {
+        item.filters.map((filter) => {
+          return (
+            !continentsResults?.includes(filter.option.toLowerCase()) &&
+              filter.isDisabled === true,
+            console.log(filter.option, ':isDisabled', filter.isDisabled)
+          );
+        });
+      }
+    });
+  }, [results]);
 
   const objectLength = (obj) => Object.entries(obj || 0).length;
 
