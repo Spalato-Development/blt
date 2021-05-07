@@ -312,14 +312,66 @@ const Search = ({ allSidebarFilters = {} }) => {
                   }
                 />
 
-                {bottomCommonFilters}
+                {/* {bottomCommonFilters} */}
+              </>
+            )}
+            {tabFilters === 'experiences' && (
+              <>
+                {commonFilters}
+                <Filters
+                  filterSets={sidebarFilters.experiencesFilters}
+                  onSearch={(data) =>
+                    handleFilterSearch(data, 'experiencesFilters')
+                  }
+                />
+
+                {/* {bottomCommonFilters} */}
+              </>
+            )}
+            {tabFilters === 'destinations' && (
+              <>
+                {commonFilters}
+                <Filters
+                  filterSets={sidebarFilters.destinationsFilters}
+                  onSearch={(data) =>
+                    handleFilterSearch(data, 'destinationsFilters')
+                  }
+                />
+
+                {/* {bottomCommonFilters} */}
+              </>
+            )}
+            {tabFilters === 'itineraries' && (
+              <>
+                {commonFilters}
+                <Filters
+                  filterSets={sidebarFilters.itinerariesFilters}
+                  onSearch={(data) =>
+                    handleFilterSearch(data, 'itinerariesFilters')
+                  }
+                />
+
+                {/* {bottomCommonFilters} */}
+              </>
+            )}
+            {tabFilters === 'round ups' && (
+              <>
+                {commonFilters}
+                <Filters
+                  filterSets={sidebarFilters.roundupsFilters}
+                  onSearch={(data) =>
+                    handleFilterSearch(data, 'roundupsFilters')
+                  }
+                />
+
+                {/* {bottomCommonFilters} */}
               </>
             )}
 
             {tabFilters === 'all' && (
               <>
                 {commonFilters}
-                {bottomCommonFilters}
+                {/* {bottomCommonFilters} */}
               </>
             )}
           </div>
