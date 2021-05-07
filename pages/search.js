@@ -402,7 +402,8 @@ const transformFiltersServerSide = (graphqlFilters) => {
             return {
               option: option.item,
               isSelected: false,
-              isDisabled: false
+              isDisabled: false,
+              hasInput: option?.hasInput ?? false
             };
           }),
           forType: key.replace('Filters', ''),
