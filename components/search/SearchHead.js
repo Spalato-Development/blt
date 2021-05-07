@@ -36,7 +36,7 @@ export const SearchHead = ({
 
   return (
     <div
-      className={`py-5 bg-veryLightGold pl-14 container max-w-big my-5 ${className}`}
+      className={`py-5 bg-veryLightGold md:pl-14 px-5 container max-w-big my-5 ${className}`}
       {...props}>
       <form onSubmit={handleSubmit(handleSubmitGlobalSearch)}>
         <div className="relative w-auto lg:w-[940px]">

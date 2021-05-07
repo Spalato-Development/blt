@@ -16,7 +16,7 @@ export const NoResults = ({ className }) => {
       <div
         className={clsx(
           'bg-white border shadow-section border-grey2',
-          'text-[#fda658] text-f-36 text-center',
+          'text-[#fda658] text-f-24 md:text-f-36 text-center',
           'p-5 md:py-10 md:px-12 mb-base2',
           className,
         )}>
@@ -27,6 +27,7 @@ export const NoResults = ({ className }) => {
         className={clsx(
           'bg-white border shadow-section border-grey2',
           'pt-6 pb-3 px-base2',
+          'hidden md:block',
         )}>
         {emptyListings.map((item, i) => (
           <EmptyListing key={i} />
