@@ -24,23 +24,44 @@ const Search = ({ allSidebarFilters = {} }) => {
   // results to be displayed
   const [results, setResults] = useState({});
   console.log('sidebarFilters', sidebarFilters, 'results', results);
-  const continentsResults = results?.placesToStayResults?.map((item) => {
-    return item.commonDataAttributes.continent.toLowerCase();
-  });
+
 
   useEffect(() => {
-    sidebarFilters?.commonFilters?.map((item) => {
-      if (item.title.toLowerCase() === 'continent') {
-        item.filters.map((filter) => {
-          return (
-            !continentsResults?.includes(filter.option.toLowerCase()) &&
-              filter.isDisabled === true,
-            console.log(filter.option, ':isDisabled', filter.isDisabled)
-          );
+    updateFiltersUI()
+  }, [results]);
+
+  /** 
+   * Lets enabled/Disable the filters depending on the results!
+   */
+  const updateFiltersUI = () => {
+    const commonFiltersUpdated = sidebarFilters?.commonFilters?.map((filterSet) => {
+      const filterTitle = filterSet.title.toLowerCase()
+
+      // CONTINENT
+
+      const continentsResults = results?.placesToStayResults?.map((item) => {
+        return item.commonDataAttributes.continent.toLowerCase();
+      });
+
+      if (filterTitle === 'continent') {
+        filterSet.filters = filterSet.filters.map((filter) => {
+          filter.isDisabled = !continentsResults?.includes(filter.option.toLowerCase())
+          return filter;
         });
       }
+      return filterSet;
+
+      // SETTING
+      // TRAVEL MONTH
+      // SPECIALLY FOR
     });
-  }, [results]);
+
+    setSidebarFilters({
+      ...sidebarFilters,
+      commonFilters: commonFiltersUpdated
+    })
+
+  }
 
   const objectLength = (obj) => Object.entries(obj || 0).length;
 
@@ -310,7 +331,15 @@ const Search = ({ allSidebarFilters = {} }) => {
 
 export default Search;
 
-const transformFilters = (graphqlFilters) => {
+/**
+ * [SSR]
+ * Retrieves the filters from the "global data" shape into a UI format data,
+ * - We need `option`, `isSelected` and `isDisabled` params on the filters
+ *  
+ * @param {*} graphqlFilters 
+ * @returns 
+ */
+const transformFiltersServerSide = (graphqlFilters) => {
   return Object.entries(graphqlFilters).reduce((acc, [key, entry]) => {
     if (entry.filterSet) {
       acc[key] = [];
@@ -321,8 +350,7 @@ const transformFilters = (graphqlFilters) => {
             return {
               option: option.item,
               isSelected: false,
-              // isDisabled: false,
-              isDisabled: option.item === 'Countryside' ? true : false,
+              isDisabled: false
             };
           }),
           forType: key.replace('Filters', ''),
@@ -337,7 +365,7 @@ const transformFilters = (graphqlFilters) => {
 export const getStaticProps = async (context) => {
   const client = getApolloClient(context);
   const filtersData = await client.query({ query: FILTERS_QUERY });
-  const allSidebarFilters = transformFilters(filtersData.data.options);
+  const allSidebarFilters = transformFiltersServerSide(filtersData.data.options);
   const globalData = await appGetStaticProps(context);
   return {
     props: {
