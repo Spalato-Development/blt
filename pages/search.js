@@ -71,16 +71,35 @@ const Search = ({ allSidebarFilters = {} }) => {
             return filter;
           });
         }
-        return filterSet;
-
         // TRAVEL MONTH
         // SPECIALLY FOR
+        return filterSet;
       },
     );
+    const placeToStayFiltersUpdated = sidebarFilters?.placeToStayFilters?.map(
+      (filterSet) => {
+        const filterTitle = filterSet.title.toLowerCase();
+        //STANDARD
+        const standardsResults = results?.placesToStayResults?.map((item) => {
+          return item.customDataAttributes.standard.toLowerCase();
+        });
+        if (filterTitle === 'standard') {
+          filterSet.filters = filterSet.filters.map((filter) => {
+            filter.isDisabled = !standardsResults?.includes(
+              filter.option.toLowerCase(),
+            );
+            return filter;
+          });
+        }
+        return filterSet;
+      },
+    );
+    console.log('ptsFiltersUp', placeToStayFiltersUpdated);
 
     setSidebarFilters({
       ...sidebarFilters,
       commonFilters: commonFiltersUpdated,
+      placeToStayFilters: placeToStayFiltersUpdated,
     });
   };
 
