@@ -43,10 +43,11 @@ const Search = ({ allSidebarFilters = {} }) => {
         const filterTitle = filterSet.title.toLowerCase();
 
         // CONTINENT
-
-        const continentsResults = results?.placesToStayResults?.map((item) => {
-          return item.commonDataAttributes.continent.toLowerCase();
-        });
+        const continentsResults = getFilterSetResults(
+          'commonDataAttributes',
+          'placesToStayResults',
+          'continent',
+        );
 
         if (filterTitle === 'continent') {
           filterSet.filters = filterSet.filters.map((filter) => {
@@ -91,7 +92,7 @@ const Search = ({ allSidebarFilters = {} }) => {
           'placesToStayResults',
           'standard',
         );
-        console.log('standard', standardsResults);
+
         if (filterTitle === 'standard') {
           filterSet.filters = filterSet.filters.map((filter) => {
             filter.isDisabled = !standardsResults?.includes(
