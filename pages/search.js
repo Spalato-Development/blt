@@ -29,6 +29,11 @@ const Search = ({ allSidebarFilters = {} }) => {
     updateFiltersUI();
   }, [results]);
 
+  const getFilterSetResults = (dataAttributes, resultsType, filterSet) => {
+    return results[resultsType]?.map((item) => {
+      return item[dataAttributes][filterSet].toLowerCase();
+    });
+  };
   /**
    * Lets enabled/Disable the filters depending on the results!
    */
@@ -79,10 +84,14 @@ const Search = ({ allSidebarFilters = {} }) => {
     const placeToStayFiltersUpdated = sidebarFilters?.placeToStayFilters?.map(
       (filterSet) => {
         const filterTitle = filterSet.title.toLowerCase();
+
         //STANDARD
-        const standardsResults = results?.placesToStayResults?.map((item) => {
-          return item.customDataAttributes.standard.toLowerCase();
-        });
+        const standardsResults = getFilterSetResults(
+          'customDataAttributes',
+          'placesToStayResults',
+          'standard',
+        );
+        console.log('standard', standardsResults);
         if (filterTitle === 'standard') {
           filterSet.filters = filterSet.filters.map((filter) => {
             filter.isDisabled = !standardsResults?.includes(
@@ -94,7 +103,6 @@ const Search = ({ allSidebarFilters = {} }) => {
         return filterSet;
       },
     );
-    console.log('ptsFiltersUp', placeToStayFiltersUpdated);
 
     setSidebarFilters({
       ...sidebarFilters,
