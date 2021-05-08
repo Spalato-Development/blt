@@ -25,43 +25,64 @@ const Search = ({ allSidebarFilters = {} }) => {
   const [results, setResults] = useState({});
   console.log('sidebarFilters', sidebarFilters, 'results', results);
 
-
   useEffect(() => {
-    updateFiltersUI()
+    updateFiltersUI();
   }, [results]);
 
-  /** 
+  /**
    * Lets enabled/Disable the filters depending on the results!
    */
   const updateFiltersUI = () => {
-    const commonFiltersUpdated = sidebarFilters?.commonFilters?.map((filterSet) => {
-      const filterTitle = filterSet.title.toLowerCase()
+    const commonFiltersUpdated = sidebarFilters?.commonFilters?.map(
+      (filterSet) => {
+        const filterTitle = filterSet.title.toLowerCase();
 
-      // CONTINENT
+        // CONTINENT
 
-      const continentsResults = results?.placesToStayResults?.map((item) => {
-        return item.commonDataAttributes.continent.toLowerCase();
-      });
-
-      if (filterTitle === 'continent') {
-        filterSet.filters = filterSet.filters.map((filter) => {
-          filter.isDisabled = !continentsResults?.includes(filter.option.toLowerCase())
-          return filter;
+        const continentsResults = results?.placesToStayResults?.map((item) => {
+          return item.commonDataAttributes.continent.toLowerCase();
         });
-      }
-      return filterSet;
 
-      // SETTING
-      // TRAVEL MONTH
-      // SPECIALLY FOR
-    });
+        if (filterTitle === 'continent') {
+          filterSet.filters = filterSet.filters.map((filter) => {
+            filter.isDisabled = !continentsResults?.includes(
+              filter.option.toLowerCase(),
+            );
+            return filter;
+          });
+        }
+
+        // SETTING
+        const settingsResults = results?.placesToStayResults
+          ?.map((result) => {
+            const settingsResultsArray = [];
+            result.customDataAttributes.setting.map((resultItem) => {
+              return settingsResultsArray.push(resultItem.toLowerCase());
+            });
+            return settingsResultsArray;
+          })
+          .flat();
+
+        if (filterTitle === 'setting') {
+          filterSet.filters = filterSet.filters.map((filter) => {
+            filter.isDisabled = !settingsResults?.includes(
+              filter.option.toLowerCase(),
+            );
+            return filter;
+          });
+        }
+        return filterSet;
+
+        // TRAVEL MONTH
+        // SPECIALLY FOR
+      },
+    );
 
     setSidebarFilters({
       ...sidebarFilters,
-      commonFilters: commonFiltersUpdated
-    })
-
-  }
+      commonFilters: commonFiltersUpdated,
+    });
+  };
 
   const objectLength = (obj) => Object.entries(obj || 0).length;
 
@@ -387,9 +408,9 @@ export default Search;
  * [SSR]
  * Retrieves the filters from the "global data" shape into a UI format data,
  * - We need `option`, `isSelected` and `isDisabled` params on the filters
- *  
- * @param {*} graphqlFilters 
- * @returns 
+ *
+ * @param {*} graphqlFilters
+ * @returns
  */
 const transformFiltersServerSide = (graphqlFilters) => {
   return Object.entries(graphqlFilters).reduce((acc, [key, entry]) => {
@@ -403,7 +424,7 @@ const transformFiltersServerSide = (graphqlFilters) => {
               option: option.item,
               isSelected: false,
               isDisabled: false,
-              hasInput: option?.hasInput ?? false
+              hasInput: option?.hasInput ?? false,
             };
           }),
           forType: key.replace('Filters', ''),
@@ -418,12 +439,13 @@ const transformFiltersServerSide = (graphqlFilters) => {
 export const getStaticProps = async (context) => {
   const client = getApolloClient(context);
   const filtersData = await client.query({ query: FILTERS_QUERY });
-  const allSidebarFilters = transformFiltersServerSide(filtersData.data.options);
+  const allSidebarFilters = transformFiltersServerSide(
+    filtersData.data.options,
+  );
   const globalData = await appGetStaticProps(context);
   return {
     props: {
       globalData,
-      // filtersData,
       allSidebarFilters,
     },
   };
