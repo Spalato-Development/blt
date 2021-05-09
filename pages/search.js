@@ -6,13 +6,18 @@ import {
   Filters,
   Listing,
   NoResults,
+  Typo,
+  Button,
+  Select,
 } from 'components';
 import { getApolloClient } from '@wpengine/headless';
 import { FILTERS_QUERY } from 'lib/queries';
 import { useGlobalData } from 'lib/context/globalDataContext';
-import { Typo, Button, Select } from 'components';
+
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
+import Collapse from '@kunukn/react-collapse';
+import { IoCloseSharp as Close } from 'react-icons/io5';
 
 const Search = ({ allSidebarFilters = {} }) => {
   // sidebar filters
@@ -322,6 +327,8 @@ const Search = ({ allSidebarFilters = {} }) => {
     },
   );
 
+  const [openFilters, setOpenFilters] = useState(false);
+
   return (
     <>
       <SearchHead
@@ -342,8 +349,18 @@ const Search = ({ allSidebarFilters = {} }) => {
             'mr-0 lg:mr-7 lg:pl-5 px-5 lg:px-0',
           )}>
           <SearchTabs tabs={searchTabs} setTabFilters={setTabFilters} />
-
-          <Select />
+          <div className="flex">
+            <Select />
+            <Button
+              small
+              className={`w-[125px] lg:!hidden ${openFilters && '!hidden'}`}
+              onClick={(e) => {
+                e.preventDefault();
+                setOpenFilters(true);
+              }}>
+              Filters
+            </Button>
+          </div>
 
           {/* Results */}
           {globalSearchQuery && totalResults === 0 && (
@@ -355,98 +372,108 @@ const Search = ({ allSidebarFilters = {} }) => {
 
         {/* Sidebar filters */}
 
-        <div
-          className={clsx(
-            'w-full lg:w-1/3 lg:w-[300px]',
-            'order-1 lg:order-2',
-          )}>
-          <div className="px-5 pt-3 pb-10 mb-10 border border-grey2">
-            <Typo
-              as="h3"
-              h3
-              className="p-2 mb-2 text-center border-b border-grey2">
-              Filter your results
-            </Typo>
-            <div className="flex justify-center mb-3">
-              <Button secondary small>
-                Reset all
-              </Button>
+        <Collapse isOpen={openFilters}>
+          <div
+            className={clsx(
+              'w-full lg:w-1/3 lg:w-[300px]',
+              'order-1 lg:order-2',
+            )}>
+            <div className="relative px-5 pt-3 pb-10 mb-10 border border-grey2">
+              <div
+                className="absolute flex items-center justify-center border-2 cursor-pointer top-4 right-4 w-base2 h-base2 border-lightBlue"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setOpenFilters(false);
+                }}>
+                <Close className="absolute text-xl text-lightBlue " />
+              </div>
+              <Typo
+                as="h3"
+                h3
+                className="p-2 mb-2 text-center border-b border-grey2">
+                Filter your results
+              </Typo>
+              <div className="flex justify-center mb-3">
+                <Button secondary small>
+                  Reset all
+                </Button>
+              </div>
+
+              {tabFilters === 'places to stay' && (
+                <>
+                  {commonFilters}
+                  <Filters
+                    filterSets={sidebarFilters.placeToStayFilters}
+                    onSearch={(data) =>
+                      handleFilterSearch(data, 'placeToStayFilters')
+                    }
+                  />
+
+                  {/* {bottomCommonFilters} */}
+                </>
+              )}
+              {tabFilters === 'experiences' && (
+                <>
+                  {commonFilters}
+                  <Filters
+                    filterSets={sidebarFilters.experiencesFilters}
+                    onSearch={(data) =>
+                      handleFilterSearch(data, 'experiencesFilters')
+                    }
+                  />
+
+                  {/* {bottomCommonFilters} */}
+                </>
+              )}
+              {tabFilters === 'destinations' && (
+                <>
+                  {commonFilters}
+                  <Filters
+                    filterSets={sidebarFilters.destinationsFilters}
+                    onSearch={(data) =>
+                      handleFilterSearch(data, 'destinationsFilters')
+                    }
+                  />
+
+                  {/* {bottomCommonFilters} */}
+                </>
+              )}
+              {tabFilters === 'itineraries' && (
+                <>
+                  {commonFilters}
+                  <Filters
+                    filterSets={sidebarFilters.itinerariesFilters}
+                    onSearch={(data) =>
+                      handleFilterSearch(data, 'itinerariesFilters')
+                    }
+                  />
+
+                  {/* {bottomCommonFilters} */}
+                </>
+              )}
+              {tabFilters === 'round ups' && (
+                <>
+                  {commonFilters}
+                  <Filters
+                    filterSets={sidebarFilters.roundupsFilters}
+                    onSearch={(data) =>
+                      handleFilterSearch(data, 'roundupsFilters')
+                    }
+                  />
+
+                  {/* {bottomCommonFilters} */}
+                </>
+              )}
+
+              {tabFilters === 'all' && (
+                <>
+                  {commonFilters}
+                  {/* {bottomCommonFilters} */}
+                </>
+              )}
             </div>
-
-            {tabFilters === 'places to stay' && (
-              <>
-                {commonFilters}
-                <Filters
-                  filterSets={sidebarFilters.placeToStayFilters}
-                  onSearch={(data) =>
-                    handleFilterSearch(data, 'placeToStayFilters')
-                  }
-                />
-
-                {/* {bottomCommonFilters} */}
-              </>
-            )}
-            {tabFilters === 'experiences' && (
-              <>
-                {commonFilters}
-                <Filters
-                  filterSets={sidebarFilters.experiencesFilters}
-                  onSearch={(data) =>
-                    handleFilterSearch(data, 'experiencesFilters')
-                  }
-                />
-
-                {/* {bottomCommonFilters} */}
-              </>
-            )}
-            {tabFilters === 'destinations' && (
-              <>
-                {commonFilters}
-                <Filters
-                  filterSets={sidebarFilters.destinationsFilters}
-                  onSearch={(data) =>
-                    handleFilterSearch(data, 'destinationsFilters')
-                  }
-                />
-
-                {/* {bottomCommonFilters} */}
-              </>
-            )}
-            {tabFilters === 'itineraries' && (
-              <>
-                {commonFilters}
-                <Filters
-                  filterSets={sidebarFilters.itinerariesFilters}
-                  onSearch={(data) =>
-                    handleFilterSearch(data, 'itinerariesFilters')
-                  }
-                />
-
-                {/* {bottomCommonFilters} */}
-              </>
-            )}
-            {tabFilters === 'round ups' && (
-              <>
-                {commonFilters}
-                <Filters
-                  filterSets={sidebarFilters.roundupsFilters}
-                  onSearch={(data) =>
-                    handleFilterSearch(data, 'roundupsFilters')
-                  }
-                />
-
-                {/* {bottomCommonFilters} */}
-              </>
-            )}
-
-            {tabFilters === 'all' && (
-              <>
-                {commonFilters}
-                {/* {bottomCommonFilters} */}
-              </>
-            )}
           </div>
-        </div>
+        </Collapse>
       </div>
     </>
   );
