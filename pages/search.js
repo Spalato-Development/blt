@@ -9,15 +9,13 @@ import {
   Typo,
   Button,
   Select,
+  WithCollapse,
 } from 'components';
 import { getApolloClient } from '@wpengine/headless';
 import { FILTERS_QUERY } from 'lib/queries';
 import { useGlobalData } from 'lib/context/globalDataContext';
-import { useMediaQuery } from 'lib/hooks';
-
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
-import Collapse from '@kunukn/react-collapse';
 import { IoCloseSharp as Close } from 'react-icons/io5';
 
 const Search = ({ allSidebarFilters = {} }) => {
@@ -330,20 +328,6 @@ const Search = ({ allSidebarFilters = {} }) => {
 
   //UI Elements
   const [openFilters, setOpenFilters] = useState(false);
-  const WithCollapse = ({ children }) => {
-    const isLarge = useMediaQuery('(min-width:1024px)');
-    return (
-      <>
-        {isLarge ? (
-          <>{children}</>
-        ) : (
-          <Collapse isOpen={openFilters}>
-            <>{children}</>
-          </Collapse>
-        )}
-      </>
-    );
-  };
 
   return (
     <>
@@ -390,7 +374,7 @@ const Search = ({ allSidebarFilters = {} }) => {
 
         {/* Sidebar filters */}
 
-        <WithCollapse>
+        <WithCollapse isOpen={openFilters}>
           <div
             className={clsx(
               'w-full lg:w-1/3 lg:w-[300px]',

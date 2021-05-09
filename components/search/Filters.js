@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
-import { Checkbox, Button } from 'components/ui-components';
+import { Checkbox, Button, WithCollapse } from 'components/ui-components';
 import { FaChevronRight, FaChevronDown } from 'react-icons/fa';
 import Collapse from '@kunukn/react-collapse';
 
@@ -34,6 +34,7 @@ const FiltersMap = ({ filters = [], radio, onSearch, title }) => {
 const FilterSet = ({ filters = [], title, radio, hasInput, onSearch }) => {
   const [open, setOpen] = useState(false);
   const [openFilterSet, setOpenFilterSet] = useState(false);
+
   const firstFilters = filters.slice(0, 4);
   const lastFilters = filters.slice(4);
 
@@ -56,7 +57,7 @@ const FilterSet = ({ filters = [], title, radio, hasInput, onSearch }) => {
           }}
         />
       </div>
-      <Collapse
+      <WithCollapse
         isOpen={openFilterSet}
         className="duration-500 ease-in-out transition-height">
         <div>
@@ -113,7 +114,7 @@ const FilterSet = ({ filters = [], title, radio, hasInput, onSearch }) => {
             </>
           )}
         </div>
-      </Collapse>
+      </WithCollapse>
     </div>
   );
 };
