@@ -34,7 +34,20 @@ const Search = ({ allSidebarFilters = {} }) => {
       return item[dataAttributes][filterSet].toLowerCase();
     });
   };
+
+  const getFiltersResultsArray = (dataAttributes, resultsType, filterSet) => {
+    return results[resultsType]
+      ?.map((result) => {
+        const resultsArray = [];
+        result[dataAttributes][filterSet].map((resultItem) => {
+          return resultsArray.push(resultItem.toLowerCase());
+        });
+        return resultsArray;
+      })
+      .flat();
+  };
   /**
+   *
    * Lets enabled/Disable the filters depending on the results!
    */
   const updateFiltersUI = () => {
@@ -59,15 +72,11 @@ const Search = ({ allSidebarFilters = {} }) => {
         }
 
         // SETTING
-        const settingsResults = results?.placesToStayResults
-          ?.map((result) => {
-            const settingsResultsArray = [];
-            result.customDataAttributes.setting.map((resultItem) => {
-              return settingsResultsArray.push(resultItem.toLowerCase());
-            });
-            return settingsResultsArray;
-          })
-          .flat();
+        const settingsResults = getFiltersResultsArray(
+          'customDataAttributes',
+          'placesToStayResults',
+          'setting',
+        );
 
         if (filterTitle === 'setting') {
           filterSet.filters = filterSet.filters.map((filter) => {
