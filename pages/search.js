@@ -59,7 +59,7 @@ const Search = ({ allSidebarFilters = {} }) => {
   const updateFiltersUI = () => {
     const commonFiltersUpdated = sidebarFilters?.commonFilters?.map(
       (filterSet) => {
-        const filterTitle = filterSet.title.toLowerCase();
+        const filterTitle = filterSet.title?.toLowerCase();
 
         const disableUnavailableFilters = (resultsType) => {
           return (filterSet.filters = filterSet.filters.map((filter) => {

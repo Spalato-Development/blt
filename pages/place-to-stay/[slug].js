@@ -41,6 +41,8 @@ const PlaceToStay = ({ ptsData = {} }) => {
       parking,
       wifi,
       starRating,
+      ski,
+      isSkiHotel,
     },
   } = pts;
   const hf = otherHotelFacilities?.map((item) => item.toLowerCase());
@@ -154,6 +156,21 @@ const PlaceToStay = ({ ptsData = {} }) => {
               </Feature>
             </FeatureRow>
           </HotelFeatures>
+          {isSkiHotel && (
+            <HotelFeatures title="Ski facilities">
+              <FeatureRow>
+                <Feature disabled={!ski.includes('Ski in ski out')}>
+                  Ski in ski out
+                </Feature>
+                <Feature disabled={!ski.includes('Shuttle to slopes')}>
+                  Shuttle to slopes
+                </Feature>
+                <Feature disabled={!ski.includes('Ski rentals onsite')}>
+                  Ski rentals onsite
+                </Feature>
+              </FeatureRow>
+            </HotelFeatures>
+          )}
         </CollapseSection>
 
         {/* Room amenities */}
@@ -184,7 +201,7 @@ const PlaceToStay = ({ ptsData = {} }) => {
               <Feature disabled={!roomFeatures.includes('Flat screen TV')}>
                 Flat screen TV
               </Feature>
-              <Feature disabled={!roomFeatures.includes('Jacuzzi (private)')}>
+              <Feature disabled={!roomFeatures.includes('Jacuzzi')}>
                 Jacuzzi (private)
               </Feature>
               <Feature disabled={!roomFeatures.includes('Pool (private')}>
