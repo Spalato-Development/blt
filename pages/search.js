@@ -13,6 +13,7 @@ import {
 import { getApolloClient } from '@wpengine/headless';
 import { FILTERS_QUERY } from 'lib/queries';
 import { useGlobalData } from 'lib/context/globalDataContext';
+import { useMediaQuery } from 'lib/hooks';
 
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
@@ -327,7 +328,22 @@ const Search = ({ allSidebarFilters = {} }) => {
     },
   );
 
+  //UI Elements
   const [openFilters, setOpenFilters] = useState(false);
+  const WithCollapse = ({ children }) => {
+    const isLarge = useMediaQuery('(min-width:1024px)');
+    return (
+      <>
+        {isLarge ? (
+          <>{children}</>
+        ) : (
+          <Collapse isOpen={openFilters}>
+            <>{children}</>
+          </Collapse>
+        )}
+      </>
+    );
+  };
 
   return (
     <>
@@ -349,17 +365,19 @@ const Search = ({ allSidebarFilters = {} }) => {
             'mr-0 lg:mr-7 lg:pl-5 px-5 lg:px-0',
           )}>
           <SearchTabs tabs={searchTabs} setTabFilters={setTabFilters} />
-          <div className="flex">
+          <div className="flex justify-between mt-4 mb-10 space-x-2 sm:justify-start">
             <Select />
-            <Button
-              small
-              className={`w-[125px] lg:!hidden ${openFilters && '!hidden'}`}
-              onClick={(e) => {
-                e.preventDefault();
-                setOpenFilters(true);
-              }}>
-              Filters
-            </Button>
+            {totalResults !== 0 && (
+              <Button
+                small
+                className={`w-[125px] lg:!hidden ${openFilters && '!hidden'}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setOpenFilters(true);
+                }}>
+                Filters
+              </Button>
+            )}
           </div>
 
           {/* Results */}
@@ -372,7 +390,7 @@ const Search = ({ allSidebarFilters = {} }) => {
 
         {/* Sidebar filters */}
 
-        <Collapse isOpen={openFilters}>
+        <WithCollapse>
           <div
             className={clsx(
               'w-full lg:w-1/3 lg:w-[300px]',
@@ -380,7 +398,7 @@ const Search = ({ allSidebarFilters = {} }) => {
             )}>
             <div className="relative px-5 pt-3 pb-10 mb-10 border border-grey2">
               <div
-                className="absolute flex items-center justify-center border-2 cursor-pointer top-4 right-4 w-base2 h-base2 border-lightBlue"
+                className="absolute flex items-center justify-center border-2 cursor-pointer top-4 right-4 w-base2 h-base2 border-lightBlue lg:hidden"
                 onClick={(e) => {
                   e.preventDefault();
                   setOpenFilters(false);
@@ -473,7 +491,7 @@ const Search = ({ allSidebarFilters = {} }) => {
               )}
             </div>
           </div>
-        </Collapse>
+        </WithCollapse>
       </div>
     </>
   );

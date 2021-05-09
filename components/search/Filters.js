@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { Checkbox, Button } from 'components/ui-components';
-import { FaChevronRight } from 'react-icons/fa';
+import { FaChevronRight, FaChevronDown } from 'react-icons/fa';
 import Collapse from '@kunukn/react-collapse';
 
 const FiltersMap = ({ filters = [], radio, onSearch, title }) => {
@@ -38,9 +38,12 @@ const FilterSet = ({ filters = [], title, radio, hasInput, onSearch }) => {
 
   return (
     <div className="py-4 border-b border-grey2">
-      <h4 className="uppercase text-[15px] tracking-wider text-grey5 mb-2">
-        {title}
-      </h4>
+      <div className="flex justify-between">
+        <h4 className="uppercase text-[15px] tracking-wider text-grey5 mb-2">
+          {title}
+        </h4>
+        <FaChevronDown className="w-8 h-6 lg:hidden text-lightBlue" />
+      </div>
       <div>
         {hasInput && (
           <input
