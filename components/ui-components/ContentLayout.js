@@ -5,7 +5,7 @@ export const ContentLayout = ({ children, sidebar }) => {
   return (
     <div
       className={clsx(
-        'container  px-5 max-w-big 2xl:px-0 ',
+        'container  px-4 max-w-big 2xl:px-0 ',
         'lg:flex justify-start block',
       )}>
       <div

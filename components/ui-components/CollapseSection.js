@@ -15,7 +15,7 @@ export const CollapseSection = ({ children, className, title, ...props }) => {
   return (
     <section
       className={clsx(
-        'px-9 py-8 my-base2',
+        'px-4 sm:px-9 py-5 sm:py-8 my-3 sm:my-base2',
         'bg-white border shadow-section border-grey2',
         'transition-max-h duration-500   ease-out',
         className,
@@ -30,7 +30,7 @@ export const CollapseSection = ({ children, className, title, ...props }) => {
             className={clsx(
               'transition duration-500',
               'mr-5',
-              'text-lightBlue text-[49px]',
+              'text-lightBlue text-[25px] sm:text-[49px]',
               { 'transform rotate-90': open },
             )}
           />

@@ -92,7 +92,7 @@ const styles = {
       background: 'url(/images/arrow-prev.svg) no-repeat',
       left: 0,
       '@media only screen and (max-width: 640px)': {
-        left: -20,
+        left: -16,
       },
       zIndex: 10,
 
@@ -106,7 +106,7 @@ const styles = {
       background: 'url(/images/arrow-next.svg) no-repeat',
       right: 0,
       '@media only screen and (max-width: 640px)': {
-        left: -20,
+        left: -16,
       },
     },
   },
