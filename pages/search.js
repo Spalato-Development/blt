@@ -46,7 +46,9 @@ const Search = ({ allSidebarFilters = {} }) => {
       })
       .flat();
   };
+
   /**
+   *
    *
    * Lets enabled/Disable the filters depending on the results!
    */
@@ -55,12 +57,22 @@ const Search = ({ allSidebarFilters = {} }) => {
       (filterSet) => {
         const filterTitle = filterSet.title.toLowerCase();
 
+        const disableUnavailableFilters = (resultsType) => {
+          return (filterSet.filters = filterSet.filters.map((filter) => {
+            filter.isDisabled = ![resultsType]?.includes(
+              filter.option.toLowerCase(),
+            );
+            return filter;
+          }));
+        };
+
         // CONTINENT
         const continentsResults = getFilterSetResults(
           'commonDataAttributes',
           'placesToStayResults',
           'continent',
         );
+        console.log('continentsResults', continentsResults);
 
         if (filterTitle === 'continent') {
           filterSet.filters = filterSet.filters.map((filter) => {
@@ -69,6 +81,7 @@ const Search = ({ allSidebarFilters = {} }) => {
             );
             return filter;
           });
+          // disableUnavailableFilters(continentsResults);
         }
 
         // SETTING
