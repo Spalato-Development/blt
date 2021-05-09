@@ -375,11 +375,7 @@ const Search = ({ allSidebarFilters = {} }) => {
         {/* Sidebar filters */}
 
         <WithCollapse isOpen={openFilters}>
-          <div
-            className={clsx(
-              'w-full lg:w-1/3 lg:w-[300px]',
-              'order-1 lg:order-2',
-            )}>
+          <div className={clsx('w-full lg:w-[300px]', 'order-1 lg:order-2')}>
             <div className="relative px-5 pt-3 pb-10 mb-10 border border-grey2">
               <div
                 className="absolute flex items-center justify-center border-2 cursor-pointer top-4 right-4 w-base2 h-base2 border-lightBlue lg:hidden"
