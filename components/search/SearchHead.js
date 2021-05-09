@@ -3,6 +3,7 @@ import { IoSearch } from 'react-icons/io5';
 import { Button, Number } from 'components/ui-components';
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
+import { useMediaQuery } from 'lib/hooks';
 
 const ResultsNumber = ({ query, results }) => {
   const resultsString = results === 1 ? 'result' : 'results';
@@ -33,6 +34,7 @@ export const SearchHead = ({
     reset,
     formState: { errors },
   } = useForm();
+  const isSmall = useMediaQuery('(max-width:639px)');
 
   return (
     <div
@@ -40,24 +42,40 @@ export const SearchHead = ({
       {...props}>
       <form onSubmit={handleSubmit(handleSubmitGlobalSearch)}>
         <div className="relative w-auto lg:w-[940px]">
-          <IoSearch className="absolute text-f-24 text-grey4 top-4 left-7" />
+          <IoSearch
+            className={clsx(
+              'hidden sm:block',
+              'absolute top-4 left-7',
+              'text-f-24 text-grey4',
+            )}
+          />
           <input
             type="text"
             aria-label="search"
-            placeholder="destinations | experiences | places to stay"
+            placeholder={
+              !isSmall
+                ? 'destinations | experiences | places to stay'
+                : 'What are you looking for?'
+            }
             className={clsx(
-              'w-full h-[55px]',
-              'pl-20',
+              'w-full h-11 sm:h-[55px]',
+              'sm:pl-20',
               'border-none shadow-input placeholder-grey3 font-semibold text-f-18',
             )}
             {...register('globalSearch')}
           />
           <Button
-            as="input"
-            type="submit"
-            value="search"
-            className="absolute h-[47px] right-1 top-1"
-          />
+            className={clsx(
+              'absolute  right-0 top-0 sm:right-1 sm:top-1',
+              'h-11 w-11 sm:h-[47px] sm:w-[135px] !p-0',
+            )}
+            onClick={handleSubmit(handleSubmitGlobalSearch)}>
+            {isSmall ? (
+              <IoSearch className={clsx('text-f-24 text-grey4')} />
+            ) : (
+              'Search'
+            )}
+          </Button>
         </div>
         {query && <ResultsNumber results={results} query={query} />}
       </form>

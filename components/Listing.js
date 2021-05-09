@@ -56,7 +56,7 @@ export const Listing = ({ item = {}, className, ...props }) => {
           </div>
         </div>
         <div className="flex flex-col items-end justify-between">
-          <Button secondary className="w-10 h-10" css={{ padding: 0 }}>
+          <Button secondary className="w-10 h-10 !p-0">
             <img src="/images/cross.svg" alt="add to bucket list" />
           </Button>
           <Link href={uri}>

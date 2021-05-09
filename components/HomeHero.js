@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typo, Button } from 'components/ui-components';
+import { Button } from 'components/ui-components';
 import Image from 'next/image';
 import clsx from 'clsx';
 import { FaCheck, FaSearch } from 'react-icons/fa';
@@ -81,11 +81,10 @@ export const HomeHero = ({ homeHero }) => {
                 />
                 <Button
                   className={clsx(
-                    'w-10 h-10 sm:h-[65px] sm:w-[135px]',
+                    'w-10 h-10 sm:h-[65px] sm:w-[135px] !p-0',
                     'absolute right-0 top-0 sm:right-2 sm:top-2',
                     'flex items-center justify-center',
-                  )}
-                  css={{ padding: 0 }}>
+                  )}>
                   <FaSearch className="text-grey4 text-f-18 sm:text-[38px]" />
                 </Button>
               </form>
