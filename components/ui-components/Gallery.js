@@ -106,7 +106,7 @@ const styles = {
       background: 'url(/images/arrow-next.svg) no-repeat',
       right: 0,
       '@media only screen and (max-width: 640px)': {
-        left: -16,
+        right: -16,
       },
     },
   },
