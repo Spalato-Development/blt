@@ -81,8 +81,8 @@ const styles = {
     display: 'block',
     content: "''",
 
-    width: 26,
-    height: 43,
+    width: 50,
+    height: 50,
     position: `absolute`,
     top: 0,
   },
@@ -90,7 +90,10 @@ const styles = {
     '&:before': {
       content: '""',
       background: 'url(/images/arrow-prev.svg) no-repeat',
-      right: -40,
+      left: 0,
+      '@media only screen and (max-width: 640px)': {
+        left: -20,
+      },
       zIndex: 10,
 
       // position: 'absolute',
@@ -101,11 +104,10 @@ const styles = {
     '&:before': {
       content: '""',
       background: 'url(/images/arrow-next.svg) no-repeat',
-      right: 20,
-      // width: 26,
-      // height: 43,
-      // position: 'absolute',
-      // left: 0,
+      right: 0,
+      '@media only screen and (max-width: 640px)': {
+        left: -20,
+      },
     },
   },
 };
