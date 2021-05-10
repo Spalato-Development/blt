@@ -15,7 +15,46 @@ import { About, Newsletter } from 'components';
 const Destination = ({ destinationData = {} }) => {
   const { destination } = destinationData.data || {};
   console.log('destination', destination);
-  return <h1>destination</h1>;
+
+  const {
+    title,
+    modified,
+    commonDataAttributes: { imageGallery, about, standfirst },
+    customDataAttributes: { writer },
+  } = destination;
+
+  const tabs = [
+    { name: 'our review' },
+    { name: 'experiences' },
+    { name: 'where to stay' },
+    { name: 'logistics' },
+    { name: 'who to go with' },
+    { name: 'map' },
+  ];
+  return (
+    <>
+      <Title title={title} intro="Best things to do & places to stay in:" />
+      <ContentLayout
+        sidebar={
+          <>
+            <Newsletter />
+          </>
+        }>
+        <Tabs tabs={tabs} className="mb-4" />
+        <Gallery images={imageGallery} />
+
+        {/* Review */}
+        <CollapseSection title="Our review" id="our-review">
+          <About
+            writer={writer[0]}
+            date={modified}
+            text="Know someone who would like this place to stay? Why not let them know…">
+            <div dangerouslySetInnerHTML={{ __html: about }} />
+          </About>
+        </CollapseSection>
+      </ContentLayout>
+    </>
+  );
 };
 
 export default Destination;
