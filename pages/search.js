@@ -161,6 +161,7 @@ const Search = ({ allSidebarFilters = {} }) => {
     { name: 'itineraries', results: itinerariesResultsNumber },
   ];
   const globalData = useGlobalData();
+  console.log("globalData: ", globalData)
   const {
     placesToStay,
     destinations,
