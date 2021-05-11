@@ -46,7 +46,7 @@ const Destination = ({ destinationData = {} }) => {
         {/* Review */}
         <CollapseSection title="Our review" id="our-review">
           <About
-            writer={writer[0]}
+            writer={writer && writer[0]}
             date={modified}
             text="Know someone who would like this place to stay? Why not let them know…">
             <div dangerouslySetInnerHTML={{ __html: about }} />

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import Link from 'next/link';
 import { DateFormatter } from 'components';
 
-export const About = ({ writer = {}, date, text, children, ...props }) => {
+export const About = ({ writer = [], date, text, children, ...props }) => {
   console.log('about writer', writer);
   return (
     <Fragment {...props}>
