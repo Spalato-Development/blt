@@ -2,15 +2,8 @@ import { getApolloClient } from '@wpengine/headless';
 import { GET_DESTINATION } from 'lib/queries';
 import { appGetStaticProps } from 'lib/appGetStaticProps';
 import { getNextStaticPaths } from '@wpengine/headless/next';
-import {
-  Title,
-  Tabs,
-  Gallery,
-  CollapseSection,
-  TravelQuote,
-  ContentLayout,
-} from 'components/ui-components';
-import { About, Newsletter } from 'components';
+import { CollapseSection } from 'components/ui-components';
+import { About, Newsletter, PageLayout } from 'components';
 
 const Destination = ({ destinationData = {} }) => {
   const { destination } = destinationData.data || {};
@@ -19,7 +12,7 @@ const Destination = ({ destinationData = {} }) => {
   const {
     title,
     modified,
-    commonDataAttributes: { imageGallery, about, standfirst, review },
+    commonDataAttributes: { imageGallery, review },
     customDataAttributes: { writer },
   } = destination;
 
@@ -33,16 +26,16 @@ const Destination = ({ destinationData = {} }) => {
   ];
   return (
     <>
-      <Title title={title} intro="Best things to do & places to stay in:" />
-      <ContentLayout
+      <PageLayout
+        title={title}
+        tabs={tabs}
+        images={imageGallery}
+        intro="Best things to do & places to stay in:"
         sidebar={
           <>
             <Newsletter />
           </>
         }>
-        <Tabs tabs={tabs} className="mb-4" />
-        <Gallery images={imageGallery} />
-
         {/* Review */}
         <CollapseSection title="Our review" id="our-review">
           <About
@@ -52,7 +45,7 @@ const Destination = ({ destinationData = {} }) => {
             text="Know someone who would like this place to stay? Why not let them know…"
           />
         </CollapseSection>
-      </ContentLayout>
+      </PageLayout>
     </>
   );
 };

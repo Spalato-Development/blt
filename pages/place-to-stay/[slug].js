@@ -2,14 +2,7 @@ import { getApolloClient } from '@wpengine/headless';
 import { GET_PTS } from 'lib/queries';
 import { appGetStaticProps } from 'lib/appGetStaticProps';
 import { getNextStaticPaths } from '@wpengine/headless/next';
-import {
-  Title,
-  Tabs,
-  Gallery,
-  CollapseSection,
-  TravelQuote,
-  ContentLayout,
-} from 'components/ui-components';
+import { CollapseSection, TravelQuote } from 'components/ui-components';
 import {
   About,
   Price,
@@ -17,7 +10,6 @@ import {
   Feature,
   FeatureRow,
   Newsletter,
-  Breadcrumbs,
   PageLayout,
 } from 'components';
 
