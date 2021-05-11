@@ -10,14 +10,19 @@ import {
   TravelQuote,
   ContentLayout,
 } from 'components/ui-components';
-import { About, Newsletter } from 'components';
+import { About, Newsletter, Breadcrumbs } from 'components';
 
 const Experience = ({ experienceData = {} }) => {
   const { experience } = experienceData.data || {};
   const {
     title,
     modified,
-    commonDataAttributes: { imageGallery, standfirst, review },
+    commonDataAttributes: {
+      imageGallery,
+      standfirst,
+      review,
+      entityCategories: cats,
+    },
     customDataAttributes: { writer },
   } = experience;
 
@@ -31,6 +36,7 @@ const Experience = ({ experienceData = {} }) => {
   return (
     <>
       <Title title={title} intro="Best things to do:" />
+      <Breadcrumbs cats={cats?.nodes} />
       <ContentLayout
         sidebar={
           <>
@@ -46,7 +52,8 @@ const Experience = ({ experienceData = {} }) => {
             writer={writer && writer[0]}
             date={modified}
             review={review}
-            text="Know someone who would like this place to stay? Why not let them know…"></About>
+            text="Know someone who would like this place to stay? Why not let them know…"
+          />
         </CollapseSection>
       </ContentLayout>
     </>

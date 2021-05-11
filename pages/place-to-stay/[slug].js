@@ -17,6 +17,8 @@ import {
   Feature,
   FeatureRow,
   Newsletter,
+  Breadcrumbs,
+  PageLayout,
 } from 'components';
 
 const PlaceToStay = ({ ptsData = {} }) => {
@@ -24,6 +26,7 @@ const PlaceToStay = ({ ptsData = {} }) => {
   const {
     title,
     modified,
+    entityCategories,
     commonDataAttributes: { imageGallery, about, standfirst, review },
     customDataAttributes: {
       writer,
@@ -48,6 +51,7 @@ const PlaceToStay = ({ ptsData = {} }) => {
   const hf = otherHotelFacilities?.map((item) => item.toLowerCase());
   const poolFeatures = pool?.map((item) => item.toLowerCase());
   const fd = fdFeatures?.map((item) => item.toLowerCase());
+  console.log('entcat', entityCategories);
 
   const tabs = [
     { name: 'our review' },
@@ -59,20 +63,17 @@ const PlaceToStay = ({ ptsData = {} }) => {
 
   return (
     <>
-      <Title
+      <PageLayout
         title={title}
         stars={parseInt(starRating)}
         intro="Recommended place to stay:"
-      />
-      <ContentLayout
+        tabs={tabs}
+        images={imageGallery}
         sidebar={
           <>
             <Newsletter />
           </>
         }>
-        <Tabs tabs={tabs} className="mb-4" />
-        <Gallery images={imageGallery} />
-
         {/* Review */}
         <CollapseSection title="Our review" id="our-review">
           <About
@@ -238,7 +239,7 @@ const PlaceToStay = ({ ptsData = {} }) => {
             </FeatureRow>
           </HotelFeatures>
         </CollapseSection>
-      </ContentLayout>
+      </PageLayout>
 
       {/* Quote */}
       <TravelQuote author="Michael Palin">

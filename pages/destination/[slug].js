@@ -49,7 +49,8 @@ const Destination = ({ destinationData = {} }) => {
             writer={writer && writer[0]}
             date={modified}
             review={review}
-            text="Know someone who would like this place to stay? Why not let them know…"></About>
+            text="Know someone who would like this place to stay? Why not let them know…"
+          />
         </CollapseSection>
       </ContentLayout>
     </>
