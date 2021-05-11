@@ -24,7 +24,7 @@ const PlaceToStay = ({ ptsData = {} }) => {
   const {
     title,
     modified,
-    commonDataAttributes: { imageGallery, about, standfirst },
+    commonDataAttributes: { imageGallery, about, standfirst, review },
     customDataAttributes: {
       writer,
       priceCheckingLinks,
@@ -78,9 +78,9 @@ const PlaceToStay = ({ ptsData = {} }) => {
           <About
             writer={writer && writer[0]}
             date={modified}
-            text="Know someone who would like this place to stay? Why not let them know…">
-            <div dangerouslySetInnerHTML={{ __html: about }} />
-          </About>
+            review={review}
+            text="Know someone who would like this place to stay? Why not let them know…"
+          />
         </CollapseSection>
 
         {/* Price */}

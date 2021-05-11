@@ -17,7 +17,7 @@ const Experience = ({ experienceData = {} }) => {
   const {
     title,
     modified,
-    commonDataAttributes: { imageGallery, about, standfirst },
+    commonDataAttributes: { imageGallery, standfirst, review },
     customDataAttributes: { writer },
   } = experience;
 
@@ -45,9 +45,8 @@ const Experience = ({ experienceData = {} }) => {
           <About
             writer={writer && writer[0]}
             date={modified}
-            text="Know someone who would like this place to stay? Why not let them know…">
-            <div dangerouslySetInnerHTML={{ __html: about }} />
-          </About>
+            review={review}
+            text="Know someone who would like this place to stay? Why not let them know…"></About>
         </CollapseSection>
       </ContentLayout>
     </>
