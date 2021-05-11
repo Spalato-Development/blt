@@ -41,9 +41,9 @@ export const Gallery = ({ images = [], ...props }) => {
   return (
     <Slider {...settings} {...props} css={{ ...styles }}>
       {images?.map((image) => {
-        const { id, sourceUrl, altText } = image;
+        const { id, sourceUrl, altText, caption, description } = image;
         return (
-          <div key={id} className="flex">
+          <div key={id} className="relative flex">
             <Image
               src={sourceUrl}
               alt={altText}
@@ -51,6 +51,16 @@ export const Gallery = ({ images = [], ...props }) => {
               height="530px"
               priority={true}
             />
+            <div className="absolute leading-none text-white left-5 right-5 bottom-5 ">
+              <div
+                className="sm:text-f-26"
+                dangerouslySetInnerHTML={{ __html: caption }}
+              />
+              <div
+                className="text-[10px] font-light"
+                dangerouslySetInnerHTML={{ __html: description }}
+              />
+            </div>
           </div>
         );
       })}
