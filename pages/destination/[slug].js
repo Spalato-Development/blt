@@ -2,8 +2,8 @@ import { getApolloClient } from '@wpengine/headless';
 import { GET_DESTINATION } from 'lib/queries';
 import { appGetStaticProps } from 'lib/appGetStaticProps';
 import { getNextStaticPaths } from '@wpengine/headless/next';
-import { CollapseSection } from 'components/ui-components';
-import { About, Newsletter, PageLayout } from 'components';
+import { CollapseSection, Typo } from 'components/ui-components';
+import { About, Newsletter, TitleContent, PageLayout } from 'components';
 
 const Destination = ({ destinationData = {} }) => {
   const { destination } = destinationData.data || {};
@@ -13,7 +13,31 @@ const Destination = ({ destinationData = {} }) => {
     title,
     modified,
     commonDataAttributes: { imageGallery, review },
-    customDataAttributes: { writer },
+    customDataAttributes: {
+      writer,
+      bestMonthFrom1,
+      bestMonthFrom2,
+      bestMonthTo1,
+      bestMonthTo2,
+      culture,
+      foodDrink,
+      gettingAround,
+      gettingThere,
+      healthSafety,
+      latitudeOfLocation1,
+      longitudeOfLocation1,
+      nearestAirport1,
+      nearestAirport2,
+      nearestAirport3,
+      orientation,
+      profile,
+      region,
+      setting,
+      whenToGo,
+      whereToEat,
+      whereToShop,
+      whereToStay,
+    },
   } = destination;
 
   const tabs = [
@@ -44,6 +68,15 @@ const Destination = ({ destinationData = {} }) => {
             review={review}
             text="Know someone who would like this place to stay? Why not let them know…"
           />
+        </CollapseSection>
+        <CollapseSection title="Tavel advice">
+          <TitleContent title="When to go" content={whenToGo} />
+          <TitleContent title="Getting there and away" content={gettingThere} />
+          <TitleContent title="Getting around" content={gettingAround} />
+          <TitleContent title="Where to stay" content={whereToStay} />
+          <TitleContent title="Where to eat or drink" content={whereToEat} />
+          <TitleContent title="Where to shop" content={whereToShop} />
+          <TitleContent title="Health & Safety" content={healthSafety} />
         </CollapseSection>
       </PageLayout>
     </>

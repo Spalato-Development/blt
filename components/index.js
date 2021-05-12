@@ -16,3 +16,4 @@ export * from './Awards';
 export * from './NoResults';
 export * from './Breadcrumbs';
 export * from './PageLayout';
+export * from './TitleContent';
