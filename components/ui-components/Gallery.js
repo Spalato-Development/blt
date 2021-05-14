@@ -11,7 +11,9 @@ export const Gallery = ({ images = [], ...props }) => {
       const img = images[i];
 
       return (
-        <a className="flex mx-1 mb-2 cursor-pointer">
+        <a
+          className="flex mx-1 mb-2 cursor-pointer"
+          css={{ img: { objectFit: 'cover' } }}>
           <Image
             src={img.sourceUrl}
             alt={img.altText}
@@ -43,7 +45,10 @@ export const Gallery = ({ images = [], ...props }) => {
       {images?.map((image) => {
         const { id, sourceUrl, altText, caption, description } = image;
         return (
-          <div key={id} className="relative flex">
+          <div
+            key={id}
+            className="relative flex"
+            css={{ img: { objectFit: 'cover' } }}>
             <Image
               src={sourceUrl}
               alt={altText}

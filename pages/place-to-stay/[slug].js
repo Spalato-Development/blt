@@ -77,9 +77,11 @@ const PlaceToStay = ({ ptsData = {} }) => {
         </CollapseSection>
 
         {/* Price */}
-        <CollapseSection title="Price" id="price">
-          <Price priceCheckingLinks={priceCheckingLinks} />
-        </CollapseSection>
+        {priceCheckingLinks && (
+          <CollapseSection title="Price" id="price">
+            <Price priceCheckingLinks={priceCheckingLinks} />
+          </CollapseSection>
+        )}
 
         {/* General Amenities */}
         <CollapseSection title="General amenities" id="key-amenities">

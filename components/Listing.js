@@ -31,7 +31,7 @@ export const Listing = ({ item = {}, className, ...props }) => {
       </a>
     </Link>
   ) : (
-    <div className="flex items-center justify-center col-span-1 bg-veryLightGold">
+    <div className="flex items-center justify-center col-span-1 bg-veryLightGold w-[249px] h-[166px] mr-5">
       No Image
     </div>
   );
@@ -49,7 +49,10 @@ export const Listing = ({ item = {}, className, ...props }) => {
             <h3 className="mb-2 text-f-18 text-grey5">
               {entityCategories?.nodes[0]?.name}
             </h3>
-            <p>{standfirst}</p>
+            <div
+              dangerouslySetInnerHTML={{ __html: standfirst }}
+              className="prose"
+            />
           </div>
           <div>
             {starRating && <StarIcons stars={parseInt(starRating)} small />}
