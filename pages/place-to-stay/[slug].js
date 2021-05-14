@@ -71,7 +71,8 @@ const PlaceToStay = ({ ptsData = {} }) => {
           <About
             writer={writer && writer[0]}
             date={modified}
-            review={review}
+            about={about}
+            // review={review}
             text="Know someone who would like this place to stay? Why not let them know…"
           />
         </CollapseSection>

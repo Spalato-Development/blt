@@ -1,8 +1,18 @@
 import React, { Fragment } from 'react';
 import Link from 'next/link';
-import { DateFormatter } from 'components';
+import { DateFormatter, TitleContent } from 'components';
 
-export const About = ({ writer = [], date, text, review, ...props }) => {
+export const About = ({
+  writer = [],
+  date,
+  text,
+  review,
+  about,
+  orientation,
+  culture,
+  food,
+  ...props
+}) => {
   return (
     <Fragment {...props}>
       <div className="justify-between text-f-18 sm:flex md:text-f-22">
@@ -16,20 +26,16 @@ export const About = ({ writer = [], date, text, review, ...props }) => {
           Last updated: <DateFormatter date={date} />{' '}
         </div>
       </div>
+      <TitleContent content={about} />
+      <TitleContent title="Orientation" content={orientation} />
+      <TitleContent title="Culture & Customs" content={culture} />
+      <TitleContent title="Food & Drink" content={food} />
       {review?.map((section, i) => {
         const { title, content } = section;
-        return (
-          <Fragment key={i}>
-            {title && <h3>{title}</h3>}
-            <div
-              className="mt-5 mb-12 prose-lg"
-              dangerouslySetInnerHTML={{ __html: content }}
-            />
-          </Fragment>
-        );
+        return <TitleContent key={i} title={title} content={content} />;
       })}
 
-      <div className="text-center text-gold text-f-24">{text}</div>
+      <div className="mt-12 text-center text-gold text-f-24">{text}</div>
     </Fragment>
   );
 };

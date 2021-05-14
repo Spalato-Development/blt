@@ -12,7 +12,7 @@ const Destination = ({ destinationData = {} }) => {
   const {
     title,
     modified,
-    commonDataAttributes: { imageGallery, review },
+    commonDataAttributes: { imageGallery, review, about },
     customDataAttributes: {
       writer,
       bestMonthFrom1,
@@ -65,11 +65,15 @@ const Destination = ({ destinationData = {} }) => {
           <About
             writer={writer && writer[0]}
             date={modified}
+            about={about}
+            orientation={orientation}
+            culture={culture}
+            food={foodDrink}
             review={review}
             text="Know someone who would like this place to stay? Why not let them know…"
           />
         </CollapseSection>
-        <CollapseSection title="Tavel advice">
+        <CollapseSection title="Travel advice">
           <TitleContent title="When to go" content={whenToGo} />
           <TitleContent title="Getting there and away" content={gettingThere} />
           <TitleContent title="Getting around" content={gettingAround} />

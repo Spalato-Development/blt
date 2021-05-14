@@ -50,7 +50,7 @@ export const CollapseSection = ({ children, className, title, ...props }) => {
               leave="transition duration-300 ease-out"
               leaveFrom="opacity-100 transform translate-y-0"
               leaveTo="transform opacity-0 -translate-y-4">
-              <div className={clsx('pt-5 overflow-hidden')}>{children}</div>
+              <div className={clsx('overflow-hidden')}>{children}</div>
             </Transition>
           </div>
         </Collapse>
