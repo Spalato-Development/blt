@@ -45,7 +45,6 @@ const PlaceToStay = ({ ptsData = {} }) => {
   const hf = otherHotelFacilities?.map((item) => item.toLowerCase());
   const poolFeatures = pool?.map((item) => item.toLowerCase());
   const fd = fdFeatures?.map((item) => item.toLowerCase());
-  console.log('entcat', entityCategories);
 
   const tabs = [
     { name: 'our review' },

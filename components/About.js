@@ -6,11 +6,10 @@ export const About = ({
   writer = [],
   date,
   text,
-  review,
+
   about,
-  orientation,
-  culture,
-  food,
+
+  children,
   ...props
 }) => {
   return (
@@ -27,14 +26,8 @@ export const About = ({
         </div>
       </div>
       <TitleContent content={about} />
-      <TitleContent title="Orientation" content={orientation} />
-      <TitleContent title="Culture & Customs" content={culture} />
-      <TitleContent title="Food & Drink" content={food} />
-      {review?.map((section, i) => {
-        const { title, content } = section;
-        return <TitleContent key={i} title={title} content={content} />;
-      })}
 
+      {children}
       <div className="mt-12 text-center text-gold text-f-24">{text}</div>
     </Fragment>
   );

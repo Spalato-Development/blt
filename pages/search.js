@@ -161,13 +161,8 @@ const Search = ({ allSidebarFilters = {} }) => {
     { name: 'itineraries', results: itinerariesResultsNumber },
   ];
   const globalData = useGlobalData();
-  const {
-    placesToStay,
-    destinations,
-    experiences,
-    roundups,
-    writers,
-  } = globalData.allEntitiesData.data;
+  const { placesToStay, destinations, experiences, roundups, writers } =
+    globalData.allEntitiesData.data;
 
   const {
     register,
@@ -322,7 +317,7 @@ const Search = ({ allSidebarFilters = {} }) => {
   const placesToStayResultsListings = results.placesToStayResults?.map(
     (item) => {
       const { id } = item;
-      return <Listing key={id} item={item} />;
+      return <Listing key={id} item={item} search />;
     },
   );
 

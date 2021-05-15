@@ -6,7 +6,7 @@ import { Button, StarIcons, Price } from 'components';
 import Collapse from '@kunukn/react-collapse';
 import { FaChevronDown } from 'react-icons/fa';
 
-export const Listing = ({ item = {}, className, ...props }) => {
+export const Listing = ({ item = {}, search, className, ...props }) => {
   const [open, setOpen] = useState(false);
   const {
     title,
@@ -37,9 +37,12 @@ export const Listing = ({ item = {}, className, ...props }) => {
   );
   return (
     <div className={clsx('shadow-listing', 'p-2 pr-3 mb-5', className)}>
-      <div className={clsx('flex', className)} {...props}>
+      <div className={clsx('flex')} {...props}>
         {img}
-        <div className="max-w-[470px] flex flex-col justify-between">
+        <div
+          className={`${
+            search ? 'max-w-[470px]' : 'max-w-[385px]'
+          } flex flex-col justify-between`}>
           <div>
             <Link href={`${uri}`}>
               <a className="hover:no-underline ">

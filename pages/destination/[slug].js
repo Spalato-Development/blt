@@ -3,7 +3,13 @@ import { GET_DESTINATION } from 'lib/queries';
 import { appGetStaticProps } from 'lib/appGetStaticProps';
 import { getNextStaticPaths } from '@wpengine/headless/next';
 import { CollapseSection, Typo } from 'components/ui-components';
-import { About, Newsletter, TitleContent, PageLayout } from 'components';
+import {
+  About,
+  Newsletter,
+  TitleContent,
+  PageLayout,
+  Listing,
+} from 'components';
 
 const Destination = ({ destinationData = {} }) => {
   const { destination } = destinationData.data || {};
@@ -37,8 +43,11 @@ const Destination = ({ destinationData = {} }) => {
       whereToEat,
       whereToShop,
       whereToStay,
+      additionalSections,
+      placesToStay,
     },
   } = destination;
+  console.log('pts', placesToStay);
 
   const tabs = [
     { name: 'our review' },
@@ -66,21 +75,42 @@ const Destination = ({ destinationData = {} }) => {
             writer={writer && writer[0]}
             date={modified}
             about={about}
-            orientation={orientation}
-            culture={culture}
-            food={foodDrink}
-            review={review}
-            text="Know someone who would like this place to stay? Why not let them know…"
-          />
+            text="Know someone who would like this place to stay? Why not let them know…">
+            <TitleContent title="Orientation" content={orientation} />
+            <TitleContent title="Culture & Customs" content={culture} />
+            <TitleContent title="Food & Drink" content={foodDrink} />
+            {additionalSections?.map((section, i) => {
+              const { title, content } = section;
+              return <TitleContent key={i} title={title} content={content} />;
+            })}
+          </About>
         </CollapseSection>
         <CollapseSection title="Travel advice">
           <TitleContent title="When to go" content={whenToGo} />
           <TitleContent title="Getting there and away" content={gettingThere} />
           <TitleContent title="Getting around" content={gettingAround} />
-          <TitleContent title="Where to stay" content={whereToStay} />
+
           <TitleContent title="Where to eat or drink" content={whereToEat} />
           <TitleContent title="Where to shop" content={whereToShop} />
           <TitleContent title="Health & Safety" content={healthSafety} />
+        </CollapseSection>
+        <CollapseSection
+          title="Where to stay"
+          number={placesToStay.length}
+          listings
+          className="">
+          <div
+            className="p-3 mx-4 mb-12 sm:mx-7 bg-veryLightGold"
+            css={{ p: { marginBottom: '15px' } }}
+            dangerouslySetInnerHTML={{ __html: whereToStay }}
+          />
+          <div className="">
+            {placesToStay?.map((item) => {
+              return (
+                <Listing item={item} key={item.id} className="mx-4 sm:mx-7" />
+              );
+            })}
+          </div>
         </CollapseSection>
       </PageLayout>
     </>
