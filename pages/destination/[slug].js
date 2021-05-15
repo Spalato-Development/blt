@@ -85,15 +85,7 @@ const Destination = ({ destinationData = {} }) => {
             })}
           </About>
         </CollapseSection>
-        <CollapseSection title="Travel advice">
-          <TitleContent title="When to go" content={whenToGo} />
-          <TitleContent title="Getting there and away" content={gettingThere} />
-          <TitleContent title="Getting around" content={gettingAround} />
-
-          <TitleContent title="Where to eat or drink" content={whereToEat} />
-          <TitleContent title="Where to shop" content={whereToShop} />
-          <TitleContent title="Health & Safety" content={healthSafety} />
-        </CollapseSection>
+        {/* Where to stay */}
         <CollapseSection
           title="Where to stay"
           number={placesToStay.length}
@@ -111,6 +103,17 @@ const Destination = ({ destinationData = {} }) => {
               );
             })}
           </div>
+        </CollapseSection>
+
+        {/* Travel advice */}
+        <CollapseSection title="Travel advice">
+          <TitleContent title="When to go" content={whenToGo} />
+          <TitleContent title="Getting there and away" content={gettingThere} />
+          <TitleContent title="Getting around" content={gettingAround} />
+
+          <TitleContent title="Where to eat or drink" content={whereToEat} />
+          <TitleContent title="Where to shop" content={whereToShop} />
+          <TitleContent title="Health & Safety" content={healthSafety} />
         </CollapseSection>
       </PageLayout>
     </>
