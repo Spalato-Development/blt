@@ -20,26 +20,28 @@ const PlaceToStay = ({ ptsData = {} }) => {
     modified,
     entityCategories,
     commonDataAttributes: { imageGallery, about, standfirst, review },
-    customDataAttributes: {
-      writer,
-      priceCheckingLinks,
-      airportTransfers,
-      beach,
-      roomFeatures,
-      roomType,
-      roomForFamilies,
-      fdFeatures,
-      allInclusive,
-      selfCatering,
-      otherHotelFacilities,
-      pool,
-      parking,
-      wifi,
-      starRating,
-      ski,
-      isSkiHotel,
-    },
-  } = pts;
+    customDataAttributes,
+  } = pts || {};
+
+  const {
+    writer,
+    priceCheckingLinks,
+    airportTransfers,
+    beach,
+    roomFeatures,
+    roomType,
+    roomForFamilies,
+    fdFeatures,
+    allInclusive,
+    selfCatering,
+    otherHotelFacilities,
+    pool,
+    parking,
+    wifi,
+    starRating,
+    ski,
+    isSkiHotel,
+  } = customDataAttributes || {};
   const hf = otherHotelFacilities?.map((item) => item.toLowerCase());
   const poolFeatures = pool?.map((item) => item.toLowerCase());
   const fd = fdFeatures?.map((item) => item.toLowerCase());
@@ -91,45 +93,46 @@ const PlaceToStay = ({ ptsData = {} }) => {
             <FeatureRow>
               <Feature>Airport transfers: {airportTransfers} </Feature>
               <Feature>Beach: {airportTransfers} </Feature>
-              <Feature disabled={!hf.includes('creche')}>creche</Feature>
-              <Feature disabled={!hf.includes('fitness center')}>
+
+              <Feature disabled={!hf?.includes('creche')}>creche</Feature>
+              <Feature disabled={!hf?.includes('fitness center')}>
                 Fitness centre
               </Feature>
             </FeatureRow>
 
             <FeatureRow>
-              <Feature disabled={!hf.includes('fitness classes')}>
+              <Feature disabled={!hf?.includes('fitness classes')}>
                 Fitness classes
               </Feature>
-              <Feature disabled={!hf.includes('golf course')}>
+              <Feature disabled={!hf?.includes('golf course')}>
                 Golf course
               </Feature>
-              <Feature disabled={!hf.includes('hot tub')}>Hot tub</Feature>
+              <Feature disabled={!hf?.includes('hot tub')}>Hot tub</Feature>
               <Feature>Parking: {parking[0]}</Feature>
             </FeatureRow>
 
             <FeatureRow>
-              <Feature disabled={!poolFeatures.includes('adults only')}>
+              <Feature disabled={!poolFeatures?.includes('adults only')}>
                 Pool (adults only)
               </Feature>
-              <Feature disabled={!poolFeatures.includes('indoor')}>
+              <Feature disabled={!poolFeatures?.includes('indoor')}>
                 Pool (indoor)
               </Feature>
-              <Feature disabled={!poolFeatures.includes('outdoor')}>
+              <Feature disabled={!poolFeatures?.includes('outdoor')}>
                 Pool (outdoor)
               </Feature>
-              <Feature disabled={!poolFeatures.includes('kids')}>
+              <Feature disabled={!poolFeatures?.includes('kids')}>
                 Pool (kids)
               </Feature>
             </FeatureRow>
 
             <FeatureRow>
-              <Feature disabled={!hf.includes('spa')}>Spa</Feature>
-              <Feature disabled={!hf.includes('tennis courts')}>
+              <Feature disabled={!hf?.includes('spa')}>Spa</Feature>
+              <Feature disabled={!hf?.includes('tennis courts')}>
                 Tennis courts
               </Feature>
               <Feature>WiFi: {wifi}</Feature>
-              <Feature disabled={!hf.includes('yoga')}>Yoga</Feature>
+              <Feature disabled={!hf?.includes('yoga')}>Yoga</Feature>
             </FeatureRow>
           </HotelFeatures>
 
@@ -141,8 +144,8 @@ const PlaceToStay = ({ ptsData = {} }) => {
                 optional={allInclusive === 'Optional'}>
                 All inclusive
               </Feature>
-              <Feature disabled={!fd.includes('kids menu')}>Kids menu</Feature>
-              <Feature disabled={!fd.includes('restaurant on-site')}>
+              <Feature disabled={!fd?.includes('kids menu')}>Kids menu</Feature>
+              <Feature disabled={!fd?.includes('restaurant on-site')}>
                 Restaurant on-site
               </Feature>
               <Feature
@@ -155,13 +158,13 @@ const PlaceToStay = ({ ptsData = {} }) => {
           {isSkiHotel && (
             <HotelFeatures title="Ski facilities">
               <FeatureRow>
-                <Feature disabled={!ski.includes('Ski in ski out')}>
+                <Feature disabled={!ski?.includes('Ski in ski out')}>
                   Ski in ski out
                 </Feature>
-                <Feature disabled={!ski.includes('Shuttle to slopes')}>
+                <Feature disabled={!ski?.includes('Shuttle to slopes')}>
                   Shuttle to slopes
                 </Feature>
-                <Feature disabled={!ski.includes('Ski rentals onsite')}>
+                <Feature disabled={!ski?.includes('Ski rentals onsite')}>
                   Ski rentals onsite
                 </Feature>
               </FeatureRow>
@@ -173,62 +176,63 @@ const PlaceToStay = ({ ptsData = {} }) => {
         <CollapseSection title="Room amenities">
           <HotelFeatures title="Room types">
             <FeatureRow>
-              <Feature disabled={!roomType.includes('Apartments')}>
+              <Feature disabled={!roomType?.includes('Apartments')}>
                 Apartments
               </Feature>
-              <Feature disabled={!roomType.includes('Bedrooms')}>
+              <Feature disabled={!roomType?.includes('Bedrooms')}>
                 Bedrooms
               </Feature>
-              <Feature disabled={!roomType.includes('Cabins')}>Cabins</Feature>
-              <Feature disabled={!roomType.includes('Suites')}>Suites</Feature>
+              <Feature disabled={!roomType?.includes('Cabins')}>Cabins</Feature>
+              <Feature disabled={!roomType?.includes('Suites')}>Suites</Feature>
             </FeatureRow>
             <FeatureRow>
-              <Feature disabled={!roomType.includes('Tents')}>Tents</Feature>
-              <Feature disabled={!roomType.includes('Villas')}>Villas</Feature>
-              <Feature disabled={!roomType.includes('Yurts')}>Yurts</Feature>
+              <Feature disabled={!roomType?.includes('Tents')}>Tents</Feature>
+              <Feature disabled={!roomType?.includes('Villas')}>Villas</Feature>
+              <Feature disabled={!roomType?.includes('Yurts')}>Yurts</Feature>
             </FeatureRow>
           </HotelFeatures>
 
           <HotelFeatures title="Room facilities">
             <FeatureRow>
-              <Feature disabled={!roomFeatures.includes('Air conditioning')}>
+              <Feature disabled={!roomFeatures?.includes('Air conditioning')}>
                 Air conditioning
               </Feature>
-              <Feature disabled={!roomFeatures.includes('Flat screen TV')}>
+              <Feature disabled={!roomFeatures?.includes('Flat screen TV')}>
                 Flat screen TV
               </Feature>
-              <Feature disabled={!roomFeatures.includes('Jacuzzi')}>
+              <Feature disabled={!roomFeatures?.includes('Jacuzzi')}>
                 Jacuzzi (private)
               </Feature>
-              <Feature disabled={!roomFeatures.includes('Pool (private')}>
+              <Feature disabled={!roomFeatures?.includes('Pool (private')}>
                 Pool (private)
               </Feature>
             </FeatureRow>
             <FeatureRow>
               <Feature
                 disabled={
-                  !roomFeatures.includes('Tea & coffee making facilities')
+                  !roomFeatures?.includes('Tea & coffee making facilities')
                 }>
                 Tea & coffee making facilities
               </Feature>
-              <Feature disabled={!roomFeatures.includes('WiFi')}>WiFi</Feature>
+              <Feature disabled={!roomFeatures?.includes('WiFi')}>WiFi</Feature>
             </FeatureRow>
           </HotelFeatures>
 
           <HotelFeatures title="Family sleeping">
             <FeatureRow>
-              <Feature disabled={!roomForFamilies.includes('Connecting rooms')}>
+              <Feature
+                disabled={!roomForFamilies?.includes('Connecting rooms')}>
                 Connecting rooms
               </Feature>
 
-              <Feature disabled={!roomForFamilies.includes('Family rooms')}>
+              <Feature disabled={!roomForFamilies?.includes('Family rooms')}>
                 Family rooms
               </Feature>
-              <Feature disabled={!roomForFamilies.includes('Rollaway beds')}>
+              <Feature disabled={!roomForFamilies?.includes('Rollaway beds')}>
                 Rollaway beds
               </Feature>
               <Feature
-                disabled={!roomForFamilies.includes('Sectionable suites')}>
+                disabled={!roomForFamilies?.includes('Sectionable suites')}>
                 Sectionable suites
               </Feature>
             </FeatureRow>
