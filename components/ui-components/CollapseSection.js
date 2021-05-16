@@ -30,7 +30,7 @@ export const CollapseSection = ({
       )}
       {...props}>
       <>
-        <div className="flex justify-between px-4 sm:px-7">
+        <div className={`flex justify-between ${listings && 'px-4 sm:px-7'}`}>
           <div
             role="button"
             className="flex items-center cursor-pointer focus:outline-none"

@@ -17,7 +17,7 @@ export const Tabs = ({ tabs = [], className, ...props }) => {
           tab
           className={clsx('h:[39px] sm:h-[54px]', 'w-[100px] sm:w-[176px]')}
           key={tab.name}
-          href={`#${tab.name.toLowerCase().replace(' ', '-')}`}>
+          href={`#${tab.name.toLowerCase().replaceAll(' ', '-')}`}>
           {tab.name}
         </Button>
       ))}

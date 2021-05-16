@@ -6,7 +6,7 @@ import { Button, StarIcons, Price } from 'components';
 import Collapse from '@kunukn/react-collapse';
 import { FaChevronDown } from 'react-icons/fa';
 
-export const Listing = ({ item = {}, search, className, ...props }) => {
+export const Listing = ({ item = {}, search, noBl, className, ...props }) => {
   const [open, setOpen] = useState(false);
   const {
     title,
@@ -62,14 +62,34 @@ export const Listing = ({ item = {}, search, className, ...props }) => {
           </div>
         </div>
         <div className="flex flex-col items-end justify-between">
-          <Button secondary className="w-10 h-10 !p-0">
-            <img src="/images/cross.svg" alt="add to bucket list" />
-          </Button>
-          <Link href={uri}>
-            <Button as="a" className="hover:no-underline" secondary>
-              Read our review
+          {!noBl && (
+            <>
+              <Button secondary className="w-10 h-10 !p-0">
+                <img src="/images/cross.svg" alt="add to bucket list" />
+              </Button>
+
+              <Link href={uri}>
+                <Button
+                  as="a"
+                  href={website}
+                  className="hover:no-underline"
+                  secondary>
+                  Read our review
+                </Button>
+              </Link>
+            </>
+          )}
+          {noBl && (
+            <Button
+              secondary
+              as="a"
+              href={website}
+              target="_blank"
+              rel="noopener noreferrer">
+              See Website
             </Button>
-          </Link>
+          )}
+
           {priceCheckingLinks && (
             <Button
               secondary

@@ -45,6 +45,7 @@ const Destination = ({ destinationData = {} }) => {
       whereToStay,
       additionalSections,
       placesToStay,
+      tourOperators,
     },
   } = destination;
   console.log('pts', placesToStay);
@@ -85,10 +86,12 @@ const Destination = ({ destinationData = {} }) => {
             })}
           </About>
         </CollapseSection>
+
         {/* Where to stay */}
         <CollapseSection
           title="Where to stay"
-          number={placesToStay.length}
+          number={placesToStay?.length}
+          id="where-to-stay"
           listings
           className="">
           <div
@@ -114,6 +117,24 @@ const Destination = ({ destinationData = {} }) => {
           <TitleContent title="Where to eat or drink" content={whereToEat} />
           <TitleContent title="Where to shop" content={whereToShop} />
           <TitleContent title="Health & Safety" content={healthSafety} />
+        </CollapseSection>
+
+        {/* Tour operators */}
+        <CollapseSection
+          title="Who to go with: tour operators"
+          number={tourOperators.length}
+          id="who-to-go-with"
+          listings>
+          {tourOperators?.map((item) => {
+            return (
+              <Listing
+                item={item}
+                key={item.id}
+                className="mx-4 sm:mx-7"
+                noBl
+              />
+            );
+          })}
         </CollapseSection>
       </PageLayout>
     </>
