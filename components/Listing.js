@@ -35,7 +35,7 @@ export const Listing = ({
 
   const img = featuredImage ? (
     <Link href={`${uri}`}>
-      <a className="flex mr-5 ">
+      <a className="flex mr-5 " css={{ img: { objectFit: 'cover' } }}>
         <Image
           src={featuredImage.node.sourceUrl}
           alt={featuredImage.node.altText}
@@ -73,7 +73,7 @@ export const Listing = ({
             </h3>
             <div
               dangerouslySetInnerHTML={{ __html: standfirst }}
-              className="prose"
+              className="leading-tight prose"
             />
           </div>
           {starRating ? (

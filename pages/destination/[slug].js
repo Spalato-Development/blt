@@ -47,9 +47,10 @@ const Destination = ({ destinationData = {} }) => {
       placesToStay,
       tourOperators,
       experiences,
+      affiliatedTours,
     },
   } = destination || {};
-  console.log('exp', experiences);
+  console.log('exp', affiliatedTours);
 
   const bucketListExperiences = experiences?.filter(
     (exp) => exp.customDataAttributes.isBucketList === 'yes',
@@ -57,6 +58,7 @@ const Destination = ({ destinationData = {} }) => {
   const otherExperiences = experiences?.filter(
     (exp) => exp.customDataAttributes.isBucketList === 'no',
   );
+
   const allExperiences = [
     {
       title: 'Bucket list experiences',
@@ -64,6 +66,7 @@ const Destination = ({ destinationData = {} }) => {
       id: 'experiences',
     },
     { title: 'Other experiences', experiences: otherExperiences },
+    { title: 'Destination tickets & tours', experiences: affiliatedTours },
   ];
 
   const tabs = [
