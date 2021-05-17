@@ -7,9 +7,11 @@ export const TitleContent = ({ title, content, ...props }) => {
   }
   return (
     <Fragment {...props}>
-      <Typo as="h3" h3 className="my-6">
-        {title}
-      </Typo>
+      {title && (
+        <Typo as="h3" h3 className="my-6">
+          {title}
+        </Typo>
+      )}
       <div
         className="mb-5 prose-lg"
         dangerouslySetInnerHTML={{ __html: content }}

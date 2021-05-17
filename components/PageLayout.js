@@ -20,8 +20,8 @@ export const PageLayout = ({
     <>
       <Title title={title} stars={stars} intro={intro} />
       <ContentLayout sidebar={sidebar}>
-        <Tabs tabs={tabs} className="mb-4" />
-        <Gallery images={images} />
+        {tabs && <Tabs tabs={tabs} className="mb-4" />}
+        {images && <Gallery images={images} />}
         {children}
       </ContentLayout>
     </>

@@ -79,171 +79,169 @@ const Destination = ({ destinationData = {} }) => {
     { name: 'map' },
   ];
   return (
-    <>
-      <PageLayout
-        title={title}
-        tabs={tabs}
-        images={imageGallery}
-        intro="Best things to do & places to stay in:"
-        sidebar={
-          <>
-            <Newsletter />
-          </>
-        }>
-        {/* Review */}
-        <CollapseSection title="Our review" id="our-review">
-          <About
-            writer={writer && writer[0]}
-            date={modified}
-            about={about}
-            text="Know someone who would like this place to stay? Why not let them know…">
-            <TitleContent title="Orientation" content={orientation} />
-            <TitleContent title="Culture & Customs" content={culture} />
-            <TitleContent title="Food & Drink" content={foodDrink} />
-            {additionalSections?.map((section, i) => {
-              const { title, content } = section;
-              return <TitleContent key={i} title={title} content={content} />;
-            })}
-          </About>
-        </CollapseSection>
-
-        {/* Experiences */}
-        {experiences &&
-          allExperiences?.map((exp) => {
-            const { title, experiences, id } = exp;
-            return (
-              <CollapseSection
-                title={title}
-                number={experiences?.length}
-                id={id}
-                listings>
-                <div className="mt-5">
-                  {experiences?.map((item) => {
-                    const {
-                      minAge,
-                      priceFrom,
-                      duration,
-                      profile,
-                      whenIsIt,
-                      city,
-                      region,
-                    } = item.customDataAttributes;
-                    const country = item.commonDataAttributes.country.name;
-
-                    return (
-                      <Listing
-                        item={item}
-                        key={item.id}
-                        profile={profile}
-                        minAge={minAge === null ? 0 : minAge}
-                        duration={duration}
-                        priceFrom={priceFrom}
-                        whenIsIt={whenIsIt}
-                        country={country}
-                        city={city}
-                        region={region}
-                        className="mx-4 sm:mx-7"
-                      />
-                    );
-                  })}
-                </div>
-              </CollapseSection>
-            );
+    <PageLayout
+      title={title}
+      tabs={tabs}
+      images={imageGallery}
+      intro="Best things to do & places to stay in:"
+      sidebar={
+        <>
+          <Newsletter />
+        </>
+      }>
+      {/* Review */}
+      <CollapseSection title="Our review" id="our-review">
+        <About
+          writer={writer && writer[0]}
+          date={modified}
+          about={about}
+          text="Know someone who would like this place to stay? Why not let them know…">
+          <TitleContent title="Orientation" content={orientation} />
+          <TitleContent title="Culture & Customs" content={culture} />
+          <TitleContent title="Food & Drink" content={foodDrink} />
+          {additionalSections?.map((section, i) => {
+            const { title, content } = section;
+            return <TitleContent key={i} title={title} content={content} />;
           })}
+        </About>
+      </CollapseSection>
 
-        {/* Where to stay */}
-        {placesToStay && (
-          <CollapseSection
-            title="Where to stay"
-            number={placesToStay?.length}
-            id="where-to-stay"
-            listings
-            className="">
-            <div
-              className="p-3 mx-4 mb-12 sm:mx-7 bg-veryLightGold"
-              css={{ p: { marginBottom: '15px' } }}
-              dangerouslySetInnerHTML={{ __html: whereToStay }}
-            />
-            <div className="">
-              {placesToStay?.map((item) => {
-                const { city, region } = item.customDataAttributes;
-                const country = item.commonDataAttributes.country?.name;
-                return (
-                  <Listing
-                    item={item}
-                    key={item.id}
-                    profile="full"
-                    city={city}
-                    country={country}
-                    region={region}
-                    className="mx-4 sm:mx-7"
-                  />
-                );
-              })}
-            </div>
-          </CollapseSection>
-        )}
+      {/* Experiences */}
+      {experiences &&
+        allExperiences?.map((exp) => {
+          const { title, experiences, id } = exp;
+          return (
+            <CollapseSection
+              title={title}
+              number={experiences?.length}
+              id={id}
+              listings>
+              <div className="mt-5">
+                {experiences?.map((item) => {
+                  const {
+                    minAge,
+                    priceFrom,
+                    duration,
+                    profile,
+                    whenIsIt,
+                    city,
+                    region,
+                  } = item.customDataAttributes;
+                  const country = item.commonDataAttributes.country.name;
 
-        {/* Travel advice */}
-        <CollapseSection title="Travel advice">
-          <TitleContent title="When to go" content={whenToGo} />
-          <TitleContent title="Getting there and away" content={gettingThere} />
-          <TitleContent title="Getting around" content={gettingAround} />
+                  return (
+                    <Listing
+                      item={item}
+                      key={item.id}
+                      profile={profile}
+                      minAge={minAge === null ? 0 : minAge}
+                      duration={duration}
+                      priceFrom={priceFrom}
+                      whenIsIt={whenIsIt}
+                      country={country}
+                      city={city}
+                      region={region}
+                      className="mx-4 sm:mx-7"
+                    />
+                  );
+                })}
+              </div>
+            </CollapseSection>
+          );
+        })}
 
-          <TitleContent title="Where to eat or drink" content={whereToEat} />
-          <TitleContent title="Where to shop" content={whereToShop} />
-          <TitleContent title="Health & Safety" content={healthSafety} />
+      {/* Where to stay */}
+      {placesToStay && (
+        <CollapseSection
+          title="Where to stay"
+          number={placesToStay?.length}
+          id="where-to-stay"
+          listings
+          className="">
+          <div
+            className="p-3 mx-4 mb-12 sm:mx-7 bg-veryLightGold"
+            css={{ p: { marginBottom: '15px' } }}
+            dangerouslySetInnerHTML={{ __html: whereToStay }}
+          />
+          <div className="">
+            {placesToStay?.map((item) => {
+              const { city, region } = item.customDataAttributes;
+              const country = item.commonDataAttributes.country?.name;
+              return (
+                <Listing
+                  item={item}
+                  key={item.id}
+                  profile="full"
+                  city={city}
+                  country={country}
+                  region={region}
+                  className="mx-4 sm:mx-7"
+                />
+              );
+            })}
+          </div>
         </CollapseSection>
+      )}
 
-        {/* Tour operators */}
-        {tourOperators && (
-          <CollapseSection
-            title="Who to go with: tour operators"
-            number={tourOperators?.length}
-            id="who-to-go-with"
-            listings>
-            <div className="mt-5">
-              {tourOperators?.map((item) => {
-                return (
-                  <Listing
-                    item={item}
-                    key={item.id}
-                    className="mx-4 sm:mx-7"
-                    noBl
-                  />
-                );
-              })}
-            </div>
-          </CollapseSection>
-        )}
-        {/* Destination guides */}
-        {destinationGuides && (
-          <CollapseSection
-            title="Destination guides"
-            number={destinationGuides.length}
-            listings>
-            <div className="mt-5">
-              {destinationGuides?.map((item) => {
-                const { profile, region } = item.customDataAttributes;
-                const country = item.commonDataAttributes.country.name;
-                return (
-                  <Listing
-                    item={item}
-                    key={item.id}
-                    profile={profile}
-                    region={region}
-                    country={country}
-                    className="mx-4 sm:mx-7"
-                    destinationGuide
-                    noBl
-                  />
-                );
-              })}
-            </div>
-          </CollapseSection>
-        )}
-      </PageLayout>
-    </>
+      {/* Travel advice */}
+      <CollapseSection title="Travel advice">
+        <TitleContent title="When to go" content={whenToGo} />
+        <TitleContent title="Getting there and away" content={gettingThere} />
+        <TitleContent title="Getting around" content={gettingAround} />
+
+        <TitleContent title="Where to eat or drink" content={whereToEat} />
+        <TitleContent title="Where to shop" content={whereToShop} />
+        <TitleContent title="Health & Safety" content={healthSafety} />
+      </CollapseSection>
+
+      {/* Tour operators */}
+      {tourOperators && (
+        <CollapseSection
+          title="Who to go with: tour operators"
+          number={tourOperators?.length}
+          id="who-to-go-with"
+          listings>
+          <div className="mt-5">
+            {tourOperators?.map((item) => {
+              return (
+                <Listing
+                  item={item}
+                  key={item.id}
+                  className="mx-4 sm:mx-7"
+                  noBl
+                />
+              );
+            })}
+          </div>
+        </CollapseSection>
+      )}
+      {/* Destination guides */}
+      {destinationGuides && (
+        <CollapseSection
+          title="Destination guides"
+          number={destinationGuides.length}
+          listings>
+          <div className="mt-5">
+            {destinationGuides?.map((item) => {
+              const { profile, region } = item.customDataAttributes;
+              const country = item.commonDataAttributes.country.name;
+              return (
+                <Listing
+                  item={item}
+                  key={item.id}
+                  profile={profile}
+                  region={region}
+                  country={country}
+                  className="mx-4 sm:mx-7"
+                  destinationGuide
+                  noBl
+                />
+              );
+            })}
+          </div>
+        </CollapseSection>
+      )}
+    </PageLayout>
   );
 };
 

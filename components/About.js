@@ -6,7 +6,7 @@ export const About = ({
   writer = [],
   date,
   text,
-
+  author,
   about,
 
   children,
@@ -14,11 +14,11 @@ export const About = ({
 }) => {
   return (
     <Fragment {...props}>
-      <div className="justify-between text-f-18 sm:flex md:text-f-22">
+      <div className="justify-between mb-5 text-f-18 sm:flex md:text-f-22">
         <div>
           Expert travel writer:{' '}
-          <Link href={writer?.uri || ''}>
-            <a>{writer?.title}</a>
+          <Link href={author ? `/writer/${author.slug}` : writer?.uri || ''}>
+            <a>{author ? author.name : writer?.title}</a>
           </Link>
         </div>
         <div>
