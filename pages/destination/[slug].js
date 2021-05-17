@@ -101,14 +101,53 @@ const Destination = ({ destinationData = {} }) => {
           <CollapseSection
             title="Bucket list experiences"
             number={bucketListExperiences?.length}
-            listing></CollapseSection>
+            listings>
+            <div className="mt-5">
+              {bucketListExperiences?.map((item) => {
+                const { minAge, priceFrom, duration, profile, whenIsIt } =
+                  item.customDataAttributes;
+
+                return (
+                  <Listing
+                    item={item}
+                    key={item.id}
+                    profile={profile}
+                    minAge={minAge === null ? 0 : minAge}
+                    duration={duration}
+                    priceFrom={priceFrom}
+                    whenIsIt={whenIsIt}
+                    className="mx-4 sm:mx-7"
+                  />
+                );
+              })}
+            </div>
+          </CollapseSection>
         )}
-        {/* othertExperiences */}
+        {/* otherExperiences */}
         {otherExperiences && (
           <CollapseSection
             title="Other experiences"
             number={otherExperiences?.length}
-            listing></CollapseSection>
+            listing>
+            <div className="mt-5">
+              {otherExperiences?.map((item) => {
+                const { minAge, priceFrom, duration, profile } =
+                  item.customDataAttributes;
+
+                return (
+                  <Listing
+                    item={item}
+                    key={item.id}
+                    profile={profile}
+                    minAge={minAge === null ? 0 : minAge}
+                    duration={duration}
+                    priceFrom={priceFrom}
+                    className="mx-4 sm:mx-7"
+                  />
+                );
+              })}
+            </div>
+          </CollapseSection>
         )}
 
         {/* Where to stay */}
@@ -126,7 +165,12 @@ const Destination = ({ destinationData = {} }) => {
           <div className="">
             {placesToStay?.map((item) => {
               return (
-                <Listing item={item} key={item.id} className="mx-4 sm:mx-7" />
+                <Listing
+                  item={item}
+                  key={item.id}
+                  profile="full"
+                  className="mx-4 sm:mx-7"
+                />
               );
             })}
           </div>

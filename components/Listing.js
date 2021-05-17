@@ -6,7 +6,18 @@ import { Button, StarIcons, Price } from 'components';
 import Collapse from '@kunukn/react-collapse';
 import { FaChevronDown } from 'react-icons/fa';
 
-export const Listing = ({ item = {}, search, noBl, className, ...props }) => {
+export const Listing = ({
+  item = {},
+  search,
+  noBl,
+  className,
+  minAge,
+  priceFrom,
+  duration,
+  profile,
+  whenIsIt,
+  ...props
+}) => {
   const [open, setOpen] = useState(false);
   const {
     title,
@@ -46,7 +57,9 @@ export const Listing = ({ item = {}, search, noBl, className, ...props }) => {
           <div>
             <Link href={`${uri}`}>
               <a className="hover:no-underline ">
-                <h2 className="font-bold text-black text-f-24">{title}</h2>{' '}
+                <h2 className="font-bold leading-none text-black text-f-24">
+                  {title}
+                </h2>{' '}
               </a>
             </Link>
             <h3 className="mb-2 text-f-18 text-grey5">
@@ -57,40 +70,53 @@ export const Listing = ({ item = {}, search, noBl, className, ...props }) => {
               className="prose"
             />
           </div>
-          <div>
-            {starRating && <StarIcons stars={parseInt(starRating)} small />}
-          </div>
+          {starRating ? (
+            <div>
+              <StarIcons stars={parseInt(starRating)} small />
+            </div>
+          ) : (
+            <div className="flex mt-4 text-grey4">
+              {minAge !== undefined &&
+                `Ages: ${minAge}+ ${
+                  priceFrom
+                    ? ` | Price from: £${priceFrom}`
+                    : duration
+                    ? ` | Duration: ${duration}`
+                    : ` | When: ${whenIsIt}`
+                }`}
+            </div>
+          )}
         </div>
         <div className="flex flex-col items-end justify-between">
-          {!noBl && (
-            <>
-              <Button secondary className="w-10 h-10 !p-0">
-                <img src="/images/cross.svg" alt="add to bucket list" />
-              </Button>
-
-              <Link href={uri}>
-                <Button
-                  as="a"
-                  href={website}
-                  className="hover:no-underline"
-                  secondary>
-                  Read our review
-                </Button>
-              </Link>
-            </>
-          )}
-          {noBl && (
-            <Button
-              secondary
-              as="a"
-              href={website}
-              target="_blank"
-              rel="noopener noreferrer">
-              See Website
+          {/* Add to BL button */}
+          {!noBl ? (
+            <Button secondary className="w-10 h-10 !p-0">
+              <img src="/images/cross.svg" alt="add to bucket list" />
             </Button>
+          ) : (
+            <div></div>
           )}
-
-          {priceCheckingLinks && (
+          {/* Website or link to profile (read our review) */}
+          {profile === 'full' ? (
+            <Link href={uri}>
+              <Button as="a" secondary>
+                Read our review
+              </Button>
+            </Link>
+          ) : (
+            website && (
+              <Button
+                secondary
+                as="a"
+                href={website}
+                target="_blank"
+                rel="noopener noreferrer">
+                See Website
+              </Button>
+            )
+          )}
+          {/* Price checking links button */}
+          {priceCheckingLinks ? (
             <Button
               secondary
               className="leading-none"
@@ -113,6 +139,8 @@ export const Listing = ({ item = {}, search, noBl, className, ...props }) => {
                 )}
               />
             </Button>
+          ) : (
+            <div></div>
           )}
         </div>
       </div>
