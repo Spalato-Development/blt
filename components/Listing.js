@@ -107,10 +107,10 @@ export const Listing = ({
           )}
           {/* Website or link to profile (read our review) */}
           {profile === 'full' ? (
-            <Link href={uri}>
-              <a secondary>
+            <Link href={uri} passHref>
+              <Button as="a" secondary>
                 {destinationGuide ? 'Read our guide' : 'Read our review'}
-              </a>
+              </Button>
             </Link>
           ) : (
             website && (
