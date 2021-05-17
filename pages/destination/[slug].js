@@ -122,7 +122,7 @@ const Destination = ({ destinationData = {} }) => {
         {/* Tour operators */}
         <CollapseSection
           title="Who to go with: tour operators"
-          number={tourOperators.length}
+          number={tourOperators?.length}
           id="who-to-go-with"
           listings>
           {tourOperators?.map((item) => {
