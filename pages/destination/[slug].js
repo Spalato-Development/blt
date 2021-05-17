@@ -2,7 +2,7 @@ import { getApolloClient } from '@wpengine/headless';
 import { GET_DESTINATION } from 'lib/queries';
 import { appGetStaticProps } from 'lib/appGetStaticProps';
 import { getNextStaticPaths } from '@wpengine/headless/next';
-import { CollapseSection, Typo } from 'components/ui-components';
+import { CollapseSection } from 'components/ui-components';
 import {
   About,
   Newsletter,
@@ -13,7 +13,7 @@ import {
 
 const Destination = ({ destinationData = {} }) => {
   const { destination } = destinationData.data || {};
-  console.log('destination', destination);
+  console.log('destination!', destination);
 
   const {
     title,
@@ -48,7 +48,7 @@ const Destination = ({ destinationData = {} }) => {
       tourOperators,
       experiences,
     },
-  } = destination;
+  } = destination || {};
   console.log('exp', experiences);
 
   const bucketListExperiences = experiences?.filter(
@@ -65,8 +65,6 @@ const Destination = ({ destinationData = {} }) => {
     },
     { title: 'Other experiences', experiences: otherExperiences },
   ];
-
-  console.log('bl', bucketListExperiences, otherExperiences);
 
   const tabs = [
     { name: 'our review' },
