@@ -16,6 +16,9 @@ export const Listing = ({
   duration,
   profile,
   whenIsIt,
+  city,
+  region,
+  country,
   ...props
 }) => {
   const [open, setOpen] = useState(false);
@@ -48,8 +51,11 @@ export const Listing = ({
   );
   return (
     <div className={clsx('shadow-listing', 'p-2 pr-3 mb-5', className)}>
-      <div className={clsx('flex')} {...props}>
+      <div className={clsx('flex justify-between')} {...props}>
+        {/* Left: Image */}
         {img}
+
+        {/* Middle: title content stars features */}
         <div
           className={`${
             search ? 'max-w-[470px]' : 'max-w-[385px]'
@@ -63,7 +69,7 @@ export const Listing = ({
               </a>
             </Link>
             <h3 className="mb-2 text-f-18 text-grey5">
-              {entityCategories?.nodes[0]?.name}
+              {city ? city : region ? region : country}
             </h3>
             <div
               dangerouslySetInnerHTML={{ __html: standfirst }}
@@ -87,6 +93,8 @@ export const Listing = ({
             </div>
           )}
         </div>
+
+        {/* Right: Buttons */}
         <div className="flex flex-col items-end justify-between">
           {/* Add to BL button */}
           {!noBl ? (

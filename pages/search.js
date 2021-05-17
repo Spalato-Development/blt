@@ -317,7 +317,19 @@ const Search = ({ allSidebarFilters = {} }) => {
   const placesToStayResultsListings = results.placesToStayResults?.map(
     (item) => {
       const { id } = item;
-      return <Listing key={id} item={item} search />;
+      const { city, region } = item.customDataAttributes;
+      const country = item.commonDataAttributes.country?.name;
+      return (
+        <Listing
+          key={id}
+          item={item}
+          profile="full"
+          city={city}
+          region={region}
+          country={country}
+          search
+        />
+      );
     },
   );
 

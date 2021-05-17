@@ -57,6 +57,14 @@ const Destination = ({ destinationData = {} }) => {
   const otherExperiences = experiences?.filter(
     (exp) => exp.customDataAttributes.isBucketList === 'no',
   );
+  const allExperiences = [
+    {
+      title: 'Bucket list experiences',
+      experiences: bucketListExperiences,
+      id: 'experiences',
+    },
+    { title: 'Other experiences', experiences: otherExperiences },
+  ];
 
   console.log('bl', bucketListExperiences, otherExperiences);
 
@@ -96,59 +104,49 @@ const Destination = ({ destinationData = {} }) => {
             })}
           </About>
         </CollapseSection>
-        {/* BucketListExperiences */}
-        {bucketListExperiences && (
-          <CollapseSection
-            title="Bucket list experiences"
-            number={bucketListExperiences?.length}
-            listings>
-            <div className="mt-5">
-              {bucketListExperiences?.map((item) => {
-                const { minAge, priceFrom, duration, profile, whenIsIt } =
-                  item.customDataAttributes;
 
-                return (
-                  <Listing
-                    item={item}
-                    key={item.id}
-                    profile={profile}
-                    minAge={minAge === null ? 0 : minAge}
-                    duration={duration}
-                    priceFrom={priceFrom}
-                    whenIsIt={whenIsIt}
-                    className="mx-4 sm:mx-7"
-                  />
-                );
-              })}
-            </div>
-          </CollapseSection>
-        )}
-        {/* otherExperiences */}
-        {otherExperiences && (
-          <CollapseSection
-            title="Other experiences"
-            number={otherExperiences?.length}
-            listing>
-            <div className="mt-5">
-              {otherExperiences?.map((item) => {
-                const { minAge, priceFrom, duration, profile } =
-                  item.customDataAttributes;
+        {/* Experiences */}
+        {allExperiences?.map((exp) => {
+          const { title, experiences, id } = exp;
+          return (
+            <CollapseSection
+              title={title}
+              number={experiences?.length}
+              id={id}
+              listings>
+              <div className="mt-5">
+                {experiences?.map((item) => {
+                  const {
+                    minAge,
+                    priceFrom,
+                    duration,
+                    profile,
+                    whenIsIt,
+                    city,
+                    region,
+                  } = item.customDataAttributes;
+                  const country = item.commonDataAttributes.country.name;
 
-                return (
-                  <Listing
-                    item={item}
-                    key={item.id}
-                    profile={profile}
-                    minAge={minAge === null ? 0 : minAge}
-                    duration={duration}
-                    priceFrom={priceFrom}
-                    className="mx-4 sm:mx-7"
-                  />
-                );
-              })}
-            </div>
-          </CollapseSection>
-        )}
+                  return (
+                    <Listing
+                      item={item}
+                      key={item.id}
+                      profile={profile}
+                      minAge={minAge === null ? 0 : minAge}
+                      duration={duration}
+                      priceFrom={priceFrom}
+                      whenIsIt={whenIsIt}
+                      country={country}
+                      city={city}
+                      region={region}
+                      className="mx-4 sm:mx-7"
+                    />
+                  );
+                })}
+              </div>
+            </CollapseSection>
+          );
+        })}
 
         {/* Where to stay */}
         <CollapseSection
@@ -164,11 +162,16 @@ const Destination = ({ destinationData = {} }) => {
           />
           <div className="">
             {placesToStay?.map((item) => {
+              const { city, region } = item.customDataAttributes;
+              const country = item.commonDataAttributes.country?.name;
               return (
                 <Listing
                   item={item}
                   key={item.id}
                   profile="full"
+                  city={city}
+                  country={country}
+                  region={region}
                   className="mx-4 sm:mx-7"
                 />
               );
