@@ -125,16 +125,18 @@ const Destination = ({ destinationData = {} }) => {
           number={tourOperators?.length}
           id="who-to-go-with"
           listings>
-          {tourOperators?.map((item) => {
-            return (
-              <Listing
-                item={item}
-                key={item.id}
-                className="mx-4 sm:mx-7"
-                noBl
-              />
-            );
-          })}
+          <div className="mt-5">
+            {tourOperators?.map((item) => {
+              return (
+                <Listing
+                  item={item}
+                  key={item.id}
+                  className="mx-4 sm:mx-7"
+                  noBl
+                />
+              );
+            })}
+          </div>
         </CollapseSection>
       </PageLayout>
     </>
