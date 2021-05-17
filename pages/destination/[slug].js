@@ -48,9 +48,10 @@ const Destination = ({ destinationData = {} }) => {
       tourOperators,
       experiences,
       affiliatedTours,
+      destinationGuides,
     },
   } = destination || {};
-  console.log('exp', affiliatedTours);
+  console.log('exp', destinationGuides);
 
   const bucketListExperiences = experiences?.filter(
     (exp) => exp.customDataAttributes.isBucketList === 'yes',
@@ -107,78 +108,81 @@ const Destination = ({ destinationData = {} }) => {
         </CollapseSection>
 
         {/* Experiences */}
-        {allExperiences?.map((exp) => {
-          const { title, experiences, id } = exp;
-          return (
-            <CollapseSection
-              title={title}
-              number={experiences?.length}
-              id={id}
-              listings>
-              <div className="mt-5">
-                {experiences?.map((item) => {
-                  const {
-                    minAge,
-                    priceFrom,
-                    duration,
-                    profile,
-                    whenIsIt,
-                    city,
-                    region,
-                  } = item.customDataAttributes;
-                  const country = item.commonDataAttributes.country.name;
+        {experiences &&
+          allExperiences?.map((exp) => {
+            const { title, experiences, id } = exp;
+            return (
+              <CollapseSection
+                title={title}
+                number={experiences?.length}
+                id={id}
+                listings>
+                <div className="mt-5">
+                  {experiences?.map((item) => {
+                    const {
+                      minAge,
+                      priceFrom,
+                      duration,
+                      profile,
+                      whenIsIt,
+                      city,
+                      region,
+                    } = item.customDataAttributes;
+                    const country = item.commonDataAttributes.country.name;
 
-                  return (
-                    <Listing
-                      item={item}
-                      key={item.id}
-                      profile={profile}
-                      minAge={minAge === null ? 0 : minAge}
-                      duration={duration}
-                      priceFrom={priceFrom}
-                      whenIsIt={whenIsIt}
-                      country={country}
-                      city={city}
-                      region={region}
-                      className="mx-4 sm:mx-7"
-                    />
-                  );
-                })}
-              </div>
-            </CollapseSection>
-          );
-        })}
+                    return (
+                      <Listing
+                        item={item}
+                        key={item.id}
+                        profile={profile}
+                        minAge={minAge === null ? 0 : minAge}
+                        duration={duration}
+                        priceFrom={priceFrom}
+                        whenIsIt={whenIsIt}
+                        country={country}
+                        city={city}
+                        region={region}
+                        className="mx-4 sm:mx-7"
+                      />
+                    );
+                  })}
+                </div>
+              </CollapseSection>
+            );
+          })}
 
         {/* Where to stay */}
-        <CollapseSection
-          title="Where to stay"
-          number={placesToStay?.length}
-          id="where-to-stay"
-          listings
-          className="">
-          <div
-            className="p-3 mx-4 mb-12 sm:mx-7 bg-veryLightGold"
-            css={{ p: { marginBottom: '15px' } }}
-            dangerouslySetInnerHTML={{ __html: whereToStay }}
-          />
-          <div className="">
-            {placesToStay?.map((item) => {
-              const { city, region } = item.customDataAttributes;
-              const country = item.commonDataAttributes.country?.name;
-              return (
-                <Listing
-                  item={item}
-                  key={item.id}
-                  profile="full"
-                  city={city}
-                  country={country}
-                  region={region}
-                  className="mx-4 sm:mx-7"
-                />
-              );
-            })}
-          </div>
-        </CollapseSection>
+        {placesToStay && (
+          <CollapseSection
+            title="Where to stay"
+            number={placesToStay?.length}
+            id="where-to-stay"
+            listings
+            className="">
+            <div
+              className="p-3 mx-4 mb-12 sm:mx-7 bg-veryLightGold"
+              css={{ p: { marginBottom: '15px' } }}
+              dangerouslySetInnerHTML={{ __html: whereToStay }}
+            />
+            <div className="">
+              {placesToStay?.map((item) => {
+                const { city, region } = item.customDataAttributes;
+                const country = item.commonDataAttributes.country?.name;
+                return (
+                  <Listing
+                    item={item}
+                    key={item.id}
+                    profile="full"
+                    city={city}
+                    country={country}
+                    region={region}
+                    className="mx-4 sm:mx-7"
+                  />
+                );
+              })}
+            </div>
+          </CollapseSection>
+        )}
 
         {/* Travel advice */}
         <CollapseSection title="Travel advice">
@@ -192,24 +196,52 @@ const Destination = ({ destinationData = {} }) => {
         </CollapseSection>
 
         {/* Tour operators */}
-        <CollapseSection
-          title="Who to go with: tour operators"
-          number={tourOperators?.length}
-          id="who-to-go-with"
-          listings>
-          <div className="mt-5">
-            {tourOperators?.map((item) => {
-              return (
-                <Listing
-                  item={item}
-                  key={item.id}
-                  className="mx-4 sm:mx-7"
-                  noBl
-                />
-              );
-            })}
-          </div>
-        </CollapseSection>
+        {tourOperators && (
+          <CollapseSection
+            title="Who to go with: tour operators"
+            number={tourOperators?.length}
+            id="who-to-go-with"
+            listings>
+            <div className="mt-5">
+              {tourOperators?.map((item) => {
+                return (
+                  <Listing
+                    item={item}
+                    key={item.id}
+                    className="mx-4 sm:mx-7"
+                    noBl
+                  />
+                );
+              })}
+            </div>
+          </CollapseSection>
+        )}
+        {/* Destination guides */}
+        {destinationGuides && (
+          <CollapseSection
+            title="Destination guides"
+            number={destinationGuides.length}
+            listings>
+            <div className="mt-5">
+              {destinationGuides?.map((item) => {
+                const { profile, region } = item.customDataAttributes;
+                const country = item.commonDataAttributes.country.name;
+                return (
+                  <Listing
+                    item={item}
+                    key={item.id}
+                    profile={profile}
+                    region={region}
+                    country={country}
+                    className="mx-4 sm:mx-7"
+                    destinationGuide
+                    noBl
+                  />
+                );
+              })}
+            </div>
+          </CollapseSection>
+        )}
       </PageLayout>
     </>
   );

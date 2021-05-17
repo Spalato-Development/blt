@@ -19,6 +19,7 @@ export const Listing = ({
   city,
   region,
   country,
+  destinationGuide,
   ...props
 }) => {
   const [open, setOpen] = useState(false);
@@ -73,7 +74,7 @@ export const Listing = ({
             </h3>
             <div
               dangerouslySetInnerHTML={{ __html: standfirst }}
-              className="leading-tight prose"
+              className="mr-2 leading-tight prose"
             />
           </div>
           {starRating ? (
@@ -107,9 +108,9 @@ export const Listing = ({
           {/* Website or link to profile (read our review) */}
           {profile === 'full' ? (
             <Link href={uri}>
-              <Button as="a" secondary>
-                Read our review
-              </Button>
+              <a secondary>
+                {destinationGuide ? 'Read our guide' : 'Read our review'}
+              </a>
             </Link>
           ) : (
             website && (
