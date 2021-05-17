@@ -46,9 +46,19 @@ const Destination = ({ destinationData = {} }) => {
       additionalSections,
       placesToStay,
       tourOperators,
+      experiences,
     },
   } = destination;
-  console.log('pts', placesToStay);
+  console.log('exp', experiences);
+
+  const bucketListExperiences = experiences?.filter(
+    (exp) => exp.customDataAttributes.isBucketList === 'yes',
+  );
+  const otherExperiences = experiences?.filter(
+    (exp) => exp.customDataAttributes.isBucketList === 'no',
+  );
+
+  console.log('bl', bucketListExperiences, otherExperiences);
 
   const tabs = [
     { name: 'our review' },
@@ -86,6 +96,20 @@ const Destination = ({ destinationData = {} }) => {
             })}
           </About>
         </CollapseSection>
+        {/* BucketListExperiences */}
+        {bucketListExperiences && (
+          <CollapseSection
+            title="Bucket list experiences"
+            number={bucketListExperiences?.length}
+            listing></CollapseSection>
+        )}
+        {/* othertExperiences */}
+        {otherExperiences && (
+          <CollapseSection
+            title="Other experiences"
+            number={otherExperiences?.length}
+            listing></CollapseSection>
+        )}
 
         {/* Where to stay */}
         <CollapseSection
