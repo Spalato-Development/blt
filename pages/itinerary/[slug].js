@@ -54,7 +54,7 @@ const Itinerary = ({ itineraryData = {} }) => {
         return (
           <CollapseSection
             key={index}
-            title={`Day ${index + 1} ${day.title ? ':' + day.title : ''}`}
+            title={`Day ${index + 1}${day.title ? ': ' + day.title : ''}`}
             listings>
             <IntroText content={about} />
             <div>
@@ -68,7 +68,7 @@ const Itinerary = ({ itineraryData = {} }) => {
                   city,
                   region,
                 } = item.customDataAttributes;
-                const country = item.commonDataAttributes.country.name;
+                const country = item.commonDataAttributes?.country?.name;
                 return (
                   <Listing
                     item={item}
