@@ -11,7 +11,7 @@ const Title = ({ title, stars, intro, className, ...props }) => {
       )}
       {...props}>
       {intro && <div className={clsx('text-gold text-f-24')}>{intro}</div>}
-      <Typo as="h1" h1>
+      <Typo as="h1" h1 className="max-w-[940px]">
         {title}
       </Typo>
       {stars && <StarIcons stars={stars} />}
