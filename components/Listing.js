@@ -58,48 +58,50 @@ export const Listing = ({
   return (
     <div className={clsx('shadow-listing', 'p-2 pr-3 mb-5', className)}>
       <div className={clsx('flex justify-between')} {...props}>
-        {/* Left: Image */}
-        {img}
+        <div className="flex">
+          {/* Left: Image */}
+          {img}
 
-        {/* Middle: title content stars features */}
-        <div
-          className={`${
-            search ? 'max-w-[470px]' : 'max-w-[385px]'
-          } flex flex-col justify-between`}>
-          <div>
-            <Link href={`${uri}`}>
-              <a className="hover:no-underline ">
-                <h2 className="font-bold leading-none text-black text-f-24">
-                  {title}
-                </h2>{' '}
-              </a>
-            </Link>
-            <h3 className="mb-2 text-f-18 text-grey5">
-              {city ? city : region ? region : country}
-            </h3>
-            <div
-              dangerouslySetInnerHTML={{ __html: standfirst }}
-              className="mr-2 leading-tight prose"
-            />
-          </div>
-          {starRating ? (
+          {/* Middle: title content stars features */}
+          <div
+            className={`${
+              search ? 'max-w-[470px]' : 'max-w-[400px]'
+            } flex flex-col justify-between`}>
             <div>
-              <StarIcons stars={parseInt(starRating)} small />
+              <Link href={`${uri}`}>
+                <a className="hover:no-underline ">
+                  <h2 className="font-bold leading-none text-black text-f-24">
+                    {title}
+                  </h2>{' '}
+                </a>
+              </Link>
+              <h3 className="mb-2 text-f-18 text-grey5">
+                {city ? city : region ? region : country}
+              </h3>
+              <div
+                dangerouslySetInnerHTML={{ __html: standfirst }}
+                className="mr-2 leading-tight prose"
+              />
             </div>
-          ) : (
-            <div className="flex mt-4 text-grey4">
-              {minAge !== undefined &&
-                `Ages: ${minAge === null ? 0 : minAge}+ ${
-                  priceFrom
-                    ? ` | Price from: £${priceFrom}`
-                    : duration
-                    ? ` | Duration: ${duration}`
-                    : whenIsIt
-                    ? ` | When: ${whenIsIt}`
-                    : ''
-                }`}
-            </div>
-          )}
+            {starRating ? (
+              <div>
+                <StarIcons stars={parseInt(starRating)} small />
+              </div>
+            ) : (
+              <div className="flex mt-4 text-grey4">
+                {minAge !== undefined &&
+                  `Ages: ${minAge === null ? 0 : minAge}+ ${
+                    priceFrom
+                      ? ` | Price from: £${priceFrom}`
+                      : duration
+                      ? ` | Duration: ${duration}`
+                      : whenIsIt
+                      ? ` | When: ${whenIsIt}`
+                      : ''
+                  }`}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Right: Buttons */}

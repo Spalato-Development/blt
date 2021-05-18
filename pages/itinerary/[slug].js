@@ -71,7 +71,12 @@ const Itinerary = ({ itineraryData = {} }) => {
               })}
               {ptsLinks?.map((item) => {
                 return (
-                  <Listing item={item} key={item.id} className="mx-4 sm:mx-7" />
+                  <Listing
+                    item={item}
+                    key={item.id}
+                    className="mx-4 sm:mx-7"
+                    noBl
+                  />
                 );
               })}
             </div>
