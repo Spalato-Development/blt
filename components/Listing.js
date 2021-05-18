@@ -11,14 +11,7 @@ export const Listing = ({
   search,
   noBl,
   className,
-  minAge,
-  priceFrom,
-  duration,
-  profile,
-  whenIsIt,
-  city,
-  region,
-  country,
+
   destinationGuide,
   ...props
 }) => {
@@ -27,12 +20,22 @@ export const Listing = ({
     title,
     featuredImage,
     uri,
-    entityCategories,
-    commonDataAttributes: { standfirst },
+
+    commonDataAttributes: { standfirst, country },
   } = item;
 
-  const { starRating, priceCheckingLinks, website } =
-    item.customDataAttributes || {};
+  const {
+    starRating,
+    priceCheckingLinks,
+    website,
+    minAge,
+    priceFrom,
+    duration,
+    profile,
+    whenIsIt,
+    city,
+    region,
+  } = item.customDataAttributes || {};
 
   const img = featuredImage ? (
     <Link href={`${uri}`}>
@@ -86,7 +89,7 @@ export const Listing = ({
           ) : (
             <div className="flex mt-4 text-grey4">
               {minAge !== undefined &&
-                `Ages: ${minAge}+ ${
+                `Ages: ${minAge === null ? 0 : minAge}+ ${
                   priceFrom
                     ? ` | Price from: £${priceFrom}`
                     : duration

@@ -59,30 +59,8 @@ const Itinerary = ({ itineraryData = {} }) => {
             <IntroText content={about} />
             <div>
               {links?.map((item) => {
-                const {
-                  minAge,
-                  priceFrom,
-                  duration,
-                  profile,
-                  whenIsIt,
-                  city,
-                  region,
-                } = item.customDataAttributes;
-                const country = item.commonDataAttributes?.country?.name;
                 return (
-                  <Listing
-                    item={item}
-                    key={item.id}
-                    profile={profile}
-                    minAge={minAge === null ? 0 : minAge}
-                    duration={duration}
-                    priceFrom={priceFrom}
-                    whenIsIt={whenIsIt}
-                    country={country}
-                    city={city}
-                    region={region}
-                    className="mx-4 sm:mx-7"
-                  />
+                  <Listing item={item} key={item.id} className="mx-4 sm:mx-7" />
                 );
               })}
             </div>

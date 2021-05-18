@@ -118,29 +118,10 @@ const Destination = ({ destinationData = {} }) => {
               listings>
               <div className="mt-5">
                 {experiences?.map((item) => {
-                  const {
-                    minAge,
-                    priceFrom,
-                    duration,
-                    profile,
-                    whenIsIt,
-                    city,
-                    region,
-                  } = item.customDataAttributes;
-                  const country = item.commonDataAttributes.country.name;
-
                   return (
                     <Listing
                       item={item}
                       key={item.id}
-                      profile={profile}
-                      minAge={minAge === null ? 0 : minAge}
-                      duration={duration}
-                      priceFrom={priceFrom}
-                      whenIsIt={whenIsIt}
-                      country={country}
-                      city={city}
-                      region={region}
                       className="mx-4 sm:mx-7"
                     />
                   );
@@ -161,18 +142,8 @@ const Destination = ({ destinationData = {} }) => {
           <IntroText content={whereToStay} />
           <div className="">
             {placesToStay?.map((item) => {
-              const { city, region } = item.customDataAttributes;
-              const country = item.commonDataAttributes.country?.name;
               return (
-                <Listing
-                  item={item}
-                  key={item.id}
-                  profile="full"
-                  city={city}
-                  country={country}
-                  region={region}
-                  className="mx-4 sm:mx-7"
-                />
+                <Listing item={item} key={item.id} className="mx-4 sm:mx-7" />
               );
             })}
           </div>
@@ -219,15 +190,10 @@ const Destination = ({ destinationData = {} }) => {
           listings>
           <div className="mt-5">
             {destinationGuides?.map((item) => {
-              const { profile, region } = item.customDataAttributes;
-              const country = item.commonDataAttributes.country.name;
               return (
                 <Listing
                   item={item}
                   key={item.id}
-                  profile={profile}
-                  region={region}
-                  country={country}
                   className="mx-4 sm:mx-7"
                   destinationGuide
                   noBl
