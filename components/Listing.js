@@ -36,13 +36,15 @@ export const Listing = ({
 
   const img = featuredImage ? (
     <Link href={`${uri}`}>
-      <a className="flex mr-5 " css={{ img: { objectFit: 'cover' } }}>
-        <Image
-          src={featuredImage.node.sourceUrl}
-          alt={featuredImage.node.altText}
-          width="249px"
-          height="166px"
-        />
+      <a className="mr-5 " css={{ img: { objectFit: 'cover' } }}>
+        <div className="flex">
+          <Image
+            src={featuredImage.node.sourceUrl}
+            alt={featuredImage.node.altText}
+            width="249px"
+            height="166px"
+          />
+        </div>
       </a>
     </Link>
   ) : (
