@@ -51,13 +51,13 @@ const Destination = ({ destinationData = {} }) => {
       destinationGuides,
     },
   } = destination || {};
-  console.log('exp', destinationGuides);
+  console.log('exp', experiences);
 
   const bucketListExperiences = experiences?.filter(
     (exp) => exp.customDataAttributes.isBucketList === 'yes',
   );
   const otherExperiences = experiences?.filter(
-    (exp) => exp.customDataAttributes.isBucketList === 'no',
+    (exp) => exp.experienceTypes.nodes[0].slug === 'other',
   );
 
   const allExperiences = [
