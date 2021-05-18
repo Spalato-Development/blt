@@ -51,6 +51,12 @@ const Itinerary = ({ itineraryData = {} }) => {
       {days?.map((day, index) => {
         const { about, links } = day;
         console.log('links', links);
+        const expLinks = links.filter(
+          (link) => link.__typename === 'Experience',
+        );
+        const ptsLinks = links.filter(
+          (link) => link.__typename === 'PlaceToStay',
+        );
         return (
           <CollapseSection
             key={index}
@@ -58,7 +64,12 @@ const Itinerary = ({ itineraryData = {} }) => {
             listings>
             <IntroText content={about} />
             <div>
-              {links?.map((item) => {
+              {expLinks?.map((item) => {
+                return (
+                  <Listing item={item} key={item.id} className="mx-4 sm:mx-7" />
+                );
+              })}
+              {ptsLinks?.map((item) => {
                 return (
                   <Listing item={item} key={item.id} className="mx-4 sm:mx-7" />
                 );
