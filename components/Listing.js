@@ -65,7 +65,7 @@ export const Listing = ({
           {/* Middle: title content stars features */}
           <div
             className={`${
-              search ? 'max-w-[470px]' : 'max-w-[400px]'
+              search ? 'max-w-[470px]' : 'max-w-[385px] 2xl:max-w-[400px]'
             } flex flex-col justify-between`}>
             <div>
               <Link href={`${uri}`}>
@@ -115,7 +115,7 @@ export const Listing = ({
             <div></div>
           )}
           {/* Website or link to profile (read our review) */}
-          {profile === 'full' ? (
+          {profile === 'full' || itinerary ? (
             <Link href={uri} passHref>
               <Button as="a" secondary>
                 {destinationGuide
