@@ -6,14 +6,13 @@ import { CollapseSection, TravelQuote } from 'components/ui-components';
 import { About, Newsletter, PageLayout } from 'components';
 
 const Experience = ({ experienceData = {} }) => {
-  console.log('exp data', experienceData);
   const { experience } = experienceData.data || {};
   const {
     title,
     modified,
-    commonDataAttributes: { imageGallery, review },
+    commonDataAttributes: { imageGallery, about },
     customDataAttributes: { writer },
-  } = experience;
+  } = experience || {};
 
   const tabs = [
     { name: 'our review' },
@@ -39,7 +38,7 @@ const Experience = ({ experienceData = {} }) => {
           <About
             writer={writer && writer[0]}
             date={modified}
-            review={review}
+            review={about}
             text="Know someone who would like this place to stay? Why not let them know…"
           />
         </CollapseSection>

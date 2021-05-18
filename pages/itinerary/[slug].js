@@ -26,7 +26,7 @@ const Itinerary = ({ itineraryData = {} }) => {
     commonDataAttributes: { about },
     customDataAttributes: { days },
   } = itinerary || {};
-  console.log('days', days);
+
   return (
     <PageLayout
       title={title}

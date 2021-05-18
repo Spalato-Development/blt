@@ -13,7 +13,6 @@ import {
 
 const Destination = ({ destinationData = {} }) => {
   const { destination } = destinationData.data || {};
-  console.log('destination!', destination);
 
   const {
     title,
