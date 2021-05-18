@@ -2,7 +2,7 @@ import { getApolloClient } from '@wpengine/headless';
 import { GET_DESTINATION } from 'lib/queries';
 import { appGetStaticProps } from 'lib/appGetStaticProps';
 import { getNextStaticPaths } from '@wpengine/headless/next';
-import { CollapseSection } from 'components/ui-components';
+import { CollapseSection, IntroText } from 'components/ui-components';
 import {
   About,
   Newsletter,
@@ -158,11 +158,7 @@ const Destination = ({ destinationData = {} }) => {
           id="where-to-stay"
           listings
           className="">
-          <div
-            className="p-3 mx-4 mb-12 sm:mx-7 bg-veryLightGold"
-            css={{ p: { marginBottom: '15px' } }}
-            dangerouslySetInnerHTML={{ __html: whereToStay }}
-          />
+          <IntroText content={whereToStay} />
           <div className="">
             {placesToStay?.map((item) => {
               const { city, region } = item.customDataAttributes;

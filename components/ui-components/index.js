@@ -9,3 +9,4 @@ export * from './Forms';
 export * from './Number';
 export * from './StarIcons';
 export * from './WithCollapse';
+export * from './IntroText';

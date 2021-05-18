@@ -89,7 +89,9 @@ export const Listing = ({
                     ? ` | Price from: £${priceFrom}`
                     : duration
                     ? ` | Duration: ${duration}`
-                    : ` | When: ${whenIsIt}`
+                    : whenIsIt
+                    ? ` | When: ${whenIsIt}`
+                    : ''
                 }`}
             </div>
           )}

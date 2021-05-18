@@ -11,6 +11,7 @@ import {
   PageLayout,
   Listing,
   CollapseSection,
+  IntroText,
 } from 'components';
 
 const Itinerary = ({ itineraryData = {} }) => {
@@ -48,10 +49,44 @@ const Itinerary = ({ itineraryData = {} }) => {
         />
       </section>
       {days?.map((day, index) => {
+        const { about, links } = day;
+        console.log('links', links);
         return (
           <CollapseSection
             key={index}
-            title={`Day ${index + 1}: ${day.title}`}></CollapseSection>
+            title={`Day ${index + 1} ${day.title ? ':' + day.title : ''}`}
+            listings>
+            <IntroText content={about} />
+            <div>
+              {links?.map((item) => {
+                const {
+                  minAge,
+                  priceFrom,
+                  duration,
+                  profile,
+                  whenIsIt,
+                  city,
+                  region,
+                } = item.customDataAttributes;
+                const country = item.commonDataAttributes.country.name;
+                return (
+                  <Listing
+                    item={item}
+                    key={item.id}
+                    profile={profile}
+                    minAge={minAge === null ? 0 : minAge}
+                    duration={duration}
+                    priceFrom={priceFrom}
+                    whenIsIt={whenIsIt}
+                    country={country}
+                    city={city}
+                    region={region}
+                    className="mx-4 sm:mx-7"
+                  />
+                );
+              })}
+            </div>
+          </CollapseSection>
         );
       })}
     </PageLayout>
