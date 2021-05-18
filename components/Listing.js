@@ -11,7 +11,7 @@ export const Listing = ({
   search,
   noBl,
   className,
-
+  itinerary,
   destinationGuide,
   ...props
 }) => {
@@ -118,7 +118,11 @@ export const Listing = ({
           {profile === 'full' ? (
             <Link href={uri} passHref>
               <Button as="a" secondary>
-                {destinationGuide ? 'Read our guide' : 'Read our review'}
+                {destinationGuide
+                  ? 'Read our guide'
+                  : itinerary
+                  ? 'see itinerary'
+                  : 'Read our review'}
               </Button>
             </Link>
           ) : (

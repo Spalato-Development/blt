@@ -49,6 +49,7 @@ const Destination = ({ destinationData = {} }) => {
       experiences,
       affiliatedTours,
       destinationGuides,
+      itineraries,
     },
   } = destination || {};
   console.log('exp', experiences);
@@ -182,6 +183,27 @@ const Destination = ({ destinationData = {} }) => {
           </div>
         </CollapseSection>
       )}
+      {/* Recommended itineraries */}
+      {itineraries && (
+        <CollapseSection
+          title="Recommended itineraries"
+          number={itineraries.length}
+          listings>
+          <div className="mt-5">
+            {itineraries?.map((item) => {
+              return (
+                <Listing
+                  item={item}
+                  key={item.id}
+                  className="mx-4 sm:mx-7"
+                  itinerary
+                />
+              );
+            })}
+          </div>
+        </CollapseSection>
+      )}
+
       {/* Destination guides */}
       {destinationGuides && (
         <CollapseSection
