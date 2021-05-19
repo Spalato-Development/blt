@@ -11,8 +11,16 @@ const Experience = ({ experienceData = {} }) => {
     title,
     modified,
     commonDataAttributes: { imageGallery, about },
-    customDataAttributes: { writer },
+    customDataAttributes: {
+      writer,
+      whereToStay,
+      recommendations,
+      tourOperator,
+      destination,
+    },
   } = experience || {};
+
+  console.log('exp', experience, writer);
 
   const tabs = [
     { name: 'our review' },
@@ -38,7 +46,7 @@ const Experience = ({ experienceData = {} }) => {
           <About
             writer={writer && writer[0]}
             date={modified}
-            review={about}
+            about={about}
             text="Know someone who would like this place to stay? Why not let them know…"
           />
         </CollapseSection>
