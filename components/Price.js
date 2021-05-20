@@ -7,7 +7,7 @@ export const Price = ({ priceCheckingLinks, website, className, ...props }) => {
     <div
       className={clsx(
         'justify-between block xl:flex',
-        'text-f-22 text-grey5',
+        'text-f-18 text-grey5',
         className,
       )}
       {...props}>

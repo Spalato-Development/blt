@@ -2,6 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { Button } from 'components/ui-components';
+import slugify from 'slugify';
 
 export const Tabs = ({ tabs = [], className, ...props }) => {
   return (
@@ -17,7 +18,7 @@ export const Tabs = ({ tabs = [], className, ...props }) => {
           tab
           className={clsx('h:[39px] sm:h-[54px]', 'w-[100px] sm:w-[176px]')}
           key={tab.name}
-          href={`#${tab.name.toLowerCase().replace(' ', '-')}`}>
+          href={`#${slugify(tab.name.toLowerCase())}`}>
           {tab.name}
         </Button>
       ))}

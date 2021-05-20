@@ -11,7 +11,7 @@ export const ContentLayout = ({ children, sidebar }) => {
       <div
         className={clsx(
           'w-full  lg:w-2/3 xl:w-[940px ]',
-          'mb-7 lg:mb-0 mr-16 xl:ml-14 ',
+          'mb-7 lg:mb-0 mr-14 xl:ml-14 ',
         )}>
         {children}
       </div>

@@ -1,4 +1,3 @@
-// const config = require('./themeConfig');
 const rem = (px) => px / 16 + 'rem';
 const defaultTheme = require('tailwindcss/defaultTheme');
 
