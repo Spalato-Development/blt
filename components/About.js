@@ -8,6 +8,7 @@ export const About = ({
   text,
   author,
   about,
+  review,
 
   children,
   ...props
@@ -28,6 +29,10 @@ export const About = ({
       <TitleContent content={about} />
 
       {children}
+      {review?.map((section, i) => {
+        const { title, content } = section;
+        return <TitleContent key={i} title={title} content={content} />;
+      })}
       <div className="mt-12 text-center text-gold text-f-24">{text}</div>
     </Fragment>
   );

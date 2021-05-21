@@ -10,7 +10,7 @@ const Experience = ({ experienceData = {} }) => {
   const {
     title,
     modified,
-    commonDataAttributes: { imageGallery, about },
+    commonDataAttributes: { imageGallery, about, review },
     customDataAttributes: {
       writer,
       whereToStay,
@@ -47,6 +47,7 @@ const Experience = ({ experienceData = {} }) => {
             writer={writer && writer[0]}
             date={modified}
             about={about}
+            review={review}
             text="Know someone who would like this place to stay? Why not let them know…"
           />
         </CollapseSection>

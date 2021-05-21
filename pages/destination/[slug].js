@@ -95,14 +95,11 @@ const Destination = ({ destinationData = {} }) => {
           writer={writer && writer[0]}
           date={modified}
           about={about}
+          review={review}
           text="Know someone who would like this place to stay? Why not let them know…">
           <TitleContent title="Orientation" content={orientation} />
           <TitleContent title="Culture & Customs" content={culture} />
           <TitleContent title="Food & Drink" content={foodDrink} />
-          {additionalSections?.map((section, i) => {
-            const { title, content } = section;
-            return <TitleContent key={i} title={title} content={content} />;
-          })}
         </About>
       </CollapseSection>
 
@@ -159,6 +156,10 @@ const Destination = ({ destinationData = {} }) => {
         <TitleContent title="Where to eat or drink" content={whereToEat} />
         <TitleContent title="Where to shop" content={whereToShop} />
         <TitleContent title="Health & Safety" content={healthSafety} />
+        {additionalSections?.map((section, i) => {
+          const { title, content } = section;
+          return <TitleContent key={i} title={title} content={content} />;
+        })}
       </CollapseSection>
 
       {/* Tour operators */}
