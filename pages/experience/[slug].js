@@ -51,6 +51,7 @@ const Experience = ({ experienceData = {} }) => {
             text="Know someone who would like this place to stay? Why not let them know…"
           />
         </CollapseSection>
+        <CollapseSection title="Logistics" id="logistics"></CollapseSection>
       </PageLayout>
     </>
   );
